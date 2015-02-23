@@ -30,7 +30,8 @@ $html =~ /<p class="style96"><span class="style95">(.*)<\/span><\/p><\/td>.*<td 
 $h{content} = $1;
 
 my @imgs = $h{content} =~ /<img src="(.*)" border/g;
+#$h{imgs} = @imgs; //TODO: How to assign an array to a hash[key] ?
 
-#print "$_ $h{$_}\n" for (keys %h);
+print "$_ $h{$_}\n" for (keys %h);
 
 #for f in BULLETINS/*;do ./td1.pl < $f;done
