@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="lo17" basedir="." default="start">
+	<!-- These two properties are for debugging purposes only.
+	<property name="InputPath" value="sample03.hdoc"/>
+	<property name="OutputPath" value="sample03.scar"/>
+	-->
+	<target name="start">
+		<!-- This is the main target : it is called whether by the project (as the default target) or by the user/converter
+		website, if specified in the command line. Basically, this target consists in several targets/ant buildfiles calls. -->
+		<antcall target="CleanDirectory" />
+		<antcall target="UnzipHdocFile" />
+		<antcall target="FindContentFiles" />
+		<ant antfile="generateContentPath.xml" />
+		<antcall target="ZipScar" />
+		<antcall target="CleanDirectory" />
+	</target>
+</project>
