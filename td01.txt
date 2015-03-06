@@ -1,9 +1,0 @@
-- le sujet du TD s'appelle 
-- sujet du projet délivré
-- commande entre backquotes : commande shell
-- compte de TD
-	* identifiant : lo17p003(@utc)
-	* mot de passe : KTW4hppc
-- pour le projet
-	* faire un schéma .rng pour valider le corpus
-	* ouvrir un dépôt Git (GitLab ? GitHub ?)
