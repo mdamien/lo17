@@ -1,15 +1,19 @@
 #!/usr/bin/perl
 
+
+
 # En-tête
 use strict;
 use warnings;
 
-# Corps du programme
+
+
+# Corps du script
 my $cheminDuFichierGlobal = "global.xml";
 my $cheminDuRepertoire = 'BULLETINS';
 ## Solutions alternatives pour récupérer les valeurs des variables ci-haut
-my $repertoire = $ARGV[0]; #Le répertoire où chercher les documents
-my $fichierGlobal = $ARGV[1]; #Le fichier global où mettre les fichiers convertis
+#my $repertoire = $ARGV[0]; #Le répertoire où chercher les documents
+#my $fichierGlobal = $ARGV[1]; #Le fichier global où mettre les fichiers convertis
 ## Récupération des fichiers à rassembler
 my @tableauDesFichiers = `ls -l $cheminDuRepertoire *.htm`;
 while (my $fichier = each @tableauDesFichiers) {

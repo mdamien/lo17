@@ -5,6 +5,10 @@
 
 	<start>
 		<element name="html">
+			<element name="head">
+			</element>
+			<element name="body">
+			</element>
 		</element>
 	</start>
 </grammar>
