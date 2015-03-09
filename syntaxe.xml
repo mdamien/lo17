@@ -2,12 +2,16 @@
 <grammar
 	xmlns="http://relaxng.org/ns/structure/1.0"
 >
+	<!-- Syntaxe globale -->
 	<start>
-		<element name="html">
-			<element name="head">
-			</element>
-			<element name="body">
-			</element>
-		</element>
+		<element name="corpus"/>
 	</start>
+	<!-- Définition des balises -->
+	<element name="corpus">
+		<zeroOrMore>
+			<element name="bulletin"/>
+		</zeroOrMore>
+	</element>
+	<define name="bulletin">
+	</element>
 </grammar>
