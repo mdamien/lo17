@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project name="lo17" basedir="." default="start">
 	<!-- These two properties are for debugging purposes only.
-	<property name="InputPath" value="sample03.hdoc"/>
-	<property name="OutputPath" value="sample03.scar"/>
+	<property name="InputPath" value="main.pl"/>
+	<property name="OutputPath" value="global.xml"/>
 	-->
 	<target name="start">
 		<!-- This is the main target : it is called whether by the project (as the default target) or by the user/converter
