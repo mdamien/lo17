@@ -32,6 +32,25 @@ $h{content} = $1;
 my @imgs = $h{content} =~ /<img src="([^<]*)" border/g;
 $h{imgs} = join(";",@imgs);
 
+#clean the content
+while($h{content} =~ /<\/span>.*<span class="style95">/){
+	$h{content} =~ /^(.*)<\/span>.*<span class="style95">(.*)$/;
+	$h{content} = $1.$2;
+}
+
+print "\n";
+
 print "$_ $h{$_}\n" for (keys %h);
 
+print "\n";
+$h{content} =~ /<img/;
+print $1;
+
 #for f in BULLETINS/*;do ./td1.pl < $f;done
+
+
+# xml = "<dssd>"
+# for fichier in fichier:
+# 	xml += parse(sdsd)
+# xml = "</sdsd>"
+
