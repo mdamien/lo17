@@ -13,8 +13,8 @@ my $output_filepath = "global.xml";
 my $bulletins_dir = "BULLETINS/";
 my @files = `ls $bulletins_dir`;
 open(my $fh, '>', $output_filepath);
-print $fh '<?xml version="1.0" encoding="UTF-8" ?>\n';
-print $fh '<corpus>\n';
+print $fh '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+print $fh "<corpus>\n";
 foreach my $filename (@files) {
 	chomp $filename;
 
@@ -73,5 +73,5 @@ foreach my $filename (@files) {
 	print $fh "<contact>$h{contact_name} - $h{contact_mail}</contact>\n";
 	print $fh "</bulletin>\n";
 }
-print $fh '</corpus>\n';
+print $fh "</corpus>\n";
 close $fh;

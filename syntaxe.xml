@@ -4,15 +4,24 @@
 >
 	<!-- Syntaxe globale -->
 	<start>
-		<element name="corpus"/>
+		<ref name="corpus"/>
 	</start>
 	<!-- Définition des balises -->
-	<element name="corpus">
+	<define name="corpus">
 		<zeroOrMore>
-			<element name="bulletin"/>
+			<ref name="bulletin"/>
 		</zeroOrMore>
-	</element>
-	<element name="bulletin">
+	</define>
+	<define name="bulletin">
 		<element name="fichier">text()</element>
-	</element>
+		<element name="numero">text()</element>
+		<element name="date">text()</element>
+		<element name="rubrique">text()</element>
+		<ref name="texte"/>
+	</define>
+	<define name="texte">
+		
+	</define>
+	<define name="image">
+	</define>
 </grammar>
