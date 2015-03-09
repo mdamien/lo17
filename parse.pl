@@ -29,8 +29,8 @@ $html =~ s/\n//g;
 $html =~ /<p class="style96"><span class="style95">(.*)<\/span><\/p><\/td>.*<td width=133 valign=top bgcolor="#dae1e8" class="FWExtra2">/;
 $h{content} = $1;
 
-my @imgs = $h{content} =~ /<img src="(.*)" border/g;
-#$h{imgs} = @imgs; //TODO: How to assign an array to a hash[key] ?
+my @imgs = $h{content} =~ /<img src="([^<]*)" border/g;
+$h{imgs} = join(";",@imgs);
 
 print "$_ $h{$_}\n" for (keys %h);
 
