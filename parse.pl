@@ -53,6 +53,11 @@ foreach my $filename (@files) {
 	my @imgs = $h{content} =~ /<img src="([^<]*)" border/g;
 	my @legends = $h{content} =~ /<img src="([^<]*)" border/g;
 
+	foreach my $qzd (@imgs) {
+		my $dzq = $qzd =~ /style21/g;
+		print $dzq;
+	}
+
 	#clean the content
 	while($h{content} =~ /<\/span>.*<span class="style95">/){
 		$h{content} =~ /^(.*)<\/span>.*<span class="style95">(.*)$/;
