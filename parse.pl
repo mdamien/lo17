@@ -42,9 +42,9 @@ print "\n";
 
 print "$_ $h{$_}\n" for (keys %h);
 
-print "\n";
-$h{content} =~ /<img/;
-print $1;
+#print "\n";
+#$h{content} =~ /<img/;
+#print $1;
 
 #for f in BULLETINS/*;do ./td1.pl < $f;done
 
@@ -53,4 +53,3 @@ print $1;
 # for fichier in fichier:
 # 	xml += parse(sdsd)
 # xml = "</sdsd>"
-
