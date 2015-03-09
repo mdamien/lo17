@@ -62,6 +62,11 @@ foreach my $filename (@files) {
 
 	#print @imgs[0];
 
+	foreach my $qzd (@imgs) {
+		my $dzq = $qzd =~ /style21/g;
+		print $dzq;
+	}
+
 	#clean the content
 	while($h{content} =~ /<\/span>.*<span class="style95">/){
 		$h{content} =~ /^(.*)<\/span>.*<span class="style95">(.*)$/;
