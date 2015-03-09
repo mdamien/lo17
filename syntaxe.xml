@@ -12,6 +12,7 @@
 			<element name="bulletin"/>
 		</zeroOrMore>
 	</element>
-	<define name="bulletin">
+	<element name="bulletin">
+		<element name="fichier">text()</element>
 	</element>
 </grammar>
