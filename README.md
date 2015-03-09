@@ -10,7 +10,7 @@ Structure du code
 -----------------
 
 ### Première étape
-Lancer le script main.pl, qui se charge de lister tous les fichiers contenus dans l'archive et de leur appliquer le script parse.pl qui va parser chaque élément de l'archive et en extraire les informations pertinentes. Le script main va ensuite insérer ces informations dans un gros fichier (global.xml), qui sera ensuite utilisé pour initialiser une base de données postgres
+Lancer le script parse.pl qui va parser chaque élément de l'archive et en extraire les informations pertinentes. Le script main va ensuite insérer ces informations dans un gros fichier (global.xml), qui sera ensuite utilisé pour initialiser une base de données postgres
 
 ### Seconde étape
 Le fichier global.xml va initaliser une base de données PostgreSQL.

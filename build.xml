@@ -8,6 +8,12 @@
 		<!-- This is the main target : it is called whether by the project (as the default target) or by the user/converter
 		website, if specified in the command line. Basically, this target consists in several targets/ant buildfiles calls. -->
 		<echo message="Hello world !\n" />
+
+		<!--NEED vérifier le fichier global.xml -->
+		<xmlvalidate file="global.xml" />
+
+		<!--NEED valider le fichier global.xml -->
+
 	</target>
 </project>
 <!--
