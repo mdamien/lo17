@@ -58,10 +58,10 @@ foreach my $filename (@files) {
 	}
 
 	#clean the content
-	while($h{content} =~ /<\/span>.*<span class="style95">/){
-		$h{content} =~ /^(.*)<\/span>.*<span class="style95">(.*)$/;
-		$h{content} = $1.$2;
-	}
+	$h{content} =~ s/<div.*?<\/div>//g;
+	$h{content} =~ s/<span.*?>//g;
+	$h{content} =~ s/<\/span>//g;
+	$h{content} =~ s/<strong.*?<\/strong//g;
 
 	print $fh "<bulletin>\n";
 	print $fh "<fichier>$filename</fichier>\n";
@@ -81,5 +81,10 @@ foreach my $filename (@files) {
 print $fh "</corpus>\n";
 close $fh;
 
+
+#ls -l BULLETINS/ | wc -l
+# -> 327 -> 326 files
+#cat global.xml | grep "<bulletin>" | wc -l
+# -> 326
 
 
