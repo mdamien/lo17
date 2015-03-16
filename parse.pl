@@ -52,16 +52,37 @@ foreach my $filename (@files) {
 
 	my @imgs = $h{content} =~ /<img src="([^<"]*)"[^>]*><br \/><span class="style\d\d">(<strong>|)([^<]*)/g;
 
-	foreach my $qzd (@imgs) {
-		my $dzq = $qzd =~ /style21/g;
-		print $dzq;
-	}
-
 	#clean the content
 	$h{content} =~ s/<div.*?<\/div>//g;
 	$h{content} =~ s/<span.*?>//g;
 	$h{content} =~ s/<\/span>//g;
 	$h{content} =~ s/<strong.*?<\/strong//g;
+
+	#special characters
+	$h{content} =~ s/&nbsp;/ /g;
+    $h{content} =~ s/&ecirc;/ê/g;
+    $h{content} =~ s/&ouml;/ö/g;
+    $h{content} =~ s/&ucirc;/û/g;
+    $h{content} =~ s/&egrave;/è/g;
+    $h{content} =~ s/&icirc;/î/g;
+    $h{content} =~ s/&eacute;/é/g;
+    $h{content} =~ s/&quot;/'/g;
+    $h{content} =~ s/&agrave;/à/g;
+    $h{content} =~ s/&acirc;/â/g;
+    $h{content} =~ s/&iuml;/ï/g;
+    $h{content} =~ s/&ocirc;/ô/g;
+    $h{content} =~ s/&ccedil;/ç/g;
+    $h{content} =~ s/&euml;/ë/g;
+    $h{content} =~ s/&ugrave;/ù/g;
+    $h{content} =~ s/&szlig;/ß/g;
+    $h{content} =~ s/&uuml;/ü/g;
+    $h{content} =~ s/&amp;/et/g;
+    $h{content} =~ s/&deg;/°/g;
+    $h{content} =~ s/&ograve;/ò/g;
+    $h{content} =~ s/&ecirc;/ê/g;
+    $h{content} =~ s/&#338;/Œ/g;
+    $h{content} =~ s/&#8211/—/g;
+    $h{content} =~ s/&#21;/--/g;
 
 	print $fh "<bulletin>\n";
 	print $fh "<fichier>$filename</fichier>\n";
