@@ -19,9 +19,13 @@ for line in open('mots.tsv'):
 
 idf = {w:math.log(N/df[w])for w in df}
 
+results = []
 for f, freqs in tfs.items():
 	sum_f = sum(count for count in freqs.values())
 	for w, count in freqs.items():
 		t = count/sum_f
-		print(f,w,t,idf[w],t*idf[w],sep="\t")
+		results.append([f,w,t,idf[w],t*idf[w]])
 
+results = [['file','word','tf','idf','tfidf']]+sorted(results, key=lambda x:x[-1])
+for r in results:
+	print('\t'.join(str(x) for x in r))
