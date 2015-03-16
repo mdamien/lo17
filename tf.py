@@ -25,7 +25,10 @@ for f, freqs in tfs.items():
 		t = count/sum_f
 		results.append([f,w,t,idf[w],t*idf[w]])
 
-results = [['file','word','tf','idf','tfidf']]+sorted(results, key=lambda x:-x[-1]) #sort by tfidf
-results = results[:int(len(results)*0.8)] #take the first 80%
+results.sort(key=lambda x:-x[-1]) #sort by tfidf
+#results = results[:int(len(results)*0.8)] #take the first 80%
 for r in results:
 	print('\t'.join(str(x) for x in r))
+
+
+#sort val max/min/mean/(mean et ecart-type) de chaque mot 
