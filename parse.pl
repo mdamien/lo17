@@ -50,17 +50,7 @@ foreach my $filename (@files) {
 	$html =~ /<p class="style96"><span class="style95">(.*)<\/span><\/p><\/td>.*<td width=133 valign=top bgcolor="#dae1e8" class="FWExtra2">/;
 	$h{content} = $1;
 
-	my @imgs = $h{content} =~ /<img src="([^<"]*)"[^>]*><br \/><span class="style\d\d">(<strong>|)([^<]*)/g; #88/21/95
-	#print "lol\n";
-	foreach(@imgs){
-		#print "LOOOOL".$_."\n";
-	}
-	#print "mdr\n";
-
-
-	#TODO REGEX OK => Catch multiple ? DO I have to divide the array by 3 ???
-
-	#print @imgs[0];
+	my @imgs = $h{content} =~ /<img src="([^<"]*)"[^>]*><br \/><span class="style\d\d">(<strong>|)([^<]*)/g;
 
 	foreach my $qzd (@imgs) {
 		my $dzq = $qzd =~ /style21/g;
@@ -81,9 +71,8 @@ foreach my $filename (@files) {
 	print $fh "<titre>$h{title}</titre>\n";
 	print $fh "<texte>$h{content}</texte>\n";
 	print $fh "<images>\n";
-	foreach my $lol (@imgs){
-		#foreach(@img){print $_."\n";}
-		#print $fh "<image><urlImage>".$lol."</urlImage><legendeImage>"."todo"."</legendeImage></img>\n";
+	for(my $i = 0; $i+2 < scalar(@imgs); $i += 3){
+		print $fh "<image><urlImage>".$imgs[$i]."</urlImage><legendeImage>".$imgs[$i+2]."</legendeImage></img>\n";
 	}
 	print $fh "</images>\n";
 	print $fh "<contact>TODO SIMPLE</contact>\n";
