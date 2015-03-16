@@ -1,11 +1,44 @@
 #!/usr/bin/perl
 
+# En-tête
+## Flags
 use strict;
 use warnings;
-
+## Encodage
 binmode(STDIN, ":utf8");
 binmode(STDOUT, ":utf8"); 
 
+# Fonctions
+sub convert {
+	my ($textToConvert) = @_;
+	$textToConvert =~ s/&nbsp;/ /g;
+	$textToConvert =~ s/&ecirc;/ê/g;
+	$textToConvert =~ s/&ouml;/ö/g;
+	$textToConvert =~ s/&ucirc;/û/g;
+	$textToConvert =~ s/&egrave;/è/g;
+	$textToConvert =~ s/&icirc;/î/g;
+	$textToConvert =~ s/&eacute;/é/g;
+	$textToConvert =~ s/&quot;/'/g;
+	$textToConvert =~ s/&agrave;/à/g;
+	$textToConvert =~ s/&acirc;/â/g;
+	$textToConvert =~ s/&iuml;/ï/g;
+	$textToConvert =~ s/&ocirc;/ô/g;
+	$textToConvert =~ s/&ccedil;/ç/g;
+	$textToConvert =~ s/&euml;/ë/g;
+	$textToConvert =~ s/&ugrave;/ù/g;
+	$textToConvert =~ s/&szlig;/ß/g;
+	$textToConvert =~ s/&uuml;/ü/g;
+	$textToConvert =~ s/&amp;/et/g;
+	$textToConvert =~ s/&deg;/°/g;
+	$textToConvert =~ s/&ograve;/ò/g;
+	$textToConvert =~ s/&ecirc;/ê/g;
+	$textToConvert =~ s/&#338;/Œ/g;
+	$textToConvert =~ s/&#8211/—/g;
+	$textToConvert =~ s/&#21;/--/g;
+	return $textToConvert;
+}
+
+# Corps du script
 my $output_filepath = "global.xml";
 my $bulletins_dir = "BULLETINS/";
 my @files = `ls $bulletins_dir`;
