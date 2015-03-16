@@ -1,5 +1,6 @@
 #!/usr/bin/perl
 # use utf8;
+
 binmode(STDIN, ":utf8");
 binmode(STDOUT, ":utf8");
 for ($i=0; $i<3; $i++) { 

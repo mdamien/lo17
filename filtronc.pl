@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 while (<>) {
-    if (/<rubrique>(.*)<\/rubrique)
+    if (/<rubrique>(.*)<\/rubrique/)
     {
     $rub{$1} = 1;
     }

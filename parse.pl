@@ -10,32 +10,32 @@ binmode(STDOUT, ":utf8");
 
 # Fonctions
 sub convert {
-	my ($textToConvert) = @_;
-	$textToConvert =~ s/&nbsp;/ /g;
-	$textToConvert =~ s/&ecirc;/ê/g;
-	$textToConvert =~ s/&ouml;/ö/g;
-	$textToConvert =~ s/&ucirc;/û/g;
-	$textToConvert =~ s/&egrave;/è/g;
-	$textToConvert =~ s/&icirc;/î/g;
-	$textToConvert =~ s/&eacute;/é/g;
-	$textToConvert =~ s/&quot;/'/g;
-	$textToConvert =~ s/&agrave;/à/g;
-	$textToConvert =~ s/&acirc;/â/g;
-	$textToConvert =~ s/&iuml;/ï/g;
-	$textToConvert =~ s/&ocirc;/ô/g;
-	$textToConvert =~ s/&ccedil;/ç/g;
-	$textToConvert =~ s/&euml;/ë/g;
-	$textToConvert =~ s/&ugrave;/ù/g;
-	$textToConvert =~ s/&szlig;/ß/g;
-	$textToConvert =~ s/&uuml;/ü/g;
-	$textToConvert =~ s/&amp;/et/g;
-	$textToConvert =~ s/&deg;/°/g;
-	$textToConvert =~ s/&ograve;/ò/g;
-	$textToConvert =~ s/&ecirc;/ê/g;
-	$textToConvert =~ s/&#338;/Œ/g;
-	$textToConvert =~ s/&#8211/—/g;
-	$textToConvert =~ s/&#21;/--/g;
-	return $textToConvert;
+	my ($t) = @_;
+	$t =~ s/&nbsp;/ /g;
+	$t =~ s/&ecirc;/ê/g;
+	$t =~ s/&ouml;/ö/g;
+	$t =~ s/&ucirc;/û/g;
+	$t =~ s/&egrave;/è/g;
+	$t =~ s/&icirc;/î/g;
+	$t =~ s/&eacute;/é/g;
+	$t =~ s/&quot;/'/g;
+	$t =~ s/&agrave;/à/g;
+	$t =~ s/&acirc;/â/g;
+	$t =~ s/&iuml;/ï/g;
+	$t =~ s/&ocirc;/ô/g;
+	$t =~ s/&ccedil;/ç/g;
+	$t =~ s/&euml;/ë/g;
+	$t =~ s/&ugrave;/ù/g;
+	$t =~ s/&szlig;/ß/g;
+	$t =~ s/&uuml;/ü/g;
+	$t =~ s/&amp;/et/g;
+	$t =~ s/&deg;/°/g;
+	$t =~ s/&ograve;/ò/g;
+	$t =~ s/&ecirc;/ê/g;
+	$t =~ s/&#338;/Œ/g;
+	$t =~ s/&#8211/—/g;
+	$t =~ s/&#21;/--/g;
+	return $t;
 }
 
 # Corps du script

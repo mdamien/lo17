@@ -2,7 +2,7 @@ import math
 
 tfs = {}
 df = {}
-for line in open('mots.tsv'):
+for line in open('out/mots.tsv'):
 	word, f, n, rubrique = line.split('\t')
 	if f not in tfs:
 		tfs[f] = {}
