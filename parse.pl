@@ -3,6 +3,9 @@
 use strict;
 use warnings;
 
+binmode(STDIN, ":utf8");
+binmode(STDOUT, ":utf8"); 
+
 my $output_filepath = "global.xml";
 my $bulletins_dir = "BULLETINS/";
 my @files = `ls $bulletins_dir`;
