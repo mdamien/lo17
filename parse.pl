@@ -75,16 +75,17 @@ foreach my $filename (@files) {
 		print $fh "<image><urlImage>".$imgs[$i]."</urlImage><legendeImage>".$imgs[$i+2]."</legendeImage></img>\n";
 	}
 	print $fh "</images>\n";
-	print $fh "<contact>TODO SIMPLE</contact>\n";
+	print $fh "<contact><a href=\"$h{contact_mail}\">$h{contact_name}</a></contact>\n";
 	print $fh "</bulletin>\n";
 }
 print $fh "</corpus>\n";
 close $fh;
 
 
+
+
 #ls -l BULLETINS/ | wc -l
 # -> 327 -> 326 files
 #cat global.xml | grep "<bulletin>" | wc -l
 # -> 326
-
 
