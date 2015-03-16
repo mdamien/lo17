@@ -8,6 +8,9 @@ Awesome project. Such wow. Many pizzas.
 - [x] structuration du projet
 - [x] fusion des scripts
 - [x] fin du script parse.pl
+- [ ] choix des mots à garder (analyse statistique)
+- [ ] lemme
+- [ ] fichiers inverses
 - [ ] interface global.xml / base de données
 
 ## Structure du projet
