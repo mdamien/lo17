@@ -8,14 +8,8 @@ Awesome project. Such wow. Many pizzas.
 - [x] structuration du projet
 - [x] fusion des scripts
 - [x] fin du script parse.pl
+- [x] tf, idf et tf/idf calculés
 - [ ] choix des mots à garder (analyse statistique)
-- [ ] lemme
+- [ ] lemmatisation
 - [ ] fichiers inverses
-- [ ] interface global.xml / base de données
-
-## Structure du projet
-Lancer le script parse.pl qui va parser chaque élément de l'archive et en extraire les informations pertinentes. Le script main va ensuite insérer ces informations dans un gros fichier (global.xml). Ce fichier global.xml va initaliser une base de données relationnelle (PostgreSQL), dont développer en Java une sorte de mini moteur de recherche capable de comprendre.
-
-## Suggestions en vrac
-- possibilité de valdier/vérifier un fichier xml avec des documents de définition type RelaxNG (d'où le fichier syntaxe.xml). Je pense notamment au fichier de corpus (global.xml), dont la structure serait à contrôler. Reste bien sûr, à définir cette structure qui ne doit pas se résumer à la somme des balises de chaque fichier .html parsé... plus d'informations dans l'annexe du sujet du projet.
-- rajouté un fichier build.xml, ANT pourrait s'avérer utile pour faire des tâches disons... "administratives" (décompresser une archive, valider/vérifier des documents...). Le professeur n'a pas jugé ça vraiment utile mais ne l'a pas proscrit non plus.
+- [ ] interface BDD
