@@ -9,7 +9,8 @@ Awesome project. Such wow. Many pizzas.
 - [x] fusion des scripts
 - [x] fin du script parse.pl
 - [x] tf, idf et tf/idf calculés
-- [ ] choix des mots à garder (analyse statistique)
+- [x] choix des mots à garder (analyse statistique)
+- [ ] nouveau global.xml à faire fonctionner (retoucher script discri.pl)
 - [ ] lemmatisation
 - [ ] fichiers inverses
 - [ ] interface BDD
