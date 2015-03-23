@@ -38,6 +38,16 @@ sub convert {
 	$t =~ s/&#21;/--/g;
 	return $t;
 }
+sub clean {
+	my ($t) = @_;
+	$t =~ s/<div.*?<\/div>//g;
+	$t =~ s/<span.*?>//g;
+	$t =~ s/<\/span>//g;
+	$t =~ s/<strong.*?<\/strong//g;
+	$t =~ s/<a href.*\">//g;
+	$t =~ s/<\/a>//g;
+	return $t;
+}
 
 # Corps du script
 my $output_filepath = "global.xml";
@@ -90,10 +100,12 @@ foreach my $filename (@files) {
 	my @imgs = $h{content} =~ /<img src="([^<"]*)"[^>]*><br \/><span class="style\d\d">(<strong>|)([^<]*)/g;
 
 	# Clean the content
-	$h{content} =~ s/<div.*?<\/div>//g;
-	$h{content} =~ s/<span.*?>//g;
-	$h{content} =~ s/<\/span>//g;
-	$h{content} =~ s/<strong.*?<\/strong//g;
+#	$h{content} =~ s/<div.*?<\/div>//g;
+#	$h{content} =~ s/<span.*?>//g;
+#	$h{content} =~ s/<\/span>//g;
+#	$h{content} =~ s/<strong.*?<\/strong//g;
+	$h{content} = clean $h{content};
+	$h{title} = clean $h{title};
 
 	# Special characters
 	$h{content} = convert $h{content};
