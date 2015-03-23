@@ -13,8 +13,8 @@ while (<FHA>) {
 }
 close FHA;
 foreach my $el (@tab) {
-	if ($el ~= m/[0-9]/) {
 		print FH $el . "\n";
-	}
 }
 close FH;
+
+# pour utiliser : perl discri.pl out/stats/median
