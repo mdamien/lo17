@@ -7,8 +7,9 @@ open (FH, ">", "newcreeFiltreArgument") or die "fuck";
 open (FHA, "<", "$ARGV[0]") or die "fuck";
 while (<FHA>) {
 	my @ligne = split (";", $_);
-	if ($i > 14400) {
+	if ($i < 14400) {
         if(length($ligne[0]) > 2) {
+	print length($ligne[0]) . "\n";
             print FH $ligne[0] . "\n";
         }
     }
