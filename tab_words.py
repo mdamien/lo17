@@ -14,7 +14,7 @@ def stat(func, name):
 	tab.sort(key=lambda x:-x[1])
 	with open('out/stats/%s' % name,'w') as f:
 		for line in tab:
-			f.write('{:>30}       {:<30}\n'.format(line[0], line[1]*1000))
+			f.write('{};{}\n'.format(line[0], line[1]))
 
 stat(lambda x:max(x),'max')
 stat(lambda x:min(x),'min')
