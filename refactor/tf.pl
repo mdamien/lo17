@@ -16,7 +16,7 @@ use warnings;
 # Corps du script
 my %df;
 my %tfs;
-open (FH, "<", "Dépôt/out/mots.tsv") or die "Failed opening file";
+open (FH, "<", "../out/mots.tsv") or die "Failed opening file";
 while(my $line = <FH>) {
 	my ($word, $f, $n, $rubrique) = split ("\t", $line);
 	if (!exists($tfs{$f})) {$tfs{$f} = {};}
@@ -28,5 +28,9 @@ while(my $line = <FH>) {
 	$tfs{$f}->{$word} += 1;
 }
 close FH;
-my $n = length(keys(%tfs));
-print $n;
+my $n = scalar(keys(%tfs));
+my %idf;
+for ((my $k, my $v ) = each %df) {
+	$idf{$k} = log($n/$v)/log(10);
+}
+print %idf;
