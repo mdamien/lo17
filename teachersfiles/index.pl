@@ -11,7 +11,7 @@ while (<>) {
 	} elsif (/<$balise>(.*)<\/$balise>/) {
 		$index = $1;
 	}
-	if ($index && $fichier && numero) {
+	if ($index && $fichier && $numero) {
         if ($balise eq 'date') {
             @date = split(/\//,$index);
             $jour = shift(@date);
@@ -32,4 +32,3 @@ while (<>) {
 foreach $index (@cleindex) {
 	print $index.$tabindex{$index}."\n";
 }
-
