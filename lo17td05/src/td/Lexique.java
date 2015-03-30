@@ -3,6 +3,7 @@ package td;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -41,6 +42,18 @@ public class Lexique {
 		while (itr.hasNext()) {
 			System.out.println(itr.next());
 		}
+	}
+
+	public ArrayList<String> find_lemmes(String chaine) {
+		ArrayList<String> lemmes = new ArrayList<String>();
+		chaine = chaine.toLowerCase();
+		if(words.containsKey(chaine)){
+			lemmes.add(words.get(chaine));
+		}
+		//TODO test nb lettres communes
+		//TODO test levenshtein
+		//
+		return lemmes;
 	}
 
 }
