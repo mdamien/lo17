@@ -1,7 +1,24 @@
 package td;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+
 //taken from http://rosettacode.org/wiki/Levenshtein_distance#Java
 public class Levenshtein {
+	public static class Match{
+		public Match(String word, int distance) {
+			this.word = word;
+			this.distance = distance;
+		}
+		public String word;
+		public int distance;
+		@Override
+		public String toString() {
+			return word+"["+Integer.toString(distance)+"]";
+		}
+	}
 	
     public static int distance(String a, String b) {
         a = a.toLowerCase();
@@ -22,11 +39,30 @@ public class Levenshtein {
         }
         return costs[b.length()];
     }
+    
+    public static ArrayList<Match> best_matches(String word, String[] dict, int max_distance){
+    	ArrayList<Match> matches = new ArrayList<Match>();
+    	int best_h = -1;
+    	for (String other_word : dict) {
+    		if(!word.equals(other_word)){
+    			int d = distance(word, other_word);
+    			if(d <= max_distance){
+    				matches.add(new Match(other_word, d));
+    			}
+    		}
+		}
+    	Collections.sort(matches,new Comparator<Match>() {
+    		public int compare(Match m, Match m2) {
+    			return m.distance-m2.distance;
+    		}
+		});
+    	
+    	return matches;
+    }
  
     public static void main(String [] args) {
-        String [] data = { "kitten", "sitting", "saturday", "sunday", "rosettacode", "raisethysword" };
-        for (int i = 0; i < data.length; i += 2)
-            System.out.println("distance(" + data[i] + ", " + data[i+1] + ") = " + distance(data[i], data[i+1]));
+        String [] data = { "kitten", "sitting", "saturday","son", "sunday", "rosettacode", "raisethysword" };
+        System.out.println(best_matches("sun", data, 10));
     }
 
 }
