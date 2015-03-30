@@ -35,17 +35,22 @@ public class Lexique {
 		return ht;
 	}
 
-	public Set<String> find_lemmes(String chaine) {
-		Set<String> lemmes = new TreeSet<String>();
+	public ArrayList<String> find_lemmes(String chaine) {
+		ArrayList<String> lemmes = new ArrayList<String>();
 		chaine = chaine.toLowerCase();
 		if(words.containsKey(chaine)){
 			lemmes.add(words.get(chaine));
 		}
 		//TODO test nb lettres communes
 		else{
-			ArrayList<Match> matches = Levenshtein.best_matches(chaine, words.keySet() , 3);
+			ArrayList<Match> matches = Levenshtein.best_matches(chaine, words.keySet(), 1);
 			for (Match match : matches) {
-				lemmes.add(words.get(match.word));
+				if(!lemmes.contains(match.word)){
+					lemmes.add(words.get(match.word));
+					if(lemmes.size() > 3){
+						break;
+					}
+				}
 			}
 		}
 		return lemmes;
