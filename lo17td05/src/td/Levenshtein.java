@@ -21,7 +21,7 @@ public class Levenshtein {
 		}
 	}
 	
-    public static int distance(String a, String b) {
+    public static float distance(String a, String b) {
         a = a.toLowerCase();
         b = b.toLowerCase();
         // i == 0
@@ -60,5 +60,9 @@ public class Levenshtein {
     	
     	return matches;
     }
+    
+    public static void main(String[] args) {
+		System.out.println(distance("panda", "padaaa"));
+	}
 
 }
