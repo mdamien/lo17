@@ -4,10 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Hashtable;
-import java.util.Iterator;
+import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.TreeSet;
+
+import td.Levenshtein.Match;
 
 public class Lexique {
 	public Hashtable<String, String> words;
@@ -32,27 +34,20 @@ public class Lexique {
 		br.close();
 		return ht;
 	}
-	
-	public static void main(String[] args) {
-		Lexique lex = new Lexique();
-		lex.words.put("key", "value");
 
-		Collection c = lex.words.values();
-		Iterator itr = c.iterator();
-		while (itr.hasNext()) {
-			System.out.println(itr.next());
-		}
-	}
-
-	public ArrayList<String> find_lemmes(String chaine) {
-		ArrayList<String> lemmes = new ArrayList<String>();
+	public Set<String> find_lemmes(String chaine) {
+		Set<String> lemmes = new TreeSet<String>();
 		chaine = chaine.toLowerCase();
 		if(words.containsKey(chaine)){
 			lemmes.add(words.get(chaine));
 		}
 		//TODO test nb lettres communes
-		//TODO test levenshtein
-		//
+		else{
+			ArrayList<Match> matches = Levenshtein.best_matches(chaine, words.keySet() , 3);
+			for (Match match : matches) {
+				lemmes.add(words.get(match.word));
+			}
+		}
 		return lemmes;
 	}
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Enumeration;
 
 //taken from http://rosettacode.org/wiki/Levenshtein_distance#Java
 public class Levenshtein {
@@ -40,7 +41,7 @@ public class Levenshtein {
         return costs[b.length()];
     }
     
-    public static ArrayList<Match> best_matches(String word, String[] dict, int max_distance){
+    public static ArrayList<Match> best_matches(String word, Collection<String> dict, int max_distance){
     	ArrayList<Match> matches = new ArrayList<Match>();
     	int best_h = -1;
     	for (String other_word : dict) {
@@ -58,11 +59,6 @@ public class Levenshtein {
 		});
     	
     	return matches;
-    }
- 
-    public static void main(String [] args) {
-        String [] data = { "kitten", "sitting", "saturday","son", "sunday", "rosettacode", "raisethysword" };
-        System.out.println(best_matches("sun", data, 10));
     }
 
 }
