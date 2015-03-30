@@ -8,7 +8,7 @@ use strict;
 my $i = 0;
 my @tab;
 open (FH, ">", "newcreeFiltreArgument") or die "A fuck happened while trying to open newCreeFiltreArgument";
-open (FHA, "<", "$ARGV[0]") or die "A fuck happened while trying to open newCreeFiltreArgument";
+open (FHA, "<", "$ARGV[0]") or die "A fuck happened while trying to open $ARGV[0]";
 while (<FHA>) {
 	my @ligne = split (";", $_);
 	# Met dans le fichier tous les mots dont le score est le plus faible (premier quartile de tfidf)
