@@ -1,15 +1,14 @@
+package td;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
-import java.util.Set;
 import java.util.StringTokenizer;
-import java.util.TreeSet;
+import td.Levenshtein.Match;
 
 public class Lexique {
 	public Hashtable<String, String> words;
@@ -59,8 +58,8 @@ public class Lexique {
 					max[2] = max[1];
 			}
 			Enumeration<String> e = commonLettersHash.keys();
-//			for (e.){
-//			}
+			// for (e.){
+			// }
 
 			// TODO Levenshtein
 			ArrayList<Match> matches = Levenshtein.best_matches(chaine,
