@@ -78,8 +78,8 @@ public class Lexique {
 		if (words.containsKey(chaine)) {
 			lemmes.add(words.get(chaine));
 		} else {
-			// TODO Lettres communes, algorithme du cours exploitant les
-			// préfixes à coder ici
+			// Algorithme du cours exploitant la recherche par préfixe (cf.
+			// cours page 33)
 			Hashtable<String, Float> proximityHash = new Hashtable<String, Float>();
 			Iterator<String> jtr = words.values().iterator();
 			while (jtr.hasNext()) {
@@ -95,6 +95,7 @@ public class Lexique {
 					candidats.add(curr);
 				}
 			}
+			// Vider la pile dans l'ArrayList<String> lemmes ?
 			// TODO Levenshtein
 			ArrayList<Match> matches = Levenshtein.best_matches(chaine,
 					words.keySet(), 1);
