@@ -50,10 +50,24 @@ public class Lexique {
 	public float prox(String a, String b) {
 		float result = -1;
 		int seuilMin = 3;
+		int seuilMax = 4;
 		int aLength = a.length();
 		int bLength = b.length();
-		if ((aLength > seuilMin) ||(bLength > seuilMin)){
+		if ((aLength < seuilMin) || (bLength < seuilMin)) {
 			result = 0;
+		} else if (Math.abs(aLength - bLength) > seuilMax) {
+			result = 0;
+		} else {
+			int i = 0;
+			char aChars[] = new char[aLength];
+			char bChars[] = new char[bLength];
+			a.getChars(0, aLength, aChars, 0);
+			a.getChars(0, bLength, bChars, 0);
+			while ((aChars[i] == bChars[i])
+					&& (i < Math.min(aLength, bLength) - 1)) {
+				i++;
+				result = (i / Math.max(aLength, bLength)) * 100;
+			}
 		}
 		return result;
 	}
@@ -66,15 +80,20 @@ public class Lexique {
 		} else {
 			// TODO Lettres communes, algorithme du cours exploitant les
 			// préfixes à coder ici
-			Hashtable<String, Float> commonLettersHash = new Hashtable<String, Float>();
+			Hashtable<String, Float> proximityHash = new Hashtable<String, Float>();
 			Iterator<String> jtr = words.values().iterator();
 			while (jtr.hasNext()) {
 				String curr = jtr.next();
-				commonLettersHash.put(curr, prox(chaine, curr));
+				proximityHash.put(curr, prox(chaine, curr));
 			}
-			Enumeration<String> e = commonLettersHash.keys();
+			Enumeration<String> e = proximityHash.keys();
+			Stack<String> candidats = new Stack<String>();
+			float seuil = 60;
 			while (e.hasMoreElements()) {
-				e.nextElement();
+				String curr = e.nextElement();
+				if (proximityHash.get(curr) > seuil) {
+					candidats.add(curr);
+				}
 			}
 			// TODO Levenshtein
 			ArrayList<Match> matches = Levenshtein.best_matches(chaine,
