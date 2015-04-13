@@ -9,15 +9,15 @@ import java.util.Comparator;
 public class Levenshtein {
 	public static char NULL = '\u0000';
 
-	public static int cout(char x, char y) {
+	public static int cout(char x,int i, char y, int j) {
 		if (x == NULL) { // insertion
-			return 5;
+			return 1;
 		}
 		if (y == NULL) { // suppression
-			return 7;
+			return 1;
 		}
 		if (x != y) { // substitution
-			return 10;
+			return 1;
 		}
 		return 0;
 	}
@@ -36,6 +36,20 @@ public class Levenshtein {
 			return word + "[" + Integer.toString(distance) + "]";
 		}
 	}
+	
+	public static int distance_with_inversions(String a, String b){
+		// http://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm
+		int min = distance(a, b);
+		for (int i = 0; i < a.length()-1; i++) {
+			String s = a.substring(0, i)
+					+ a.substring(i+1,i+2)
+					+ a.substring(i,i+1)
+					+ a.substring(i+2);
+			int d = distance(s,b);
+			System.out.println(s+"  - "+d);
+		}
+		return 0;
+	}
 
 	public static int distance(String a, String b) {
 		int[][] dist = new int[a.length() + 1][b.length() + 1];
@@ -44,19 +58,19 @@ public class Levenshtein {
 
 		for (int i = 1; i <= a.length(); i++) {
 			X = a.charAt(i - 1);
-			dist[i][0] = dist[i - 1][0] + cout(X, NULL);
+			dist[i][0] = dist[i - 1][0] + cout(X,i, NULL,0);
 		}
 		for (int j = 1; j <= b.length(); j++) {
 			Y = b.charAt(j - 1);
-			dist[0][j] = dist[0][j - 1] + cout(NULL, Y);
+			dist[0][j] = dist[0][j - 1] + cout(NULL,0, Y,j);
 		}
 		for (int i = 1; i <= a.length(); i++) {
 			X = a.charAt(i - 1);
 			for (int j = 1; j <= b.length(); j++) {
 				Y = b.charAt(j - 1);
-				d1 = dist[i - 1][j - 1] + cout(X, Y);
-				d2 = dist[i - 1][j] + cout(X, NULL);
-				d3 = dist[i][j - 1] + cout(NULL, Y);
+				d1 = dist[i - 1][j - 1] + cout(X,i, Y,j);
+				d2 = dist[i - 1][j] + cout(X,i, NULL,j);
+				d3 = dist[i][j - 1] + cout(NULL,i, Y,j);
 
 				dist[i][j] = Math.min(d1, Math.min(d2, d3));
 			}
@@ -93,8 +107,10 @@ public class Levenshtein {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(distance("gands", "grands"));
-		System.out.println(distance("gands", "gand"));
+		System.out.println(distance("ilste", "liste"));
+		System.out.println(distance("ilste", "juste"));
+		System.out.println(distance_with_inversions("ilste", "liste"));
+
 	}
 
 }

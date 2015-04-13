@@ -100,7 +100,7 @@ public class Lexique {
 			System.out.println("Try levenstein ");
 			// Levenshtein
 			int max_distance = chaine.length() > 3 ? chaine.length()/3 : 3;
-			ArrayList<Match> matches = Levenshtein.best_matches(chaine, words.keySet(), max_distance*10);
+			ArrayList<Match> matches = Levenshtein.best_matches(chaine, words.keySet(), max_distance);
 			int c = 0;
 			for (Match match : matches) {
 				if (!lemmes.contains(match.word)) {
