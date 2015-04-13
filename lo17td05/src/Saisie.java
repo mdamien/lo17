@@ -1,8 +1,5 @@
-package td;
-
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Set;
 
 class Saisie{
 	public static void main(String[] args) {

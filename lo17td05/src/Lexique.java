@@ -1,5 +1,3 @@
-package td;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,8 +10,6 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TreeSet;
-
-import td.Levenshtein.Match;
 
 public class Lexique {
 	public Hashtable<String, String> words;
