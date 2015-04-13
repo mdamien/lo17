@@ -65,7 +65,7 @@ public class Levenshtein {
 	}
 
 	public static ArrayList<Match> best_matches(String word,
-			Collection<String> dict, int max_distance) {
+		Collection<String> dict, int max_distance) {
 		ArrayList<Match> matches = new ArrayList<Match>();
 		int best_h = -1;
 		for (String other_word : dict) {
@@ -86,7 +86,7 @@ public class Levenshtein {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(distance("panda", "padaaa"));
+		System.out.println(distance("lapin", "lopine"));
 	}
 
 }
