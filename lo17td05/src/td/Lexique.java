@@ -41,15 +41,21 @@ public class Lexique {
 	 * par préfixe (cf. cours page 33)
 	 * 
 	 * @author maximool
-	 * @param str1
+	 * @param a
 	 *            le premier mots
-	 * @param str2
+	 * @param b
 	 *            le deuxième mot mots
 	 * @return la proximité du mot
 	 */
-	public float prox(String str1, String str2) {
-
-		return 0;
+	public float prox(String a, String b) {
+		float result = -1;
+		int seuilMin = 3;
+		int aLength = a.length();
+		int bLength = b.length();
+		if ((aLength > seuilMin) ||(bLength > seuilMin)){
+			result = 0;
+		}
+		return result;
 	}
 
 	public ArrayList<String> find_lemmes(String chaine) {
@@ -60,26 +66,16 @@ public class Lexique {
 		} else {
 			// TODO Lettres communes, algorithme du cours exploitant les
 			// préfixes à coder ici
-			Stack<String> candidates;// candidats choisis
-			Hashtable<String, Integer> commonLettersHash = new Hashtable<String, Integer>();
+			Hashtable<String, Float> commonLettersHash = new Hashtable<String, Float>();
 			Iterator<String> jtr = words.values().iterator();
 			while (jtr.hasNext()) {
 				String curr = jtr.next();
-				commonLettersHash.put(curr, lettersInCommon(chaine, curr));
-			}
-			int[] max = { 0, 0, 0 };
-			for (int tni : commonLettersHash.values()) {
-				if (max[0] < tni)
-					max[0] = tni;
-				if (max[1] < max[0])
-					max[1] = max[0];
-				if (max[2] < max[1])
-					max[2] = max[1];
+				commonLettersHash.put(curr, prox(chaine, curr));
 			}
 			Enumeration<String> e = commonLettersHash.keys();
-			// for (e.){
-			// }
-
+			while (e.hasMoreElements()) {
+				e.nextElement();
+			}
 			// TODO Levenshtein
 			ArrayList<Match> matches = Levenshtein.best_matches(chaine,
 					words.keySet(), 1);
@@ -93,17 +89,5 @@ public class Lexique {
 			}
 		}
 		return lemmes;
-	}
-
-	public int lettersInCommon(String a, String b) {
-		int charsInCommon = -1;
-		char[] aChars = new char[a.length()];
-		a.getChars(0, a.length() - 1, aChars, 0);
-		for (int i = 0; i < aChars.length; i++) {
-			if (b.contains("" + aChars[i])) {
-				charsInCommon++;
-			}
-		}
-		return charsInCommon;
 	}
 }
