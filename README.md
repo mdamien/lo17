@@ -17,3 +17,4 @@ Awesome project. Such wow. Many pizzas.
 - [x] re-implement levenstein
 - [ ] correcteur orthographique lemmatisant (distance de levenstein, nb de lettres communes)
 - [ ] interface BDD
+- [ ] pondérer les résultats : minimiser le score des inversions, prendre en compte les erreurs du clavier (AZERTY ?)
