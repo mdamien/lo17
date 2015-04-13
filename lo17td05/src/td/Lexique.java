@@ -61,7 +61,7 @@ public class Lexique {
 			char aChars[] = new char[aLength];
 			char bChars[] = new char[bLength];
 			a.getChars(0, aLength, aChars, 0);
-			a.getChars(0, bLength, bChars, 0);
+			b.getChars(0, bLength, bChars, 0);
 			while ((aChars[i] == bChars[i])
 					&& (i < Math.min(aLength, bLength) - 1)) {
 				i++;
@@ -72,13 +72,16 @@ public class Lexique {
 	}
 
 	public ArrayList<String> find_lemmes(String chaine) {
+		System.out.println("FIND LEMMES: "+chaine);
 		ArrayList<String> lemmes = new ArrayList<String>();
 		chaine = chaine.toLowerCase();
 		if (words.containsKey(chaine)) {
+			System.out.println("Word found in dict: "+words.get(chaine)+"("+chaine+")");
 			lemmes.add(words.get(chaine));
 		} else {
 			// Algorithme du cours exploitant la recherche par préfixe (cf.
 			// cours page 33)
+			System.out.println("Try prefixes ");
 			Hashtable<String, Float> proximityHash = new Hashtable<String, Float>();
 			Iterator<String> jtr = words.values().iterator();
 			while (jtr.hasNext()) {
@@ -90,16 +93,20 @@ public class Lexique {
 			while (e.hasMoreElements()) {
 				String curr = e.nextElement();
 				if (proximityHash.get(curr) > seuil) {
+					System.out.println("Prefix add: "+curr);
 					lemmes.add(curr);
 				}
 			}
+			System.out.println("Try levenstein ");
 			// Levenshtein
-			ArrayList<Match> matches = Levenshtein.best_matches(chaine,
-					words.keySet(), 1);
+			ArrayList<Match> matches = Levenshtein.best_matches(chaine, words.keySet(), 1);
+			int c = 0;
 			for (Match match : matches) {
 				if (!lemmes.contains(match.word)) {
+					System.out.println("Leven add: "+words.get(match.word)+"("+match.word+")");
 					lemmes.add(words.get(match.word));
-					if (lemmes.size() > 3) {
+					c += 1;
+					if(c > 3){
 						break;
 					}
 				}
