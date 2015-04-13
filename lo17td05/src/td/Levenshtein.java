@@ -13,7 +13,7 @@ public class Levenshtein {
 		if (x == NULL) { // insertion
 			return 1;
 		}
-		if (y == NULL) { // insertion
+		if (y == NULL) { // suppression
 			return 1;
 		}
 		if (x != y) { // substitution
@@ -61,13 +61,20 @@ public class Levenshtein {
 				dist[i][j] = Math.min(d1, Math.min(d2, d3));
 			}
 		}
+		/*
+		for (int i = 0; i <= a.length(); i++) {
+			for (int j = 0; j <= b.length(); j++) {
+				System.out.print(dist[i][j]+" ");
+			}
+			System.out.println();
+		}
+		*/
 		return dist[a.length()][b.length()];
 	}
 
 	public static ArrayList<Match> best_matches(String word,
-		Collection<String> dict, int max_distance) {
+							Collection<String> dict, int max_distance) {
 		ArrayList<Match> matches = new ArrayList<Match>();
-		int best_h = -1;
 		for (String other_word : dict) {
 			if (!word.equals(other_word)) {
 				int d = (int) distance(word, other_word);
@@ -86,7 +93,7 @@ public class Levenshtein {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(distance("lapin", "lopine"));
+		System.out.println(distance("lapin", "loupe"));
 	}
 
 }
