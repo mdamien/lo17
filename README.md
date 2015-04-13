@@ -13,7 +13,7 @@ Awesome project. Such wow. Many pizzas.
 - [x] nouveau global.xml à faire fonctionner (retoucher script discri.pl)
 - [x] lemmatisation
 - [x] fichiers inverses
-- [ ] interface BDD
+- [x] mettre sources dans package par defaut (non, provoque des problèmes d'import)
+- [x] re-implement levenstein
 - [ ] correcteur orthographique lemmatisant (distance de levenstein, nb de lettres communes)
-- [ ] mettre sources dans package par defaut
-- [ ] re-implement levenstein
+- [ ] interface BDD

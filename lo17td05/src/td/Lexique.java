@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.Stack;
 import java.util.StringTokenizer;
+
 import td.Levenshtein.Match;
 
 public class Lexique {
@@ -34,6 +36,22 @@ public class Lexique {
 		return ht;
 	}
 
+	/**
+	 * Compare la distance entre deux mots en selon l'algorithme de recherche
+	 * par préfixe (cf. cours page 33)
+	 * 
+	 * @author maximool
+	 * @param str1
+	 *            le premier mots
+	 * @param str2
+	 *            le deuxième mot mots
+	 * @return la proximité du mot
+	 */
+	public float prox(String str1, String str2) {
+
+		return 0;
+	}
+
 	public ArrayList<String> find_lemmes(String chaine) {
 		ArrayList<String> lemmes = new ArrayList<String>();
 		chaine = chaine.toLowerCase();
@@ -42,6 +60,7 @@ public class Lexique {
 		} else {
 			// TODO Lettres communes, algorithme du cours exploitant les
 			// préfixes à coder ici
+			Stack<String> candidates;// candidats choisis
 			Hashtable<String, Integer> commonLettersHash = new Hashtable<String, Integer>();
 			Iterator<String> jtr = words.values().iterator();
 			while (jtr.hasNext()) {
