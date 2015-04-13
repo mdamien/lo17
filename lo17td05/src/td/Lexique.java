@@ -99,11 +99,12 @@ public class Lexique {
 			}
 			System.out.println("Try levenstein ");
 			// Levenshtein
-			ArrayList<Match> matches = Levenshtein.best_matches(chaine, words.keySet(), 1);
+			int max_distance = chaine.length() > 3 ? chaine.length()/3 : 3;
+			ArrayList<Match> matches = Levenshtein.best_matches(chaine, words.keySet(), max_distance*10);
 			int c = 0;
 			for (Match match : matches) {
 				if (!lemmes.contains(match.word)) {
-					System.out.println("Leven add: "+words.get(match.word)+"("+match.word+")");
+					System.out.println("Leven add: "+words.get(match.word)+"("+match.word+" with s="+match.distance+")");
 					lemmes.add(words.get(match.word));
 					c += 1;
 					if(c > 3){

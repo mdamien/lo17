@@ -11,13 +11,13 @@ public class Levenshtein {
 
 	public static int cout(char x, char y) {
 		if (x == NULL) { // insertion
-			return 1;
+			return 5;
 		}
 		if (y == NULL) { // suppression
-			return 1;
+			return 7;
 		}
 		if (x != y) { // substitution
-			return 1;
+			return 10;
 		}
 		return 0;
 	}
@@ -93,7 +93,8 @@ public class Levenshtein {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(distance("lapin", "loupe"));
+		System.out.println(distance("gands", "grands"));
+		System.out.println(distance("gands", "gand"));
 	}
 
 }
