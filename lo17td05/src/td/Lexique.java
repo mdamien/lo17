@@ -87,16 +87,14 @@ public class Lexique {
 				proximityHash.put(curr, prox(chaine, curr));
 			}
 			Enumeration<String> e = proximityHash.keys();
-			Stack<String> candidats = new Stack<String>();
 			float seuil = 60;
 			while (e.hasMoreElements()) {
 				String curr = e.nextElement();
 				if (proximityHash.get(curr) > seuil) {
-					candidats.add(curr);
+					lemmes.add(curr);
 				}
 			}
-			// Vider la pile dans l'ArrayList<String> lemmes ?
-			// TODO Levenshtein
+			// Levenshtein
 			ArrayList<Match> matches = Levenshtein.best_matches(chaine,
 					words.keySet(), 1);
 			for (Match match : matches) {
