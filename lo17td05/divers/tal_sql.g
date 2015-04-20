@@ -3,7 +3,7 @@ grammar tal_sql;
 SELECT : 'vouloir' | 'veut' | 'veux' | 'Quels'
 ;
 
-ARTICLE : 'article' | 'articles'
+ARTICLE : 'article' | 'articles' | 'Articles' | 'Article'
 ;
 
 BULLETIN : 'bulletin' | 'bulletins'
@@ -18,7 +18,7 @@ POINT : '.' | '?'
 MOT : 'mot' | 'contenir' | 'parler' | 'parlent' | 'parlant' | 'concernent'
 ;
  
-WS  : (' ' |'\t' | '\r' | 'je' | 'Je' | 'de'| 'la' | 'le' | 'sont' | '«' | '»' | 'les' | 'du' | 'qui' | 'l\'' | 'dont') {skip();} | '\n' 
+WS  : (' ' |'\t' | '\r' | 'je' | 'Je' | 'de'| 'la' | 'd\''  | 'le' | 'sont' | '«' | '»' | 'les' | 'du' | 'qui' | 'l\'' | 'dont') {skip();} | '\n' 
 ;
 
 VAR : ('A'..'Z' | 'a'..'z'|'\u00a0'..'\u00ff')(('a'..'z')|('0'..'9')|'-'|('\u00a0'..'\u00ff'))+
@@ -66,7 +66,7 @@ params returns [Arbre les_pars_arbre = new Arbre("")]
 				par1_arbre = $par1.lepar_arbre;
 				les_pars_arbre.ajouteFils(par1_arbre);
 			}
-		(CONJ par2 = param
+		(CONJ? par2 = param
 			{
 				par2_arbre = $par2.lepar_arbre;
 				les_pars_arbre.ajouteFils(new Arbre("", "OR"));
