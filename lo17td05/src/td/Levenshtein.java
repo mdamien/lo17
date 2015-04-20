@@ -39,6 +39,7 @@ public class Levenshtein {
 
 	public static int distance_with_inversions(String a, String b) {
 		// http://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm
+		// better: http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
 		int min = distance(a, b);
 		for (int i = 0; i < a.length() - 1; i++) {
 			String s = a.substring(0, i) + a.substring(i + 1, i + 2)
@@ -68,16 +69,9 @@ public class Levenshtein {
 				Y = b.charAt(j - 1);
 				d1 = dist[i - 1][j - 1] + cout(X, i, Y, j);
 				d2 = dist[i - 1][j] + cout(X, i, NULL, j);
-				d3 = dist[i][j - 1] + cout(NULL, i, Y, j);
-
-				dist[i][j] = Math.min(d1, Math.min(d2, d3));
+				d3 = dist[i][j - 1] + cout(NULL, i, Y, j);                    
 			}
 		}
-		/*
-		 * for (int i = 0; i <= a.length(); i++) { for (int j = 0; j <=
-		 * b.length(); j++) { System.out.print(dist[i][j]+" "); }
-		 * System.out.println(); }
-		 */
 		return dist[a.length()][b.length()];
 	}
 

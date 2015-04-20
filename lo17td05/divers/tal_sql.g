@@ -1,12 +1,12 @@
 grammar tal_sql;
 
-SELECT : 'vouloir'
+SELECT : 'vouloir' | 'veut' | 'veux'
 ;
 
-ARTICLE : 'article'
+ARTICLE : 'article' | 'articles'
 ;
 
-BULLETIN : 'bulletin'
+BULLETIN : 'bulletin' | 'bulletins'
 ;
 
 CONJ : 'et' | 'ou'
@@ -15,13 +15,13 @@ CONJ : 'et' | 'ou'
 POINT : '.'
 ;
 
-MOT : 'mot' | 'contenir' | 'parler'
+MOT : 'mot' | 'contenir' | 'parler' | 'parlent' | 'parlant'
 ;
  
-WS  : (' ' |'\t' | '\r' | 'je' | 'qui' | 'dont') {skip();} | '\n' 
+WS  : (' ' |'\t' | '\r' | 'je' | 'Je' | 'de' | 'les' | 'du' | 'qui' | 'l\'' | 'dont') {skip();} | '\n' 
 ;
 
-VAR 	: ('A'..'Z' | 'a'..'z') ('a'..'z')+
+VAR : ('A'..'Z' | 'a'..'z'|'\u00a0'..'\u00ff')(('a'..'z')|('0'..'9')|'-'|('\u00a0'..'\u00ff'))+
 ;
 
 listerequetes returns [String sql = ""]
