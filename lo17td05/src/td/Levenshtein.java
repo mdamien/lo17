@@ -9,7 +9,7 @@ import java.util.Comparator;
 public class Levenshtein {
 	public static char NULL = '\u0000';
 
-	public static int cout(char x,int i, char y, int j) {
+	public static int cout(char x, int i, char y, int j) {
 		if (x == NULL) { // insertion
 			return 1;
 		}
@@ -36,17 +36,15 @@ public class Levenshtein {
 			return word + "[" + Integer.toString(distance) + "]";
 		}
 	}
-	
-	public static int distance_with_inversions(String a, String b){
+
+	public static int distance_with_inversions(String a, String b) {
 		// http://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm
 		int min = distance(a, b);
-		for (int i = 0; i < a.length()-1; i++) {
-			String s = a.substring(0, i)
-					+ a.substring(i+1,i+2)
-					+ a.substring(i,i+1)
-					+ a.substring(i+2);
-			int d = distance(s,b);
-			System.out.println(s+"  - "+d);
+		for (int i = 0; i < a.length() - 1; i++) {
+			String s = a.substring(0, i) + a.substring(i + 1, i + 2)
+					+ a.substring(i, i + 1) + a.substring(i + 2);
+			int d = distance(s, b);
+			System.out.println(s + "  - " + d);
 		}
 		return 0;
 	}
@@ -58,36 +56,33 @@ public class Levenshtein {
 
 		for (int i = 1; i <= a.length(); i++) {
 			X = a.charAt(i - 1);
-			dist[i][0] = dist[i - 1][0] + cout(X,i, NULL,0);
+			dist[i][0] = dist[i - 1][0] + cout(X, i, NULL, 0);
 		}
 		for (int j = 1; j <= b.length(); j++) {
 			Y = b.charAt(j - 1);
-			dist[0][j] = dist[0][j - 1] + cout(NULL,0, Y,j);
+			dist[0][j] = dist[0][j - 1] + cout(NULL, 0, Y, j);
 		}
 		for (int i = 1; i <= a.length(); i++) {
 			X = a.charAt(i - 1);
 			for (int j = 1; j <= b.length(); j++) {
 				Y = b.charAt(j - 1);
-				d1 = dist[i - 1][j - 1] + cout(X,i, Y,j);
-				d2 = dist[i - 1][j] + cout(X,i, NULL,j);
-				d3 = dist[i][j - 1] + cout(NULL,i, Y,j);
+				d1 = dist[i - 1][j - 1] + cout(X, i, Y, j);
+				d2 = dist[i - 1][j] + cout(X, i, NULL, j);
+				d3 = dist[i][j - 1] + cout(NULL, i, Y, j);
 
 				dist[i][j] = Math.min(d1, Math.min(d2, d3));
 			}
 		}
 		/*
-		for (int i = 0; i <= a.length(); i++) {
-			for (int j = 0; j <= b.length(); j++) {
-				System.out.print(dist[i][j]+" ");
-			}
-			System.out.println();
-		}
-		*/
+		 * for (int i = 0; i <= a.length(); i++) { for (int j = 0; j <=
+		 * b.length(); j++) { System.out.print(dist[i][j]+" "); }
+		 * System.out.println(); }
+		 */
 		return dist[a.length()][b.length()];
 	}
 
 	public static ArrayList<Match> best_matches(String word,
-							Collection<String> dict, int max_distance) {
+			Collection<String> dict, int max_distance) {
 		ArrayList<Match> matches = new ArrayList<Match>();
 		for (String other_word : dict) {
 			if (!word.equals(other_word)) {
