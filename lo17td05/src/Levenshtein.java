@@ -20,24 +20,10 @@ public class Levenshtein {
 		return 0;
 	}
 
-	public static class Match {
-		public Match(String word, int distance) {
-			this.word = word;
-			this.distance = distance;
-		}
-
-		public String word;
-		public int distance;
-
-		@Override
-		public String toString() {
-			return word + "[" + Integer.toString(distance) + "]";
-		}
-	}
-
 	public static int distance_with_inversions(String a, String b) {
 		// http://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm
-		// better: http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
+		// better:
+		// http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
 		int min = distance(a, b);
 		for (int i = 0; i < a.length() - 1; i++) {
 			String s = a.substring(0, i) + a.substring(i + 1, i + 2)
@@ -67,7 +53,7 @@ public class Levenshtein {
 				Y = b.charAt(j - 1);
 				d1 = dist[i - 1][j - 1] + cout(X, i, Y, j);
 				d2 = dist[i - 1][j] + cout(X, i, NULL, j);
-				d3 = dist[i][j - 1] + cout(NULL, i, Y, j);                    
+				d3 = dist[i][j - 1] + cout(NULL, i, Y, j);
 			}
 		}
 		return dist[a.length()][b.length()];
