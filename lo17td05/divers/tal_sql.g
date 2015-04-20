@@ -1,6 +1,6 @@
 grammar tal_sql;
 
-SELECT : 'vouloir' | 'veut' | 'veux'
+SELECT : 'vouloir' | 'veut' | 'veux' | 'Quels'
 ;
 
 ARTICLE : 'article' | 'articles'
@@ -12,13 +12,13 @@ BULLETIN : 'bulletin' | 'bulletins'
 CONJ : 'et' | 'ou'
 ;
 
-POINT : '.'
+POINT : '.' | '?'
 ;
 
-MOT : 'mot' | 'contenir' | 'parler' | 'parlent' | 'parlant'
+MOT : 'mot' | 'contenir' | 'parler' | 'parlent' | 'parlant' | 'concernent'
 ;
  
-WS  : (' ' |'\t' | '\r' | 'je' | 'Je' | 'de' | 'les' | 'du' | 'qui' | 'l\'' | 'dont') {skip();} | '\n' 
+WS  : (' ' |'\t' | '\r' | 'je' | 'Je' | 'de'| 'la' | 'le' | 'sont' | '«' | '»' | 'les' | 'du' | 'qui' | 'l\'' | 'dont') {skip();} | '\n' 
 ;
 
 VAR : ('A'..'Z' | 'a'..'z'|'\u00a0'..'\u00ff')(('a'..'z')|('0'..'9')|'-'|('\u00a0'..'\u00ff'))+
