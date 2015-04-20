@@ -1,5 +1,4 @@
-// $ANTLR 3.5 /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g 2015-04-20 13:39:27
-package td;
+// $ANTLR 3.5 /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g 2015-04-20 15:31:16
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -61,11 +60,11 @@ public class tal_sqlParser extends Parser {
 			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:29:3:
 			// r= requete POINT
 			{
-				pushFollow(FOLLOW_requete_in_listerequetes158);
+				pushFollow(FOLLOW_requete_in_listerequetes250);
 				r = requete();
 				state._fsp--;
 
-				match(input, POINT, FOLLOW_POINT_in_listerequetes160);
+				match(input, POINT, FOLLOW_POINT_in_listerequetes252);
 
 				lr_arbre = r;
 				sql = lr_arbre.sortArbre();
@@ -99,7 +98,7 @@ public class tal_sqlParser extends Parser {
 			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:38:3:
 			// SELECT ( ARTICLE | BULLETIN ) MOT ps= params
 			{
-				match(input, SELECT, FOLLOW_SELECT_in_requete187);
+				match(input, SELECT, FOLLOW_SELECT_in_requete279);
 
 				req_arbre.ajouteFils(new Arbre("", "select distinct"));
 
@@ -124,7 +123,7 @@ public class tal_sqlParser extends Parser {
 				// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:42:4:
 				// ARTICLE
 				{
-					match(input, ARTICLE, FOLLOW_ARTICLE_in_requete199);
+					match(input, ARTICLE, FOLLOW_ARTICLE_in_requete291);
 
 					req_arbre.ajouteFils(new Arbre("", "article"));
 
@@ -134,7 +133,7 @@ public class tal_sqlParser extends Parser {
 				// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:46:6:
 				// BULLETIN
 				{
-					match(input, BULLETIN, FOLLOW_BULLETIN_in_requete211);
+					match(input, BULLETIN, FOLLOW_BULLETIN_in_requete303);
 
 					req_arbre.ajouteFils(new Arbre("", "bulletin"));
 
@@ -143,12 +142,12 @@ public class tal_sqlParser extends Parser {
 
 				}
 
-				match(input, MOT, FOLLOW_MOT_in_requete221);
+				match(input, MOT, FOLLOW_MOT_in_requete313);
 
 				req_arbre.ajouteFils(new Arbre("", "from titreresume"));
 				req_arbre.ajouteFils(new Arbre("", "where"));
 
-				pushFollow(FOLLOW_params_in_requete234);
+				pushFollow(FOLLOW_params_in_requete326);
 				ps = params();
 				state._fsp--;
 
@@ -185,7 +184,7 @@ public class tal_sqlParser extends Parser {
 			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:64:3:
 			// par1= param ( CONJ par2= param )*
 			{
-				pushFollow(FOLLOW_param_in_params266);
+				pushFollow(FOLLOW_param_in_params358);
 				par1 = param();
 				state._fsp--;
 
@@ -206,8 +205,8 @@ public class tal_sqlParser extends Parser {
 					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:69:4:
 					// CONJ par2= param
 					{
-						match(input, CONJ, FOLLOW_CONJ_in_params277);
-						pushFollow(FOLLOW_param_in_params283);
+						match(input, CONJ, FOLLOW_CONJ_in_params369);
+						pushFollow(FOLLOW_param_in_params375);
 						par2 = param();
 						state._fsp--;
 
@@ -250,7 +249,7 @@ public class tal_sqlParser extends Parser {
 			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:79:2:
 			// a= VAR
 			{
-				a = (Token) match(input, VAR, FOLLOW_VAR_in_param311);
+				a = (Token) match(input, VAR, FOLLOW_VAR_in_param403);
 				lepar_arbre.ajouteFils(new Arbre("mot =", "'" + a.getText()
 						+ "'"));
 			}
@@ -268,26 +267,26 @@ public class tal_sqlParser extends Parser {
 
 	// Delegated rules
 
-	public static final BitSet FOLLOW_requete_in_listerequetes158 = new BitSet(
+	public static final BitSet FOLLOW_requete_in_listerequetes250 = new BitSet(
 			new long[] { 0x0000000000000100L });
-	public static final BitSet FOLLOW_POINT_in_listerequetes160 = new BitSet(
+	public static final BitSet FOLLOW_POINT_in_listerequetes252 = new BitSet(
 			new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_SELECT_in_requete187 = new BitSet(
+	public static final BitSet FOLLOW_SELECT_in_requete279 = new BitSet(
 			new long[] { 0x0000000000000030L });
-	public static final BitSet FOLLOW_ARTICLE_in_requete199 = new BitSet(
+	public static final BitSet FOLLOW_ARTICLE_in_requete291 = new BitSet(
 			new long[] { 0x0000000000000080L });
-	public static final BitSet FOLLOW_BULLETIN_in_requete211 = new BitSet(
+	public static final BitSet FOLLOW_BULLETIN_in_requete303 = new BitSet(
 			new long[] { 0x0000000000000080L });
-	public static final BitSet FOLLOW_MOT_in_requete221 = new BitSet(
+	public static final BitSet FOLLOW_MOT_in_requete313 = new BitSet(
 			new long[] { 0x0000000000000400L });
-	public static final BitSet FOLLOW_params_in_requete234 = new BitSet(
+	public static final BitSet FOLLOW_params_in_requete326 = new BitSet(
 			new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_param_in_params266 = new BitSet(
+	public static final BitSet FOLLOW_param_in_params358 = new BitSet(
 			new long[] { 0x0000000000000042L });
-	public static final BitSet FOLLOW_CONJ_in_params277 = new BitSet(
+	public static final BitSet FOLLOW_CONJ_in_params369 = new BitSet(
 			new long[] { 0x0000000000000400L });
-	public static final BitSet FOLLOW_param_in_params283 = new BitSet(
+	public static final BitSet FOLLOW_param_in_params375 = new BitSet(
 			new long[] { 0x0000000000000042L });
-	public static final BitSet FOLLOW_VAR_in_param311 = new BitSet(
+	public static final BitSet FOLLOW_VAR_in_param403 = new BitSet(
 			new long[] { 0x0000000000000002L });
 }

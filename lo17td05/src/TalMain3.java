@@ -1,5 +1,3 @@
-package td;
-
 import java.io.*;
 import java.util.Scanner;
 //import org.antlr.runtime.ANTLRInputStream;

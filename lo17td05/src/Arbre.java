@@ -1,5 +1,3 @@
-package td;
-
 class Arbre {
 	Arbre fils = null;
 	Arbre frere = null;
