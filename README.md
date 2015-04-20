@@ -18,3 +18,8 @@ Awesome project. Such wow. Many pizzas.
 - [ ] correcteur orthographique lemmatisant (distance de levenstein, nb de lettres communes)
 - [ ] interface BDD
 - [ ] pondérer les résultats : minimiser le score des inversions, prendre en compte les erreurs du clavier (AZERTY ?)
+
+## Comment qu'on fait avec ANTLR et ANTLRWORKS
+- éxecuter le jar d'antlrworks (dans un terminal)
+- ouvrir le fichier .g qui nous intéresse dans l'immédiat
+- générer le code java et le copier dans le projet Eclipse -> src -> td
