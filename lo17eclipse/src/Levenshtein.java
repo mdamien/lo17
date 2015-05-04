@@ -54,6 +54,7 @@ public class Levenshtein {
 				d1 = dist[i - 1][j - 1] + cout(X, i, Y, j);
 				d2 = dist[i - 1][j] + cout(X, i, NULL, j);
 				d3 = dist[i][j - 1] + cout(NULL, i, Y, j);
+				dist[i][j] = Math.min(d1, Math.min(d2,d3));
 			}
 		}
 		return dist[a.length()][b.length()];
@@ -75,7 +76,6 @@ public class Levenshtein {
 				return m.distance - m2.distance;
 			}
 		});
-
 		return matches;
 	}
 
@@ -83,7 +83,6 @@ public class Levenshtein {
 		System.out.println(distance("ilste", "liste"));
 		System.out.println(distance("ilste", "juste"));
 		System.out.println(distance_with_inversions("ilste", "liste"));
-
 	}
 
 }

@@ -14250,3 +14250,5 @@ piste piste
 vue vue
 veux veux
 ils ils
+sont sont
+qui qui

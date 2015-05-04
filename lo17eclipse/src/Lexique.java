@@ -21,7 +21,7 @@ public class Lexique {
 	public Hashtable<String, String> initializeHash() throws IOException {
 		Hashtable<String, String> ht = new Hashtable<String, String>();
 		BufferedReader br = null;
-		br = new BufferedReader(new FileReader("divers/fil"));
+		br = new BufferedReader(new FileReader("divers/fil.txt"));
 		String chaine;
 		while ((chaine = br.readLine()) != null) {
 			StringTokenizer st = new StringTokenizer(chaine);
@@ -68,17 +68,13 @@ public class Lexique {
 	}
 
 	public ArrayList<String> find_lemmes(String chaine) {
-		System.out.println("FIND LEMMES: " + chaine);
 		ArrayList<String> lemmes = new ArrayList<String>();
 		chaine = chaine.toLowerCase();
 		if (words.containsKey(chaine)) {
-			System.out.println("Word found in dict: " + words.get(chaine) + "("
-					+ chaine + ")");
 			lemmes.add(words.get(chaine));
-		} else {
+		} else {/*
 			// Algorithme du cours exploitant la recherche par préfixe (cf.
 			// cours page 33)
-			System.out.println("Try prefixes ");
 			Hashtable<String, Float> proximityHash = new Hashtable<String, Float>();
 			Iterator<String> jtr = words.values().iterator();
 			while (jtr.hasNext()) {
@@ -90,11 +86,9 @@ public class Lexique {
 			while (e.hasMoreElements()) {
 				String curr = e.nextElement();
 				if (proximityHash.get(curr) > seuil) {
-					System.out.println("Prefix add: " + curr);
 					lemmes.add(curr);
 				}
 			}
-			System.out.println("Try levenstein ");
 			// Levenshtein
 			int max_distance = chaine.length() > 3 ? chaine.length() / 3 : 3;
 			ArrayList<Match> matches = Levenshtein.best_matches(chaine,
@@ -102,16 +96,13 @@ public class Lexique {
 			int c = 0;
 			for (Match match : matches) {
 				if (!lemmes.contains(match.word)) {
-					System.out.println("Leven add: " + words.get(match.word)
-							+ "(" + match.word + " with s=" + match.distance
-							+ ")");
 					lemmes.add(words.get(match.word));
 					c += 1;
 					if (c > 3) {
 						break;
 					}
 				}
-			}
+			}*/
 		}
 		return lemmes;
 	}

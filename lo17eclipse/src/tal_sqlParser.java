@@ -43,7 +43,7 @@ public class tal_sqlParser extends Parser {
 
 	// $ANTLR start "listerequetes"
 	// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:27:1: listerequetes returns [String sql = \"\"] : r= requete POINT ;
-	public final String listerequetes() throws  {
+	public final String listerequetes()  {
 		String sql =  "";
 
 
@@ -81,7 +81,7 @@ public class tal_sqlParser extends Parser {
 
 	// $ANTLR start "requete"
 	// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:36:1: requete returns [Arbre req_arbre = new Arbre(\"\")] : SELECT ( ARTICLE | BULLETIN ) MOT ps= params ;
-	public final Arbre requete() throws  {
+	public final Arbre requete()  {
 		Arbre req_arbre =  new Arbre("");
 
 
@@ -165,7 +165,7 @@ public class tal_sqlParser extends Parser {
 
 	// $ANTLR start "params"
 	// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:62:1: params returns [Arbre les_pars_arbre = new Arbre(\"\")] : par1= param ( ( CONJ )? par2= param )* ;
-	public final Arbre params() throws  {
+	public final Arbre params()  {
 		Arbre les_pars_arbre =  new Arbre("");
 
 
@@ -249,7 +249,7 @@ public class tal_sqlParser extends Parser {
 
 	// $ANTLR start "param"
 	// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:78:1: param returns [Arbre lepar_arbre = new Arbre(\"\")] : a= VAR ;
-	public final Arbre param() throws  {
+	public final Arbre param()  {
 		Arbre lepar_arbre =  new Arbre("");
 
 
