@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.StringTokenizer;
-
-import javax.management.Query;
 
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -49,17 +48,25 @@ public class Main {
 		return sentence;
 	}
 	
-	public static Hashtable<String, String> keywords() {
-		Hashtable<String, String> ht = new Hashtable<String, String>();
+	public static String replace(String chaine, LinkedHashMap<String, String> replacements) {
+		int i = 0;
+		for (String key : replacements.keySet()) {
+			chaine = chaine.replaceAll(key, replacements.get(key));
+		}
+		return chaine;
+	}
+	
+	public static LinkedHashMap<String, String> keywords() {
+		LinkedHashMap<String, String> ht = new LinkedHashMap<String, String>();
 		BufferedReader br = null;
 		try{
 			br = new BufferedReader(new FileReader("divers/keywords.txt"));
 			String chaine;
 			while ((chaine = br.readLine()) != null) {
-				System.out.println("ch "+chaine);
 				StringTokenizer st = new StringTokenizer(chaine, "|");
-				ht.put(st.nextToken().trim(), st.nextToken().trim());
+				ht.put(st.nextToken().trim().toLowerCase(), st.nextToken().trim());
 			}
+			br.close();
 		}catch(IOException e){
 			e.printStackTrace();
 			return null;
@@ -67,8 +74,8 @@ public class Main {
 		return ht;
 	}
 	
-	public static Hashtable<String, String> stopwords() {
-		Hashtable<String, String> ht = new Hashtable<String, String>();
+	public static LinkedHashMap<String, String> stopwords() {
+		LinkedHashMap<String, String> ht = new LinkedHashMap<String, String>();
 		BufferedReader br = null;
 		try{
 			br = new BufferedReader(new FileReader("divers/stopwords.txt"));
@@ -93,13 +100,13 @@ public class Main {
 		System.out.println("Corrected: "+query);
 		
 		//lemmatiser les mots-clés (vouloir,veux,...)
-		Hashtable<String, String> keywords = keywords();
-		//TODO replace
+		LinkedHashMap<String, String> keywords = keywords();
+		query = replace(query, keywords);
 		System.out.println("Lemmatised: "+query);
 		
 		//remove les stop-words
-		Hashtable<String, String> stopwords = stopwords();
-		//TODO replace
+		LinkedHashMap<String, String> stopwords = stopwords();
+		query = replace(query, stopwords);
 		System.out.println("Stop words removed: "+query);
 		
 		//parse it

@@ -1,2 +1,5 @@
 Quels sont | __VOULOIR__
 articles | __ARTICLE__
+qui | __MOT__
+et | __ET__
+ou | __OU__

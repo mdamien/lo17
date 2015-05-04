@@ -1,6 +1,6 @@
 grammar tal_sql;
 
-SELECT : '__VOULOIR__'
+SELECT : '$$VOULOIR$$'
 ;
 
 ARTICLE : '__ARTICLE__'
