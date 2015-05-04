@@ -12,13 +12,13 @@ BULLETIN : '__BULLETIN__'
 CONJ : '__ET__' | '__OU__'
 ;
 
-POINT : '.' | '?'
+POINT : '.' | '?' //TODO: Replace as "__POINT__"
 ;
 
 MOT : '__CONTIENT__'
 ;
  
-WS  : (' ' |'\t' | '\r' ) {skip();} | '\n' 
+WS  : (' ' |'\t' | '\r' | ) {skip();} | '\n' 
 ;
 
 VAR : ('A'..'Z' | 'a'..'z'|'\u00a0'..'\u00ff')(('a'..'z')|('0'..'9')|'-'|('\u00a0'..'\u00ff'))+

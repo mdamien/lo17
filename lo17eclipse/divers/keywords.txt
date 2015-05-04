@@ -1,5 +1,9 @@
 Quels sont | __VOULOIR__
+veux | __VOULOIR__
+impliqu | __MOT__
+parlent | __MOT__
+parlant | __MOT__
 articles | __ARTICLE__
-qui | __MOT__
 et | __ET__
 ou | __OU__
+, | __OU__

@@ -5,6 +5,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 import org.antlr.runtime.ANTLRReaderStream;
@@ -50,7 +51,9 @@ public class Main {
 	
 	public static String replace(String chaine, LinkedHashMap<String, String> replacements) {
 		for (String key : replacements.keySet()) {
-			chaine = chaine.replaceAll(key, replacements.get(key));
+			chaine = chaine.replaceAll("\\b"+key+"\\b", replacements.get(key));
+			chaine = chaine.replaceAll("$"+key+"\\b", replacements.get(key));
+			chaine = chaine.replaceAll("\\b"+key+"^", replacements.get(key));
 		}
 		return chaine;
 	}
@@ -105,18 +108,31 @@ public class Main {
 		
 		//remove les stop-words
 		LinkedHashMap<String, String> stopwords = stopwords();
-		query = replace(query, stopwords);
+		query = replace(query, stopwords).trim();
 		System.out.println("Stop words removed: "+query);
 		
 		//parse it
-		String sql = to_sql(query+".");
+		if(!query.endsWith(".")){
+			query = query+".";
+		}
+		System.out.println("Sent:"+query);
+		String sql = to_sql(query);
 		System.out.println("Result: "+sql);
 
 		return sql;
 	}
 	
 	public static void main(String[] args) throws IOException {
-		String query = "Quels sont les articles qui concernent le nucléaire ?";
-		handle(query);
+		String[] tests = {
+				"Je veux les articles qui parlent de la « biologie ».",
+				"Je veux les articles parlant de l'Argentine ou du Brésil.",
+				"Quels sont les articles qui concernent le nucléaire ?",
+				"Articles parlant d'université.",
+				"Quels sont les articles qui parlent de technologies 3D.",
+				"Je veux les articles impliquant le CNRS et qui parlent de chimie.",
+		};
+		for (String query : tests) {
+			handle(query);
+		}
 	}
 }
