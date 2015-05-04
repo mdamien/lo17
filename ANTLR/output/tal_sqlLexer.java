@@ -1,4 +1,4 @@
-// $ANTLR 3.5 /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g 2015-04-20 15:31:16
+// $ANTLR 3.5 /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g 2015-05-04 08:52:56
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -30,14 +30,14 @@ public class tal_sqlLexer extends Lexer {
 	public tal_sqlLexer(CharStream input, RecognizerSharedState state) {
 		super(input,state);
 	}
-	@Override public String getGrammarFileName() { return "/home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g"; }
+	@Override public String getGrammarFileName() { return "/home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g"; }
 
 	// $ANTLR start "SELECT"
 	public final void mSELECT() throws RecognitionException {
 		try {
 			int _type = SELECT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:3:8: ( 'vouloir' | 'veut' | 'veux' | 'Quels' )
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:3:8: ( 'vouloir' | 'veut' | 'veux' | 'Quels' )
 			int alt1=4;
 			int LA1_0 = input.LA(1);
 			if ( (LA1_0=='v') ) {
@@ -113,28 +113,28 @@ public class tal_sqlLexer extends Lexer {
 
 			switch (alt1) {
 				case 1 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:3:10: 'vouloir'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:3:10: 'vouloir'
 					{
 					match("vouloir"); 
 
 					}
 					break;
 				case 2 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:3:22: 'veut'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:3:22: 'veut'
 					{
 					match("veut"); 
 
 					}
 					break;
 				case 3 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:3:30: 'veux'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:3:30: 'veux'
 					{
 					match("veux"); 
 
 					}
 					break;
 				case 4 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:3:39: 'Quels'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:3:39: 'Quels'
 					{
 					match("Quels"); 
 
@@ -156,7 +156,7 @@ public class tal_sqlLexer extends Lexer {
 		try {
 			int _type = ARTICLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:6:9: ( 'article' | 'articles' )
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:6:9: ( 'article' | 'articles' )
 			int alt2=2;
 			int LA2_0 = input.LA(1);
 			if ( (LA2_0=='a') ) {
@@ -285,14 +285,14 @@ public class tal_sqlLexer extends Lexer {
 
 			switch (alt2) {
 				case 1 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:6:11: 'article'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:6:11: 'article'
 					{
 					match("article"); 
 
 					}
 					break;
 				case 2 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:6:23: 'articles'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:6:23: 'articles'
 					{
 					match("articles"); 
 
@@ -314,7 +314,7 @@ public class tal_sqlLexer extends Lexer {
 		try {
 			int _type = BULLETIN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:9:10: ( 'bulletin' | 'bulletins' )
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:9:10: ( 'bulletin' | 'bulletins' )
 			int alt3=2;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0=='b') ) {
@@ -461,14 +461,14 @@ public class tal_sqlLexer extends Lexer {
 
 			switch (alt3) {
 				case 1 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:9:12: 'bulletin'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:9:12: 'bulletin'
 					{
 					match("bulletin"); 
 
 					}
 					break;
 				case 2 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:9:25: 'bulletins'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:9:25: 'bulletins'
 					{
 					match("bulletins"); 
 
@@ -490,7 +490,7 @@ public class tal_sqlLexer extends Lexer {
 		try {
 			int _type = CONJ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:12:6: ( 'et' | 'ou' )
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:12:6: ( 'et' | 'ou' )
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0=='e') ) {
@@ -508,14 +508,14 @@ public class tal_sqlLexer extends Lexer {
 
 			switch (alt4) {
 				case 1 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:12:8: 'et'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:12:8: 'et'
 					{
 					match("et"); 
 
 					}
 					break;
 				case 2 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:12:15: 'ou'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:12:15: 'ou'
 					{
 					match("ou"); 
 
@@ -537,8 +537,8 @@ public class tal_sqlLexer extends Lexer {
 		try {
 			int _type = POINT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:15:7: ( '.' | '?' )
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:15:7: ( '.' | '?' )
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:
 			{
 			if ( input.LA(1)=='.'||input.LA(1)=='?' ) {
 				input.consume();
@@ -564,7 +564,7 @@ public class tal_sqlLexer extends Lexer {
 		try {
 			int _type = MOT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:18:5: ( 'mot' | 'contenir' | 'parler' | 'parlent' | 'parlant' | 'concernent' )
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:18:5: ( 'mot' | 'contenir' | 'parler' | 'parlent' | 'parlant' | 'concernent' )
 			int alt5=6;
 			switch ( input.LA(1) ) {
 			case 'm':
@@ -738,42 +738,42 @@ public class tal_sqlLexer extends Lexer {
 			}
 			switch (alt5) {
 				case 1 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:18:7: 'mot'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:18:7: 'mot'
 					{
 					match("mot"); 
 
 					}
 					break;
 				case 2 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:18:15: 'contenir'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:18:15: 'contenir'
 					{
 					match("contenir"); 
 
 					}
 					break;
 				case 3 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:18:28: 'parler'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:18:28: 'parler'
 					{
 					match("parler"); 
 
 					}
 					break;
 				case 4 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:18:39: 'parlent'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:18:39: 'parlent'
 					{
 					match("parlent"); 
 
 					}
 					break;
 				case 5 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:18:51: 'parlant'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:18:51: 'parlant'
 					{
 					match("parlant"); 
 
 					}
 					break;
 				case 6 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:18:63: 'concernent'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:18:63: 'concernent'
 					{
 					match("concernent"); 
 
@@ -795,7 +795,7 @@ public class tal_sqlLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:5: ( ( ' ' | '\\t' | '\\r' | 'je' | 'Je' | 'de' | 'la' | 'le' | 'sont' | '«' | '»' | 'les' | 'du' | 'qui' | 'l\\'' | 'dont' ) | '\\n' )
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:5: ( ( ' ' | '\\t' | '\\r' | 'je' | 'Je' | 'de' | 'la' | 'le' | 'sont' | '«' | '»' | 'les' | 'du' | 'qui' | 'l\\'' | 'dont' ) | '\\n' )
 			int alt7=2;
 			int LA7_0 = input.LA(1);
 			if ( (LA7_0=='\t'||LA7_0=='\r'||LA7_0==' '||LA7_0=='J'||LA7_0=='d'||LA7_0=='j'||LA7_0=='l'||LA7_0=='q'||LA7_0=='s'||LA7_0=='\u00AB'||LA7_0=='\u00BB') ) {
@@ -813,9 +813,9 @@ public class tal_sqlLexer extends Lexer {
 
 			switch (alt7) {
 				case 1 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:7: ( ' ' | '\\t' | '\\r' | 'je' | 'Je' | 'de' | 'la' | 'le' | 'sont' | '«' | '»' | 'les' | 'du' | 'qui' | 'l\\'' | 'dont' )
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:7: ( ' ' | '\\t' | '\\r' | 'je' | 'Je' | 'de' | 'la' | 'le' | 'sont' | '«' | '»' | 'les' | 'du' | 'qui' | 'l\\'' | 'dont' )
 					{
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:7: ( ' ' | '\\t' | '\\r' | 'je' | 'Je' | 'de' | 'la' | 'le' | 'sont' | '«' | '»' | 'les' | 'du' | 'qui' | 'l\\'' | 'dont' )
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:7: ( ' ' | '\\t' | '\\r' | 'je' | 'Je' | 'de' | 'la' | 'le' | 'sont' | '«' | '»' | 'les' | 'du' | 'qui' | 'l\\'' | 'dont' )
 					int alt6=16;
 					switch ( input.LA(1) ) {
 					case ' ':
@@ -940,107 +940,107 @@ public class tal_sqlLexer extends Lexer {
 					}
 					switch (alt6) {
 						case 1 :
-							// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:8: ' '
+							// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:8: ' '
 							{
 							match(' '); 
 							}
 							break;
 						case 2 :
-							// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:13: '\\t'
+							// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:13: '\\t'
 							{
 							match('\t'); 
 							}
 							break;
 						case 3 :
-							// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:20: '\\r'
+							// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:20: '\\r'
 							{
 							match('\r'); 
 							}
 							break;
 						case 4 :
-							// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:27: 'je'
+							// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:27: 'je'
 							{
 							match("je"); 
 
 							}
 							break;
 						case 5 :
-							// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:34: 'Je'
+							// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:34: 'Je'
 							{
 							match("Je"); 
 
 							}
 							break;
 						case 6 :
-							// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:41: 'de'
+							// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:41: 'de'
 							{
 							match("de"); 
 
 							}
 							break;
 						case 7 :
-							// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:47: 'la'
+							// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:47: 'la'
 							{
 							match("la"); 
 
 							}
 							break;
 						case 8 :
-							// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:54: 'le'
+							// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:54: 'le'
 							{
 							match("le"); 
 
 							}
 							break;
 						case 9 :
-							// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:61: 'sont'
+							// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:61: 'sont'
 							{
 							match("sont"); 
 
 							}
 							break;
 						case 10 :
-							// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:70: '«'
+							// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:70: '«'
 							{
 							match('\u00AB'); 
 							}
 							break;
 						case 11 :
-							// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:76: '»'
+							// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:76: '»'
 							{
 							match('\u00BB'); 
 							}
 							break;
 						case 12 :
-							// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:82: 'les'
+							// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:82: 'les'
 							{
 							match("les"); 
 
 							}
 							break;
 						case 13 :
-							// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:90: 'du'
+							// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:90: 'du'
 							{
 							match("du"); 
 
 							}
 							break;
 						case 14 :
-							// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:97: 'qui'
+							// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:97: 'qui'
 							{
 							match("qui"); 
 
 							}
 							break;
 						case 15 :
-							// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:105: 'l\\''
+							// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:105: 'l\\''
 							{
 							match("l'"); 
 
 							}
 							break;
 						case 16 :
-							// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:113: 'dont'
+							// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:113: 'dont'
 							{
 							match("dont"); 
 
@@ -1053,7 +1053,7 @@ public class tal_sqlLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:21:133: '\\n'
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:21:133: '\\n'
 					{
 					match('\n'); 
 					}
@@ -1074,8 +1074,8 @@ public class tal_sqlLexer extends Lexer {
 		try {
 			int _type = VAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:24:5: ( ( 'A' .. 'Z' | 'a' .. 'z' | '\\u00a0' .. '\\u00ff' ) ( ( 'a' .. 'z' ) | ( '0' .. '9' ) | '-' | ( '\\u00a0' .. '\\u00ff' ) )+ )
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:24:7: ( 'A' .. 'Z' | 'a' .. 'z' | '\\u00a0' .. '\\u00ff' ) ( ( 'a' .. 'z' ) | ( '0' .. '9' ) | '-' | ( '\\u00a0' .. '\\u00ff' ) )+
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:24:5: ( ( 'A' .. 'Z' | 'a' .. 'z' | '\\u00a0' .. '\\u00ff' ) ( ( 'a' .. 'z' ) | ( '0' .. '9' ) | '-' | ( '\\u00a0' .. '\\u00ff' ) )+ )
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:24:7: ( 'A' .. 'Z' | 'a' .. 'z' | '\\u00a0' .. '\\u00ff' ) ( ( 'a' .. 'z' ) | ( '0' .. '9' ) | '-' | ( '\\u00a0' .. '\\u00ff' ) )+
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z')||(input.LA(1) >= '\u00A0' && input.LA(1) <= '\u00FF') ) {
 				input.consume();
@@ -1085,7 +1085,7 @@ public class tal_sqlLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:24:47: ( ( 'a' .. 'z' ) | ( '0' .. '9' ) | '-' | ( '\\u00a0' .. '\\u00ff' ) )+
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:24:47: ( ( 'a' .. 'z' ) | ( '0' .. '9' ) | '-' | ( '\\u00a0' .. '\\u00ff' ) )+
 			int cnt8=0;
 			loop8:
 			while (true) {
@@ -1097,7 +1097,7 @@ public class tal_sqlLexer extends Lexer {
 
 				switch (alt8) {
 				case 1 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:
 					{
 					if ( input.LA(1)=='-'||(input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'a' && input.LA(1) <= 'z')||(input.LA(1) >= '\u00A0' && input.LA(1) <= '\u00FF') ) {
 						input.consume();
@@ -1131,61 +1131,61 @@ public class tal_sqlLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:1:8: ( SELECT | ARTICLE | BULLETIN | CONJ | POINT | MOT | WS | VAR )
+		// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:1:8: ( SELECT | ARTICLE | BULLETIN | CONJ | POINT | MOT | WS | VAR )
 		int alt9=8;
 		alt9 = dfa9.predict(input);
 		switch (alt9) {
 			case 1 :
-				// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:1:10: SELECT
+				// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:1:10: SELECT
 				{
 				mSELECT(); 
 
 				}
 				break;
 			case 2 :
-				// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:1:17: ARTICLE
+				// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:1:17: ARTICLE
 				{
 				mARTICLE(); 
 
 				}
 				break;
 			case 3 :
-				// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:1:25: BULLETIN
+				// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:1:25: BULLETIN
 				{
 				mBULLETIN(); 
 
 				}
 				break;
 			case 4 :
-				// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:1:34: CONJ
+				// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:1:34: CONJ
 				{
 				mCONJ(); 
 
 				}
 				break;
 			case 5 :
-				// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:1:39: POINT
+				// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:1:39: POINT
 				{
 				mPOINT(); 
 
 				}
 				break;
 			case 6 :
-				// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:1:45: MOT
+				// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:1:45: MOT
 				{
 				mMOT(); 
 
 				}
 				break;
 			case 7 :
-				// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:1:49: WS
+				// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:1:49: WS
 				{
 				mWS(); 
 
 				}
 				break;
 			case 8 :
-				// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:1:52: VAR
+				// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:1:52: VAR
 				{
 				mVAR(); 
 
