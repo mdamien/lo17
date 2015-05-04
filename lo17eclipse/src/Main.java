@@ -1,6 +1,10 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.StringTokenizer;
 
 import javax.management.Query;
 
@@ -45,6 +49,40 @@ public class Main {
 		return sentence;
 	}
 	
+	public static Hashtable<String, String> keywords() {
+		Hashtable<String, String> ht = new Hashtable<String, String>();
+		BufferedReader br = null;
+		try{
+			br = new BufferedReader(new FileReader("divers/keywords.txt"));
+			String chaine;
+			while ((chaine = br.readLine()) != null) {
+				System.out.println("ch "+chaine);
+				StringTokenizer st = new StringTokenizer(chaine, "|");
+				ht.put(st.nextToken().trim(), st.nextToken().trim());
+			}
+		}catch(IOException e){
+			e.printStackTrace();
+			return null;
+		}
+		return ht;
+	}
+	
+	public static Hashtable<String, String> stopwords() {
+		Hashtable<String, String> ht = new Hashtable<String, String>();
+		BufferedReader br = null;
+		try{
+			br = new BufferedReader(new FileReader("divers/stopwords.txt"));
+			String chaine;
+			while ((chaine = br.readLine()) != null) {
+				ht.put(chaine,"");
+			}
+			br.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		return ht;
+	}
+	
 	public static String handle(String query){
 		//normalize
 		query = query.trim().toLowerCase();
@@ -55,15 +93,17 @@ public class Main {
 		System.out.println("Corrected: "+query);
 		
 		//lemmatiser les mots-clés (vouloir,veux,...)
-		//TODO
+		Hashtable<String, String> keywords = keywords();
+		//TODO replace
 		System.out.println("Lemmatised: "+query);
 		
 		//remove les stop-words
-		//TODO
+		Hashtable<String, String> stopwords = stopwords();
+		//TODO replace
 		System.out.println("Stop words removed: "+query);
 		
 		//parse it
-		String sql = to_sql(query);
+		String sql = to_sql(query+".");
 		System.out.println("Result: "+sql);
 
 		return sql;
