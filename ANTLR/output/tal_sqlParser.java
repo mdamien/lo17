@@ -1,4 +1,4 @@
-// $ANTLR 3.5 /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g 2015-04-20 15:31:16
+// $ANTLR 3.5 /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g 2015-05-04 08:52:56
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -37,12 +37,12 @@ public class tal_sqlParser extends Parser {
 	}
 
 	@Override public String[] getTokenNames() { return tal_sqlParser.tokenNames; }
-	@Override public String getGrammarFileName() { return "/home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g"; }
+	@Override public String getGrammarFileName() { return "/home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g"; }
 
 
 
 	// $ANTLR start "listerequetes"
-	// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:27:1: listerequetes returns [String sql = \"\"] : r= requete POINT ;
+	// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:27:1: listerequetes returns [String sql = \"\"] : r= requete POINT ;
 	public final String listerequetes() throws  {
 		String sql =  "";
 
@@ -51,8 +51,8 @@ public class tal_sqlParser extends Parser {
 
 		Arbre lr_arbre;
 		try {
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:28:25: (r= requete POINT )
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:29:3: r= requete POINT
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:28:25: (r= requete POINT )
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:29:3: r= requete POINT
 			{
 			pushFollow(FOLLOW_requete_in_listerequetes250);
 			r=requete();
@@ -80,7 +80,7 @@ public class tal_sqlParser extends Parser {
 
 
 	// $ANTLR start "requete"
-	// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:36:1: requete returns [Arbre req_arbre = new Arbre(\"\")] : SELECT ( ARTICLE | BULLETIN ) MOT ps= params ;
+	// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:36:1: requete returns [Arbre req_arbre = new Arbre(\"\")] : SELECT ( ARTICLE | BULLETIN ) MOT ps= params ;
 	public final Arbre requete() throws  {
 		Arbre req_arbre =  new Arbre("");
 
@@ -89,14 +89,14 @@ public class tal_sqlParser extends Parser {
 
 		Arbre ps_arbre;
 		try {
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:37:26: ( SELECT ( ARTICLE | BULLETIN ) MOT ps= params )
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:38:3: SELECT ( ARTICLE | BULLETIN ) MOT ps= params
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:37:26: ( SELECT ( ARTICLE | BULLETIN ) MOT ps= params )
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:38:3: SELECT ( ARTICLE | BULLETIN ) MOT ps= params
 			{
 			match(input,SELECT,FOLLOW_SELECT_in_requete279); 
 
 							req_arbre.ajouteFils(new Arbre("","select distinct"));
 						
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:42:3: ( ARTICLE | BULLETIN )
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:42:3: ( ARTICLE | BULLETIN )
 			int alt1=2;
 			int LA1_0 = input.LA(1);
 			if ( (LA1_0==ARTICLE) ) {
@@ -114,7 +114,7 @@ public class tal_sqlParser extends Parser {
 
 			switch (alt1) {
 				case 1 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:42:4: ARTICLE
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:42:4: ARTICLE
 					{
 					match(input,ARTICLE,FOLLOW_ARTICLE_in_requete291); 
 
@@ -123,7 +123,7 @@ public class tal_sqlParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:46:6: BULLETIN
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:46:6: BULLETIN
 					{
 					match(input,BULLETIN,FOLLOW_BULLETIN_in_requete303); 
 
@@ -164,7 +164,7 @@ public class tal_sqlParser extends Parser {
 
 
 	// $ANTLR start "params"
-	// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:62:1: params returns [Arbre les_pars_arbre = new Arbre(\"\")] : par1= param ( CONJ par2= param )* ;
+	// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:62:1: params returns [Arbre les_pars_arbre = new Arbre(\"\")] : par1= param ( CONJ par2= param )* ;
 	public final Arbre params() throws  {
 		Arbre les_pars_arbre =  new Arbre("");
 
@@ -174,8 +174,8 @@ public class tal_sqlParser extends Parser {
 
 		Arbre par1_arbre, par2_arbre;
 		try {
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:63:40: (par1= param ( CONJ par2= param )* )
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:64:3: par1= param ( CONJ par2= param )*
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:63:40: (par1= param ( CONJ par2= param )* )
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:64:3: par1= param ( CONJ par2= param )*
 			{
 			pushFollow(FOLLOW_param_in_params358);
 			par1=param();
@@ -185,7 +185,7 @@ public class tal_sqlParser extends Parser {
 							par1_arbre = par1;
 							les_pars_arbre.ajouteFils(par1_arbre);
 						
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:69:3: ( CONJ par2= param )*
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:69:3: ( CONJ par2= param )*
 			loop2:
 			while (true) {
 				int alt2=2;
@@ -196,7 +196,7 @@ public class tal_sqlParser extends Parser {
 
 				switch (alt2) {
 				case 1 :
-					// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:69:4: CONJ par2= param
+					// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:69:4: CONJ par2= param
 					{
 					match(input,CONJ,FOLLOW_CONJ_in_params369); 
 					pushFollow(FOLLOW_param_in_params375);
@@ -233,7 +233,7 @@ public class tal_sqlParser extends Parser {
 
 
 	// $ANTLR start "param"
-	// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:78:1: param returns [Arbre lepar_arbre = new Arbre(\"\")] : a= VAR ;
+	// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:78:1: param returns [Arbre lepar_arbre = new Arbre(\"\")] : a= VAR ;
 	public final Arbre param() throws  {
 		Arbre lepar_arbre =  new Arbre("");
 
@@ -241,8 +241,8 @@ public class tal_sqlParser extends Parser {
 		Token a=null;
 
 		try {
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:78:51: (a= VAR )
-			// /home/maxime/Documents/lo17github/lo17td05/divers/tal_sql.g:79:2: a= VAR
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:78:51: (a= VAR )
+			// /home/maxime/Documents/Dépôts/lo17/ANTLR/tal_sql.g:79:2: a= VAR
 			{
 			a=(Token)match(input,VAR,FOLLOW_VAR_in_param403); 
 			 lepar_arbre.ajouteFils(new Arbre("mot =", "'"+a.getText()+"'"));
