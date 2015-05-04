@@ -1,7 +1,8 @@
 import java.io.IOException;
 
 public class Main {
+	
 	public static void main(String[] args) throws IOException {
-		System.out.println("Hello");
+		String query = "Quels sont les articles qui concernent le nucléaire ?";
 	}
 }

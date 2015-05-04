@@ -1,21 +1,21 @@
 grammar tal_sql;
 
-SELECT : 'vouloir' | 'veut' | 'veux' | 'Quels'
+SELECT : '__VOULOIR__'
 ;
 
-ARTICLE : 'article' | 'articles' | 'Articles' | 'Article'
+ARTICLE : '__ARTICLE__'
 ;
 
-BULLETIN : 'bulletin' | 'bulletins'
+BULLETIN : '__BULLETIN__'
 ;
 
-CONJ : 'et' | 'ou'
+CONJ : '__ET__' | '__OU__'
 ;
 
 POINT : '.' | '?'
 ;
 
-MOT : 'mot' | 'contenir' | 'parler' | 'parlent' | 'parlant' | 'concernent'
+MOT : '__CONTIENT__'
 ;
  
 WS  : (' ' |'\t' | '\r' | 'je' | 'Je' | 'de'| 'la' | 'd\''  | 'le' | 'sont' | '«' | '»' | 'les' | 'du' | 'qui' | 'l\'' | 'dont') {skip();} | '\n' 
