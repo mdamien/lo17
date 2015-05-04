@@ -21,5 +21,5 @@ Awesome project. Such wow. Many pizzas.
 
 ## Comment qu'on fait avec ANTLR et ANTLRWORKS
 - éxecuter le jar d'antlrworks (dans un terminal)
-- ouvrir le fichier .g qui nous intéresse dans l'immédiat
-- générer le code java et le copier dans le projet Eclipse -> src -> td
+- ouvrir le fichier .g qui nous intéresse dans l'immédiat (pour le projet c'est `tal_sql.g`)
+- générer le code Java (mis par défaut dans le dossier output) et le copier dans le projet Eclipse -> src
