@@ -5,8 +5,9 @@ import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonTokenStream;
 
 public class TalMain3 {
-	public static void main(String args[]) {
+	public static void main(String args[]) throws FileNotFoundException {
 		Scanner scanner = new Scanner(System.in);
+		Scanner scanTest = new Scanner(new File("divers/atester.txt"));
 		System.out.print("Texte : ");
 		String s = scanner.nextLine();
 		System.out.println(s);
@@ -21,7 +22,11 @@ public class TalMain3 {
 			} catch (Exception e) {
 			}
 			System.out.print("Texte : ");
-			s = scanner.nextLine();
+			// Ligne de test
+			s = scanTest.nextLine();
+			// s = scanner.nextLine();
 		}
+		scanTest.close();
+		scanner.close();
 	}
 }
