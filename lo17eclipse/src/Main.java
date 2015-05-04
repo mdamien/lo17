@@ -49,7 +49,6 @@ public class Main {
 	}
 	
 	public static String replace(String chaine, LinkedHashMap<String, String> replacements) {
-		int i = 0;
 		for (String key : replacements.keySet()) {
 			chaine = chaine.replaceAll(key, replacements.get(key));
 		}

@@ -1,6 +1,6 @@
 grammar tal_sql;
 
-SELECT : '$$VOULOIR$$'
+SELECT : '__VOULOIR__'
 ;
 
 ARTICLE : '__ARTICLE__'
@@ -18,7 +18,7 @@ POINT : '.' | '?'
 MOT : '__CONTIENT__'
 ;
  
-WS  : (' ' |'\t' | '\r' | 'je' | 'Je' | 'de'| 'la' | 'd\''  | 'le' | 'sont' | '«' | '»' | 'les' | 'du' | 'qui' | 'l\'' | 'dont') {skip();} | '\n' 
+WS  : (' ' |'\t' | '\r' ) {skip();} | '\n' 
 ;
 
 VAR : ('A'..'Z' | 'a'..'z'|'\u00a0'..'\u00ff')(('a'..'z')|('0'..'9')|'-'|('\u00a0'..'\u00ff'))+
