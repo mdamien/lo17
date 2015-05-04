@@ -1,4 +1,4 @@
-// $ANTLR 3.5 /home/bob/prog/lo17/ANTLR/tal_sql.g 2015-05-04 14:13:15
+// $ANTLR 3.5 /home/bob/prog/lo17/ANTLR/tal_sql.g 2015-05-04 14:20:04
 
 import org.antlr.runtime.*;
 import java.util.Stack;
