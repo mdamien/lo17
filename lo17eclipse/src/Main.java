@@ -18,7 +18,7 @@ public class Main {
 					new StringReader(s)));
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
 			// tal_sqlParser parser = new tal_sqlParser(tokens);
-			tal_sqlParser parser = new tal_sqlParser(tokens);
+			tal_sqlParser parser = new MyParser(tokens);
 			String arbre = parser.listerequetes();
 			System.out.println("syntax errrors:"+parser.getNumberOfSyntaxErrors());
 			return arbre;
@@ -103,7 +103,7 @@ public class Main {
 		// normalize
 		query = query.trim().toLowerCase();
 		//remove trailing dots
-		query = query.replaceAll("(\\.)$", "");
+		query = query.replaceAll("(\\.)$", "")+".";
 		System.out.println("Handle: " + query);
 
 		// lemmatisation et correction ortho
@@ -119,6 +119,8 @@ public class Main {
 		LinkedHashMap<String, String> stopwords = stopwords();
 		query = replace(query, stopwords).trim();
 		System.out.println("Stop words removed: " + query);
+		
+		//ajouter VOULOIR, MOT,...
 
 		// parse it
 		System.out.println("Sent:" + query);
