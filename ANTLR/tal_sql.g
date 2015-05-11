@@ -1,5 +1,10 @@
 grammar tal_sql;
 
+@rulecatch
+{
+	catch(Exception e){throw(e);}
+}
+
 SELECT : 'VOULOIR'
 ;
 
@@ -18,16 +23,16 @@ POINT : '.' | '?' // TODO replace as "POINT"
 MOT : 'CONTIENT'
 ;
  
-WS  : (' ' |'\t' | '\r' | ) {skip();} | '\n'
+WS  : (' ' |'\t' | '\r')* {skip();} | '\n'
 ;
 
-VAR : ('A'..'Z' | 'a'..'z'|'\u00a0'..'\u00ff')(('a'..'z')|('0'..'9')|'-'|('\u00a0'..'\u00ff'))+
+VAR : ('A'..'Z'|'a'..'z'|'0'..'9'|'\u00a0'..'\u00ff')(('a'..'z')|('0'..'9')|'-'|('\u00a0'..'\u00ff'))+
 ;
 
 listerequetes returns [String sql = ""]
 	@init	{Arbre lr_arbre;}: 
-//		r = requete POINT
-		r = requete
+		r = requete POINT
+//		r = requete
 			{
 				lr_arbre = $r.req_arbre;
 				sql = lr_arbre.sortArbre();

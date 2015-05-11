@@ -17,6 +17,7 @@ public class Main {
 			tal_sqlLexer lexer = new tal_sqlLexer(new ANTLRReaderStream(
 					new StringReader(s)));
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
+			// tal_sqlParser parser = new tal_sqlParser(tokens);
 			tal_sqlParser parser = new tal_sqlParser(tokens);
 			String arbre = parser.listerequetes();
 			System.out.println("syntax errrors:"+parser.getNumberOfSyntaxErrors());
