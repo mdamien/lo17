@@ -37,34 +37,24 @@ listerequetes returns [String sql = ""]
 				lr_arbre = $r.req_arbre;
 				sql = lr_arbre.sortArbre();
 			}
-;
 
+;
 requete returns [Arbre req_arbre = new Arbre("")]
 	@init {Arbre ps_arbre;} : 
-		(SELECT 
-			{
-				req_arbre.ajouteFils(new Arbre("","select distinct"));
-			} 
-		)?
-		(ARTICLE
-			{
+		(a = SELECT ARTICLE MOT?
+				{
+			req_arbre.ajouteFils(new Arbre("","select distinct"));
 			req_arbre.ajouteFils(new Arbre("","article"));
-			}
-		 | BULLETIN
-			{
-			req_arbre.ajouteFils(new Arbre("","bulletin"));
-			})
-		MOT
-			{
-				req_arbre.ajouteFils(new Arbre("","from titreresume"));
-				req_arbre.ajouteFils(new Arbre("","where"));
-			}
+			req_arbre.ajouteFils(new Arbre("","from titreresume"));
+			req_arbre.ajouteFils(new Arbre("","where"));
+		}
 		ps = params 
 			{
 				ps_arbre = $ps.les_pars_arbre;
 				req_arbre.ajouteFils(ps_arbre);
 			}
 ;
+
 
 params returns [Arbre les_pars_arbre = new Arbre("")]
 	@init	{Arbre par1_arbre, par2_arbre;} : 
@@ -83,6 +73,7 @@ params returns [Arbre les_pars_arbre = new Arbre("")]
 ;
 
 param returns [Arbre lepar_arbre = new Arbre("")] :
+	(MOT){/*ignore "contient" after the intended one*/}*
 	a = VAR
 		{ lepar_arbre.ajouteFils(new Arbre("mot =", "'"+a.getText()+"'"));}
 ;
