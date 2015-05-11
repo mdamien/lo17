@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.RecognitionException;
 
 public class Main {
 
@@ -17,10 +18,12 @@ public class Main {
 					new StringReader(s)));
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
 			// tal_sqlParser parser = new tal_sqlParser(tokens);
-			tal_sqlParser parser = new tal_sqlParser(tokens);
+			tal_sqlParser parser = new MyParser(tokens);
 			String arbre = parser.listerequetes();
+			System.out.println("syntax errrors:"+parser.getNumberOfSyntaxErrors());
 			return arbre;
-		} catch (IOException e) {
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return "";
 	}
@@ -99,6 +102,8 @@ public class Main {
 	public static String handle(String query) throws Exception {
 		// normalize
 		query = query.trim().toLowerCase();
+		//remove trailing dots
+		query = query.replaceAll("(\\.)$", "")+".";
 		System.out.println("Handle: " + query);
 
 		// lemmatisation et correction ortho
@@ -114,11 +119,10 @@ public class Main {
 		LinkedHashMap<String, String> stopwords = stopwords();
 		query = replace(query, stopwords).trim();
 		System.out.println("Stop words removed: " + query);
+		
+		//ajouter VOULOIR, MOT,...
 
 		// parse it
-		if (!query.endsWith(".")) {
-			query = query + ".";
-		}
 		System.out.println("Sent:" + query);
 		String sql = to_sql(query);
 		System.out.println("Result: " + sql);
