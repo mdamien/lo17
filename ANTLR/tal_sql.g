@@ -41,11 +41,10 @@ listerequetes returns [String sql = ""]
 
 requete returns [Arbre req_arbre = new Arbre("")]
 	@init {Arbre ps_arbre;} : 
-		(SELECT 
+		SELECT
 			{
 				req_arbre.ajouteFils(new Arbre("","select distinct"));
-			} 
-		)?
+			}
 		(ARTICLE
 			{
 			req_arbre.ajouteFils(new Arbre("","article"));
