@@ -2,9 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.StringTokenizer;
 
 public class Lexique {
@@ -73,36 +71,22 @@ public class Lexique {
 		if (words.containsKey(chaine)) {
 			lemmes.add(words.get(chaine));
 		} else {/*
-			// Algorithme du cours exploitant la recherche par préfixe (cf.
-			// cours page 33)
-			Hashtable<String, Float> proximityHash = new Hashtable<String, Float>();
-			Iterator<String> jtr = words.values().iterator();
-			while (jtr.hasNext()) {
-				String curr = jtr.next();
-				proximityHash.put(curr, prox(chaine, curr));
-			}
-			Enumeration<String> e = proximityHash.keys();
-			float seuil = 60;
-			while (e.hasMoreElements()) {
-				String curr = e.nextElement();
-				if (proximityHash.get(curr) > seuil) {
-					lemmes.add(curr);
-				}
-			}
-			// Levenshtein
-			int max_distance = chaine.length() > 3 ? chaine.length() / 3 : 3;
-			ArrayList<Match> matches = Levenshtein.best_matches(chaine,
-					words.keySet(), max_distance);
-			int c = 0;
-			for (Match match : matches) {
-				if (!lemmes.contains(match.word)) {
-					lemmes.add(words.get(match.word));
-					c += 1;
-					if (c > 3) {
-						break;
-					}
-				}
-			}*/
+				 * // Algorithme du cours exploitant la recherche par préfixe
+				 * (cf. // cours page 33) Hashtable<String, Float> proximityHash
+				 * = new Hashtable<String, Float>(); Iterator<String> jtr =
+				 * words.values().iterator(); while (jtr.hasNext()) { String
+				 * curr = jtr.next(); proximityHash.put(curr, prox(chaine,
+				 * curr)); } Enumeration<String> e = proximityHash.keys(); float
+				 * seuil = 60; while (e.hasMoreElements()) { String curr =
+				 * e.nextElement(); if (proximityHash.get(curr) > seuil) {
+				 * lemmes.add(curr); } } // Levenshtein int max_distance =
+				 * chaine.length() > 3 ? chaine.length() / 3 : 3;
+				 * ArrayList<Match> matches = Levenshtein.best_matches(chaine,
+				 * words.keySet(), max_distance); int c = 0; for (Match match :
+				 * matches) { if (!lemmes.contains(match.word)) {
+				 * lemmes.add(words.get(match.word)); c += 1; if (c > 3) {
+				 * break; } } }
+				 */
 		}
 		return lemmes;
 	}

@@ -55,6 +55,7 @@ class Arbre {
 		return arbre;
 	}
 
+	@SuppressWarnings("unused")
 	private void afficheCatAvecNl() {
 		System.out.print(categorie + " ");
 		System.out.print(mot + " ");
@@ -68,6 +69,7 @@ class Arbre {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void afficheCatSansNl() {
 		System.out.print(categorie + " ");
 		if (fils != null) {
@@ -79,5 +81,4 @@ class Arbre {
 			frere.afficheCatSansNl();
 		}
 	}
-
 }

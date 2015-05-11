@@ -20,19 +20,19 @@ public class Levenshtein {
 		return 0;
 	}
 
-	public static int distance_with_inversions(String a, String b) {
-		// http://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm
-		// better:
-		// http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
-		int min = distance(a, b);
-		for (int i = 0; i < a.length() - 1; i++) {
-			String s = a.substring(0, i) + a.substring(i + 1, i + 2)
-					+ a.substring(i, i + 1) + a.substring(i + 2);
-			int d = distance(s, b);
-			System.out.println(s + "  - " + d);
-		}
-		return 0;
-	}
+	// public static int distance_with_inversions(String a, String b) {
+	// // http://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm
+	// // better:
+	// // http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
+	// int min = distance(a, b);
+	// for (int i = 0; i < a.length() - 1; i++) {
+	// String s = a.substring(0, i) + a.substring(i + 1, i + 2)
+	// + a.substring(i, i + 1) + a.substring(i + 2);
+	// int d = distance(s, b);
+	// System.out.println(s + "  - " + d);
+	// }
+	// return 0;
+	// }
 
 	public static int distance(String a, String b) {
 		int[][] dist = new int[a.length() + 1][b.length() + 1];
@@ -54,7 +54,7 @@ public class Levenshtein {
 				d1 = dist[i - 1][j - 1] + cout(X, i, Y, j);
 				d2 = dist[i - 1][j] + cout(X, i, NULL, j);
 				d3 = dist[i][j - 1] + cout(NULL, i, Y, j);
-				dist[i][j] = Math.min(d1, Math.min(d2,d3));
+				dist[i][j] = Math.min(d1, Math.min(d2, d3));
 			}
 		}
 		return dist[a.length()][b.length()];
@@ -82,7 +82,5 @@ public class Levenshtein {
 	public static void main(String[] args) {
 		System.out.println(distance("ilste", "liste"));
 		System.out.println(distance("ilste", "juste"));
-		System.out.println(distance_with_inversions("ilste", "liste"));
 	}
-
 }
