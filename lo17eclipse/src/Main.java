@@ -11,7 +11,7 @@ import org.antlr.runtime.CommonTokenStream;
 
 public class Main {
 
-	public static String to_sql(String s) {
+	public static String to_sql(String s) throws Exception {
 		try {
 			tal_sqlLexer lexer = new tal_sqlLexer(new ANTLRReaderStream(
 					new StringReader(s)));
@@ -95,7 +95,7 @@ public class Main {
 		return ht;
 	}
 
-	public static String handle(String query) {
+	public static String handle(String query) throws Exception {
 		// normalize
 		query = query.trim().toLowerCase();
 		System.out.println("Handle: " + query);
@@ -125,7 +125,7 @@ public class Main {
 		return sql;
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		String[] tests = {
 				"Je veux les articles qui parlent de la « biologie ».",
 				"Je veux les articles parlant de l'Argentine ou du Brésil.",

@@ -1,9 +1,9 @@
-Quels sont | __VOULOIR__
-veux | __VOULOIR__
-impliqu | __MOT__
-parlent | __MOT__
-parlant | __MOT__
-articles | __ARTICLE__
-et | __ET__
-ou | __OU__
-, | __OU__
+Quels sont | VOULOIR
+veux | VOULOIR
+impliqu | MOT
+parlent | MOT
+parlant | MOT
+articles | ARTICLE
+et | ET
+ou | OU
+, | OU
