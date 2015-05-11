@@ -26,7 +26,8 @@ VAR : ('A'..'Z' | 'a'..'z'|'\u00a0'..'\u00ff')(('a'..'z')|('0'..'9')|'-'|('\u00a
 
 listerequetes returns [String sql = ""]
 	@init	{Arbre lr_arbre;}: 
-		r = requete POINT
+//		r = requete POINT
+		r = requete
 			{
 				lr_arbre = $r.req_arbre;
 				sql = lr_arbre.sortArbre();
@@ -79,4 +80,3 @@ param returns [Arbre lepar_arbre = new Arbre("")] :
 	a = VAR
 		{ lepar_arbre.ajouteFils(new Arbre("mot =", "'"+a.getText()+"'"));}
 ;
-
