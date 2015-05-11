@@ -1,4 +1,4 @@
-// $ANTLR 3.5 /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g 2015-05-11 14:03:38
+// $ANTLR 3.5 /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g 2015-05-11 14:22:01
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -54,7 +54,7 @@ public class tal_sqlParser extends Parser {
 			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:28:25: (r= requete )
 			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:30:3: r= requete
 			{
-			pushFollow(FOLLOW_requete_in_listerequetes165);
+			pushFollow(FOLLOW_requete_in_listerequetes164);
 			r=requete();
 			state._fsp--;
 
@@ -79,7 +79,7 @@ public class tal_sqlParser extends Parser {
 
 
 	// $ANTLR start "requete"
-	// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:37:1: requete returns [Arbre req_arbre = new Arbre(\"\")] : SELECT ( ARTICLE | BULLETIN ) MOT ps= params ;
+	// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:37:1: requete returns [Arbre req_arbre = new Arbre(\"\")] : ( SELECT )? ( ARTICLE | BULLETIN ) MOT ps= params ;
 	public final Arbre requete() throws  {
 		Arbre req_arbre =  new Arbre("");
 
@@ -88,43 +88,58 @@ public class tal_sqlParser extends Parser {
 
 		Arbre ps_arbre;
 		try {
-			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:38:26: ( SELECT ( ARTICLE | BULLETIN ) MOT ps= params )
-			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:39:3: SELECT ( ARTICLE | BULLETIN ) MOT ps= params
+			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:38:26: ( ( SELECT )? ( ARTICLE | BULLETIN ) MOT ps= params )
+			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:39:3: ( SELECT )? ( ARTICLE | BULLETIN ) MOT ps= params
 			{
-			match(input,SELECT,FOLLOW_SELECT_in_requete192); 
-
-							req_arbre.ajouteFils(new Arbre("","select distinct"));
-						
-			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:43:3: ( ARTICLE | BULLETIN )
+			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:39:3: ( SELECT )?
 			int alt1=2;
 			int LA1_0 = input.LA(1);
-			if ( (LA1_0==ARTICLE) ) {
+			if ( (LA1_0==SELECT) ) {
 				alt1=1;
 			}
-			else if ( (LA1_0==BULLETIN) ) {
-				alt1=2;
+			switch (alt1) {
+				case 1 :
+					// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:39:4: SELECT
+					{
+					match(input,SELECT,FOLLOW_SELECT_in_requete192); 
+
+									req_arbre.ajouteFils(new Arbre("","select distinct"));
+								
+					}
+					break;
+
+			}
+
+			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:44:3: ( ARTICLE | BULLETIN )
+			int alt2=2;
+			int LA2_0 = input.LA(1);
+			if ( (LA2_0==ARTICLE) ) {
+				alt2=1;
+			}
+			else if ( (LA2_0==BULLETIN) ) {
+				alt2=2;
 			}
 
 			else {
 				NoViableAltException nvae =
-					new NoViableAltException("", 1, 0, input);
+					new NoViableAltException("", 2, 0, input);
 				throw nvae;
 			}
 
-			switch (alt1) {
+			switch (alt2) {
 				case 1 :
-					// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:43:4: ARTICLE
+					// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:44:4: ARTICLE
 					{
-					match(input,ARTICLE,FOLLOW_ARTICLE_in_requete204); 
+					match(input,ARTICLE,FOLLOW_ARTICLE_in_requete209); 
 
 								req_arbre.ajouteFils(new Arbre("","article"));
 								
 					}
 					break;
 				case 2 :
-					// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:47:6: BULLETIN
+					// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:48:6: BULLETIN
 					{
-					match(input,BULLETIN,FOLLOW_BULLETIN_in_requete216); 
+					match(input,BULLETIN,FOLLOW_BULLETIN_in_requete221); 
 
 								req_arbre.ajouteFils(new Arbre("","bulletin"));
 								
@@ -133,12 +148,12 @@ public class tal_sqlParser extends Parser {
 
 			}
 
-			match(input,MOT,FOLLOW_MOT_in_requete226); 
+			match(input,MOT,FOLLOW_MOT_in_requete231); 
 
 							req_arbre.ajouteFils(new Arbre("","from titreresume"));
 							req_arbre.ajouteFils(new Arbre("","where"));
 						
-			pushFollow(FOLLOW_params_in_requete239);
+			pushFollow(FOLLOW_params_in_requete244);
 			ps=params();
 			state._fsp--;
 
@@ -163,7 +178,7 @@ public class tal_sqlParser extends Parser {
 
 
 	// $ANTLR start "params"
-	// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:63:1: params returns [Arbre les_pars_arbre = new Arbre(\"\")] : par1= param ( ( CONJ )? par2= param )* ;
+	// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:64:1: params returns [Arbre les_pars_arbre = new Arbre(\"\")] : par1= param ( ( CONJ )? par2= param )* ;
 	public final Arbre params() throws  {
 		Arbre les_pars_arbre =  new Arbre("");
 
@@ -173,10 +188,10 @@ public class tal_sqlParser extends Parser {
 
 		Arbre par1_arbre, par2_arbre;
 		try {
-			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:64:40: (par1= param ( ( CONJ )? par2= param )* )
-			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:65:3: par1= param ( ( CONJ )? par2= param )*
+			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:65:40: (par1= param ( ( CONJ )? par2= param )* )
+			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:66:3: par1= param ( ( CONJ )? par2= param )*
 			{
-			pushFollow(FOLLOW_param_in_params271);
+			pushFollow(FOLLOW_param_in_params276);
 			par1=param();
 			state._fsp--;
 
@@ -184,36 +199,36 @@ public class tal_sqlParser extends Parser {
 							par1_arbre = par1;
 							les_pars_arbre.ajouteFils(par1_arbre);
 						
-			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:70:3: ( ( CONJ )? par2= param )*
-			loop3:
+			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:71:3: ( ( CONJ )? par2= param )*
+			loop4:
 			while (true) {
-				int alt3=2;
-				int LA3_0 = input.LA(1);
-				if ( (LA3_0==CONJ||LA3_0==VAR) ) {
-					alt3=1;
+				int alt4=2;
+				int LA4_0 = input.LA(1);
+				if ( (LA4_0==CONJ||LA4_0==VAR) ) {
+					alt4=1;
 				}
 
-				switch (alt3) {
+				switch (alt4) {
 				case 1 :
-					// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:70:4: ( CONJ )? par2= param
+					// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:71:4: ( CONJ )? par2= param
 					{
-					// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:70:4: ( CONJ )?
-					int alt2=2;
-					int LA2_0 = input.LA(1);
-					if ( (LA2_0==CONJ) ) {
-						alt2=1;
+					// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:71:4: ( CONJ )?
+					int alt3=2;
+					int LA3_0 = input.LA(1);
+					if ( (LA3_0==CONJ) ) {
+						alt3=1;
 					}
-					switch (alt2) {
+					switch (alt3) {
 						case 1 :
-							// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:70:4: CONJ
+							// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:71:4: CONJ
 							{
-							match(input,CONJ,FOLLOW_CONJ_in_params282); 
+							match(input,CONJ,FOLLOW_CONJ_in_params287); 
 							}
 							break;
 
 					}
 
-					pushFollow(FOLLOW_param_in_params289);
+					pushFollow(FOLLOW_param_in_params294);
 					par2=param();
 					state._fsp--;
 
@@ -226,7 +241,7 @@ public class tal_sqlParser extends Parser {
 					break;
 
 				default :
-					break loop3;
+					break loop4;
 				}
 			}
 
@@ -247,7 +262,7 @@ public class tal_sqlParser extends Parser {
 
 
 	// $ANTLR start "param"
-	// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:79:1: param returns [Arbre lepar_arbre = new Arbre(\"\")] : a= VAR ;
+	// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:80:1: param returns [Arbre lepar_arbre = new Arbre(\"\")] : a= VAR ;
 	public final Arbre param() throws  {
 		Arbre lepar_arbre =  new Arbre("");
 
@@ -255,10 +270,10 @@ public class tal_sqlParser extends Parser {
 		Token a=null;
 
 		try {
-			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:79:51: (a= VAR )
-			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:80:2: a= VAR
+			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:80:51: (a= VAR )
+			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:81:2: a= VAR
 			{
-			a=(Token)match(input,VAR,FOLLOW_VAR_in_param317); 
+			a=(Token)match(input,VAR,FOLLOW_VAR_in_param322); 
 			 lepar_arbre.ajouteFils(new Arbre("mot =", "'"+a.getText()+"'"));
 			}
 
@@ -278,14 +293,14 @@ public class tal_sqlParser extends Parser {
 
 
 
-	public static final BitSet FOLLOW_requete_in_listerequetes165 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_requete_in_listerequetes164 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_SELECT_in_requete192 = new BitSet(new long[]{0x0000000000000030L});
-	public static final BitSet FOLLOW_ARTICLE_in_requete204 = new BitSet(new long[]{0x0000000000000080L});
-	public static final BitSet FOLLOW_BULLETIN_in_requete216 = new BitSet(new long[]{0x0000000000000080L});
-	public static final BitSet FOLLOW_MOT_in_requete226 = new BitSet(new long[]{0x0000000000000400L});
-	public static final BitSet FOLLOW_params_in_requete239 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_param_in_params271 = new BitSet(new long[]{0x0000000000000442L});
-	public static final BitSet FOLLOW_CONJ_in_params282 = new BitSet(new long[]{0x0000000000000400L});
-	public static final BitSet FOLLOW_param_in_params289 = new BitSet(new long[]{0x0000000000000442L});
-	public static final BitSet FOLLOW_VAR_in_param317 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ARTICLE_in_requete209 = new BitSet(new long[]{0x0000000000000080L});
+	public static final BitSet FOLLOW_BULLETIN_in_requete221 = new BitSet(new long[]{0x0000000000000080L});
+	public static final BitSet FOLLOW_MOT_in_requete231 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_params_in_requete244 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_param_in_params276 = new BitSet(new long[]{0x0000000000000442L});
+	public static final BitSet FOLLOW_CONJ_in_params287 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_param_in_params294 = new BitSet(new long[]{0x0000000000000442L});
+	public static final BitSet FOLLOW_VAR_in_param322 = new BitSet(new long[]{0x0000000000000002L});
 }
