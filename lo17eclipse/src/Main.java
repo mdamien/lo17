@@ -129,7 +129,7 @@ public class Main {
 				"Quels sont les articles qui concernent le nucléaire ?",
 				"Articles parlant d'université.",
 				"Quels sont les articles qui parlent de technologies 3D.",
-				"Je veux les articles impliquant le CNRS et qui parlent de chimie.",
+				"Je veux les articles impliquant le CNRS et qui parlent de chimie."
 		};
 		for (String query : tests) {
 			handle(query);
