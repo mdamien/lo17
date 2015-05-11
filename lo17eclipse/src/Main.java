@@ -20,7 +20,6 @@ public class Main {
 			// tal_sqlParser parser = new tal_sqlParser(tokens);
 			tal_sqlParser parser = new MyParser(tokens);
 			String arbre = parser.listerequetes();
-			System.out.println("syntax errrors:"+parser.getNumberOfSyntaxErrors());
 			return arbre;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -52,16 +51,25 @@ public class Main {
 	}
 
 	public static String replace(String chaine,
-			LinkedHashMap<String, String> replacements) {
-		for (String key : replacements.keySet()) {
-			chaine = chaine.replaceAll("\\b" + key + "\\b",
-					replacements.get(key));
-			chaine = chaine
-					.replaceAll("$" + key + "\\b", replacements.get(key));
-			chaine = chaine
-					.replaceAll("\\b" + key + "^", replacements.get(key));
+		LinkedHashMap<String, String> replacements) {
+		String[] chaines = chaine.split("\\b");
+		int i = 0;
+		String sentence = "";
+		chaine = chaine.trim();
+		
+		for (String word : chaines) {
+			if (i % 2 != 0){
+				if(replacements.containsKey(word)){
+					sentence += replacements.get(word);
+				}else{
+					sentence += word;
+				}
+			} else {
+				sentence += " ";
+			}
+			i += 1;
 		}
-		return chaine;
+		return sentence;
 	}
 
 	public static LinkedHashMap<String, String> keywords() {
@@ -100,32 +108,36 @@ public class Main {
 	}
 
 	public static String handle(String query) throws Exception {
+		System.out.println("Input: " + query);
+		
 		// normalize
 		query = query.trim().toLowerCase();
 		//remove trailing dots
-		query = query.replaceAll("(\\.)$", "")+".";
-		System.out.println("Handle: " + query);
+		query = query.replaceAll("(\\.)$", "");
 
 		// lemmatisation et correction ortho
 		query = correct(query);
-		System.out.println("Corrected: " + query);
+		//System.out.println("Corrected: " + query);
 
 		// lemmatiser les mots-clés (vouloir,veux,...)
 		LinkedHashMap<String, String> keywords = keywords();
 		query = replace(query, keywords);
-		System.out.println("Lemmatised: " + query);
+		//System.out.println("Lemmatised: " + query);
 
 		// remove les stop-words
 		LinkedHashMap<String, String> stopwords = stopwords();
 		query = replace(query, stopwords).trim();
-		System.out.println("Stop words removed: " + query);
+		//System.out.println("Stop words removed: " + query);
 		
 		//ajouter VOULOIR, MOT,...
 
 		// parse it
-		System.out.println("Sent:" + query);
+		if(!query.endsWith(".")){
+			query += " .";
+		}
+		System.out.println("Transformed:" + query);
 		String sql = to_sql(query);
-		System.out.println("Result: " + sql);
+		System.out.println("Output: " + sql);
 
 		return sql;
 	}
@@ -136,7 +148,7 @@ public class Main {
 				"Je veux les articles parlant de l'Argentine ou du Brésil.",
 				"Quels sont les articles qui concernent le nucléaire ?",
 				"Articles parlant d'université.",
-				"Quels sont les articles qui parlent de technologies 3D.",
+				"Quels sont les articles qui parlent de technologies a3D.",
 				"Je veux les articles impliquant le CNRS et qui parlent de chimie." };
 		for (String query : tests) {
 			handle(query);
