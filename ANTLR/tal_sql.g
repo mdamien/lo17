@@ -1,24 +1,24 @@
 grammar tal_sql;
 
-SELECT : '$VOULOIR$'
+SELECT : 'VOULOIR'
 ;
 
-ARTICLE : '$ARTICLE$'
+ARTICLE : 'ARTICLE'
 ;
 
-BULLETIN : '$BULLETIN$'
+BULLETIN : 'BULLETIN'
 ;
 
-CONJ : '$ET$' | '$OU$'
+CONJ : 'ET' | 'OU'
 ;
 
-POINT : '.' | '?' // TODO replace as "$POINT$"
+POINT : '.' | '?' // TODO replace as "POINT"
 ;
 
-MOT : '$CONTIENT$'
+MOT : 'CONTIENT'
 ;
  
-WS  : (' ' |'\t' | '\r' | ) {skip();} | '\n' 
+WS  : (' ' |'\t' | '\r' | ) {skip();} | '\n'
 ;
 
 VAR : ('A'..'Z' | 'a'..'z'|'\u00a0'..'\u00ff')(('a'..'z')|('0'..'9')|'-'|('\u00a0'..'\u00ff'))+
@@ -36,10 +36,11 @@ listerequetes returns [String sql = ""]
 
 requete returns [Arbre req_arbre = new Arbre("")]
 	@init {Arbre ps_arbre;} : 
-		SELECT 
+		(SELECT 
 			{
 				req_arbre.ajouteFils(new Arbre("","select distinct"));
 			} 
+		)?
 		(ARTICLE
 			{
 			req_arbre.ajouteFils(new Arbre("","article"));
