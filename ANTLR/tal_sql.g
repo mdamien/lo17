@@ -41,9 +41,12 @@ listerequetes returns [String sql = ""]
 ;
 requete returns [Arbre req_arbre = new Arbre("")]
 	@init {Arbre ps_arbre;} : 
-		(a = SELECT ARTICLE MOT?
-				{
-			req_arbre.ajouteFils(new Arbre("","select distinct"));
+		SELECT
+			{
+				req_arbre.ajouteFils(new Arbre("","select distinct"));
+			}
+		(ARTICLE
+			{
 			req_arbre.ajouteFils(new Arbre("","article"));
 			req_arbre.ajouteFils(new Arbre("","from titreresume"));
 			req_arbre.ajouteFils(new Arbre("","where"));

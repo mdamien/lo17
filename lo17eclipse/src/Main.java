@@ -20,6 +20,8 @@ public class Main {
 			// tal_sqlParser parser = new tal_sqlParser(tokens);
 			tal_sqlParser parser = new MyParser(tokens);
 			String arbre = parser.listerequetes();
+			System.out.println("syntax errrors:"
+					+ parser.getNumberOfSyntaxErrors());
 			return arbre;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -107,13 +109,29 @@ public class Main {
 		return ht;
 	}
 
+	private static void preparingForSql(String s) {
+		String[] ssplit = s.split("(\\s)+");
+		// if (ssplit[0] != "VOULOIR" || ssplit[0] != " VOULOIR") {
+		// }
+		for (String sub : ssplit) {
+			sub.replaceAll("[^A-Z]", "");
+			System.out.println("###" + sub + "###");
+		}
+	}
+
 	public static String handle(String query) throws Exception {
 		System.out.println("Input: " + query);
 		
 		// normalize
 		query = query.trim().toLowerCase();
+<<<<<<< HEAD
 		//remove trailing dots
 		query = query.replaceAll("(\\.)$", "");
+=======
+		// remove trailing dots
+		query = query.replaceAll("(\\.)$", "") + ".";
+		System.out.println("Handle: " + query);
+>>>>>>> d5afccb364aecd527fb35443dbe0d50a9f6e81d0
 
 		// lemmatisation et correction ortho
 		query = correct(query);
@@ -127,6 +145,7 @@ public class Main {
 		// remove les stop-words
 		LinkedHashMap<String, String> stopwords = stopwords();
 		query = replace(query, stopwords).trim();
+<<<<<<< HEAD
 		//System.out.println("Stop words removed: " + query);
 		
 		//ajouter VOULOIR, MOT,...
@@ -136,6 +155,15 @@ public class Main {
 			query += " .";
 		}
 		System.out.println("Transformed:" + query);
+=======
+		System.out.println("Stop words removed: " + query);
+
+		// ajouter VOULOIR, MOT,...
+		preparingForSql(query);
+
+		// parse it
+		System.out.println("Missing keywords added (old sent) : " + query);
+>>>>>>> d5afccb364aecd527fb35443dbe0d50a9f6e81d0
 		String sql = to_sql(query);
 		System.out.println("Output: " + sql);
 
