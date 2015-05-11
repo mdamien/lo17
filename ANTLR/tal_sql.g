@@ -1,21 +1,21 @@
 grammar tal_sql;
 
-SELECT : '__VOULOIR__'
+SELECT : '$VOULOIR$'
 ;
 
-ARTICLE : '__ARTICLE__'
+ARTICLE : '$ARTICLE$'
 ;
 
-BULLETIN : '__BULLETIN__'
+BULLETIN : '$BULLETIN$'
 ;
 
-CONJ : '__ET__' | '__OU__'
+CONJ : '$ET$' | '$OU$'
 ;
 
-POINT : '.' | '?' //TODO: Replace as "__POINT__"
+POINT : '.' | '?' // TODO replace as "$POINT$"
 ;
 
-MOT : '__CONTIENT__'
+MOT : '$CONTIENT$'
 ;
  
 WS  : (' ' |'\t' | '\r' | ) {skip();} | '\n' 
