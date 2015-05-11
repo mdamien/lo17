@@ -1,8 +1,8 @@
 Quels sont | VOULOIR
 veux | VOULOIR
-impliqu | MOT
-parlent | MOT
-parlant | MOT
+impliqu | CONTIENT
+parlent | CONTIENT
+parlant | CONTIENT
 articles | ARTICLE
 et | ET
 ou | OU
