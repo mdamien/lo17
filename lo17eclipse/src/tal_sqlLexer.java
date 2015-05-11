@@ -1,4 +1,4 @@
-// $ANTLR 3.5 /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g 2015-05-11 15:05:21
+// $ANTLR 3.5 /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g 2015-05-11 15:13:46
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -195,39 +195,55 @@ public class tal_sqlLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:26:5: ( ( ' ' | '\\t' | '\\r' ) | '\\n' )
-			int alt2=2;
-			int LA2_0 = input.LA(1);
-			if ( (LA2_0=='\t'||LA2_0=='\r'||LA2_0==' ') ) {
-				alt2=1;
-			}
-			else if ( (LA2_0=='\n') ) {
-				alt2=2;
+			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:26:5: ( ( ' ' | '\\t' | '\\r' )* | '\\n' )
+			int alt3=2;
+			int LA3_0 = input.LA(1);
+			if ( (LA3_0=='\n') ) {
+				alt3=2;
 			}
 
 			else {
-				NoViableAltException nvae =
-					new NoViableAltException("", 2, 0, input);
-				throw nvae;
+				alt3=1;
 			}
 
-			switch (alt2) {
+			switch (alt3) {
 				case 1 :
-					// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:26:7: ( ' ' | '\\t' | '\\r' )
+					// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:26:7: ( ' ' | '\\t' | '\\r' )*
 					{
-					if ( input.LA(1)=='\t'||input.LA(1)=='\r'||input.LA(1)==' ' ) {
-						input.consume();
+					// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:26:7: ( ' ' | '\\t' | '\\r' )*
+					loop2:
+					while (true) {
+						int alt2=2;
+						int LA2_0 = input.LA(1);
+						if ( (LA2_0=='\t'||LA2_0=='\r'||LA2_0==' ') ) {
+							alt2=1;
+						}
+
+						switch (alt2) {
+						case 1 :
+							// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:
+							{
+							if ( input.LA(1)=='\t'||input.LA(1)=='\r'||input.LA(1)==' ' ) {
+								input.consume();
+							}
+							else {
+								MismatchedSetException mse = new MismatchedSetException(null,input);
+								recover(mse);
+								throw mse;
+							}
+							}
+							break;
+
+						default :
+							break loop2;
+						}
 					}
-					else {
-						MismatchedSetException mse = new MismatchedSetException(null,input);
-						recover(mse);
-						throw mse;
-					}
+
 					skip();
 					}
 					break;
 				case 2 :
-					// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:26:38: '\\n'
+					// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:26:39: '\\n'
 					{
 					match('\n'); 
 					}
@@ -248,10 +264,10 @@ public class tal_sqlLexer extends Lexer {
 		try {
 			int _type = VAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:29:5: ( ( 'A' .. 'Z' | 'a' .. 'z' | '\\u00a0' .. '\\u00ff' ) ( ( 'a' .. 'z' ) | ( '0' .. '9' ) | '-' | ( '\\u00a0' .. '\\u00ff' ) )+ )
-			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:29:7: ( 'A' .. 'Z' | 'a' .. 'z' | '\\u00a0' .. '\\u00ff' ) ( ( 'a' .. 'z' ) | ( '0' .. '9' ) | '-' | ( '\\u00a0' .. '\\u00ff' ) )+
+			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:29:5: ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '\\u00a0' .. '\\u00ff' ) ( ( 'a' .. 'z' ) | ( '0' .. '9' ) | '-' | ( '\\u00a0' .. '\\u00ff' ) )+ )
+			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:29:7: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '\\u00a0' .. '\\u00ff' ) ( ( 'a' .. 'z' ) | ( '0' .. '9' ) | '-' | ( '\\u00a0' .. '\\u00ff' ) )+
 			{
-			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z')||(input.LA(1) >= '\u00A0' && input.LA(1) <= '\u00FF') ) {
+			if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z')||(input.LA(1) >= '\u00A0' && input.LA(1) <= '\u00FF') ) {
 				input.consume();
 			}
 			else {
@@ -259,17 +275,17 @@ public class tal_sqlLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:29:47: ( ( 'a' .. 'z' ) | ( '0' .. '9' ) | '-' | ( '\\u00a0' .. '\\u00ff' ) )+
-			int cnt3=0;
-			loop3:
+			// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:29:54: ( ( 'a' .. 'z' ) | ( '0' .. '9' ) | '-' | ( '\\u00a0' .. '\\u00ff' ) )+
+			int cnt4=0;
+			loop4:
 			while (true) {
-				int alt3=2;
-				int LA3_0 = input.LA(1);
-				if ( (LA3_0=='-'||(LA3_0 >= '0' && LA3_0 <= '9')||(LA3_0 >= 'a' && LA3_0 <= 'z')||(LA3_0 >= '\u00A0' && LA3_0 <= '\u00FF')) ) {
-					alt3=1;
+				int alt4=2;
+				int LA4_0 = input.LA(1);
+				if ( (LA4_0=='-'||(LA4_0 >= '0' && LA4_0 <= '9')||(LA4_0 >= 'a' && LA4_0 <= 'z')||(LA4_0 >= '\u00A0' && LA4_0 <= '\u00FF')) ) {
+					alt4=1;
 				}
 
-				switch (alt3) {
+				switch (alt4) {
 				case 1 :
 					// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:
 					{
@@ -285,11 +301,11 @@ public class tal_sqlLexer extends Lexer {
 					break;
 
 				default :
-					if ( cnt3 >= 1 ) break loop3;
-					EarlyExitException eee = new EarlyExitException(3, input);
+					if ( cnt4 >= 1 ) break loop4;
+					EarlyExitException eee = new EarlyExitException(4, input);
 					throw eee;
 				}
-				cnt3++;
+				cnt4++;
 			}
 
 			}
@@ -306,16 +322,16 @@ public class tal_sqlLexer extends Lexer {
 	@Override
 	public void mTokens() throws RecognitionException {
 		// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:1:8: ( SELECT | ARTICLE | BULLETIN | CONJ | POINT | MOT | WS | VAR )
-		int alt4=8;
+		int alt5=8;
 		switch ( input.LA(1) ) {
 		case 'V':
 			{
-			int LA4_1 = input.LA(2);
-			if ( (LA4_1=='O') ) {
-				alt4=1;
+			int LA5_1 = input.LA(2);
+			if ( (LA5_1=='O') ) {
+				alt5=1;
 			}
-			else if ( (LA4_1=='-'||(LA4_1 >= '0' && LA4_1 <= '9')||(LA4_1 >= 'a' && LA4_1 <= 'z')||(LA4_1 >= '\u00A0' && LA4_1 <= '\u00FF')) ) {
-				alt4=8;
+			else if ( (LA5_1=='-'||(LA5_1 >= '0' && LA5_1 <= '9')||(LA5_1 >= 'a' && LA5_1 <= 'z')||(LA5_1 >= '\u00A0' && LA5_1 <= '\u00FF')) ) {
+				alt5=8;
 			}
 
 			else {
@@ -323,7 +339,7 @@ public class tal_sqlLexer extends Lexer {
 				try {
 					input.consume();
 					NoViableAltException nvae =
-						new NoViableAltException("", 4, 1, input);
+						new NoViableAltException("", 5, 1, input);
 					throw nvae;
 				} finally {
 					input.rewind(nvaeMark);
@@ -334,12 +350,12 @@ public class tal_sqlLexer extends Lexer {
 			break;
 		case 'A':
 			{
-			int LA4_2 = input.LA(2);
-			if ( (LA4_2=='R') ) {
-				alt4=2;
+			int LA5_2 = input.LA(2);
+			if ( (LA5_2=='R') ) {
+				alt5=2;
 			}
-			else if ( (LA4_2=='-'||(LA4_2 >= '0' && LA4_2 <= '9')||(LA4_2 >= 'a' && LA4_2 <= 'z')||(LA4_2 >= '\u00A0' && LA4_2 <= '\u00FF')) ) {
-				alt4=8;
+			else if ( (LA5_2=='-'||(LA5_2 >= '0' && LA5_2 <= '9')||(LA5_2 >= 'a' && LA5_2 <= 'z')||(LA5_2 >= '\u00A0' && LA5_2 <= '\u00FF')) ) {
+				alt5=8;
 			}
 
 			else {
@@ -347,7 +363,7 @@ public class tal_sqlLexer extends Lexer {
 				try {
 					input.consume();
 					NoViableAltException nvae =
-						new NoViableAltException("", 4, 2, input);
+						new NoViableAltException("", 5, 2, input);
 					throw nvae;
 				} finally {
 					input.rewind(nvaeMark);
@@ -358,12 +374,12 @@ public class tal_sqlLexer extends Lexer {
 			break;
 		case 'B':
 			{
-			int LA4_3 = input.LA(2);
-			if ( (LA4_3=='U') ) {
-				alt4=3;
+			int LA5_3 = input.LA(2);
+			if ( (LA5_3=='U') ) {
+				alt5=3;
 			}
-			else if ( (LA4_3=='-'||(LA4_3 >= '0' && LA4_3 <= '9')||(LA4_3 >= 'a' && LA4_3 <= 'z')||(LA4_3 >= '\u00A0' && LA4_3 <= '\u00FF')) ) {
-				alt4=8;
+			else if ( (LA5_3=='-'||(LA5_3 >= '0' && LA5_3 <= '9')||(LA5_3 >= 'a' && LA5_3 <= 'z')||(LA5_3 >= '\u00A0' && LA5_3 <= '\u00FF')) ) {
+				alt5=8;
 			}
 
 			else {
@@ -371,7 +387,7 @@ public class tal_sqlLexer extends Lexer {
 				try {
 					input.consume();
 					NoViableAltException nvae =
-						new NoViableAltException("", 4, 3, input);
+						new NoViableAltException("", 5, 3, input);
 					throw nvae;
 				} finally {
 					input.rewind(nvaeMark);
@@ -382,12 +398,12 @@ public class tal_sqlLexer extends Lexer {
 			break;
 		case 'E':
 			{
-			int LA4_4 = input.LA(2);
-			if ( (LA4_4=='T') ) {
-				alt4=4;
+			int LA5_4 = input.LA(2);
+			if ( (LA5_4=='T') ) {
+				alt5=4;
 			}
-			else if ( (LA4_4=='-'||(LA4_4 >= '0' && LA4_4 <= '9')||(LA4_4 >= 'a' && LA4_4 <= 'z')||(LA4_4 >= '\u00A0' && LA4_4 <= '\u00FF')) ) {
-				alt4=8;
+			else if ( (LA5_4=='-'||(LA5_4 >= '0' && LA5_4 <= '9')||(LA5_4 >= 'a' && LA5_4 <= 'z')||(LA5_4 >= '\u00A0' && LA5_4 <= '\u00FF')) ) {
+				alt5=8;
 			}
 
 			else {
@@ -395,7 +411,7 @@ public class tal_sqlLexer extends Lexer {
 				try {
 					input.consume();
 					NoViableAltException nvae =
-						new NoViableAltException("", 4, 4, input);
+						new NoViableAltException("", 5, 4, input);
 					throw nvae;
 				} finally {
 					input.rewind(nvaeMark);
@@ -406,12 +422,12 @@ public class tal_sqlLexer extends Lexer {
 			break;
 		case 'O':
 			{
-			int LA4_5 = input.LA(2);
-			if ( (LA4_5=='U') ) {
-				alt4=4;
+			int LA5_5 = input.LA(2);
+			if ( (LA5_5=='U') ) {
+				alt5=4;
 			}
-			else if ( (LA4_5=='-'||(LA4_5 >= '0' && LA4_5 <= '9')||(LA4_5 >= 'a' && LA4_5 <= 'z')||(LA4_5 >= '\u00A0' && LA4_5 <= '\u00FF')) ) {
-				alt4=8;
+			else if ( (LA5_5=='-'||(LA5_5 >= '0' && LA5_5 <= '9')||(LA5_5 >= 'a' && LA5_5 <= 'z')||(LA5_5 >= '\u00A0' && LA5_5 <= '\u00FF')) ) {
+				alt5=8;
 			}
 
 			else {
@@ -419,7 +435,7 @@ public class tal_sqlLexer extends Lexer {
 				try {
 					input.consume();
 					NoViableAltException nvae =
-						new NoViableAltException("", 4, 5, input);
+						new NoViableAltException("", 5, 5, input);
 					throw nvae;
 				} finally {
 					input.rewind(nvaeMark);
@@ -431,17 +447,17 @@ public class tal_sqlLexer extends Lexer {
 		case '.':
 		case '?':
 			{
-			alt4=5;
+			alt5=5;
 			}
 			break;
 		case 'C':
 			{
-			int LA4_7 = input.LA(2);
-			if ( (LA4_7=='O') ) {
-				alt4=6;
+			int LA5_7 = input.LA(2);
+			if ( (LA5_7=='O') ) {
+				alt5=6;
 			}
-			else if ( (LA4_7=='-'||(LA4_7 >= '0' && LA4_7 <= '9')||(LA4_7 >= 'a' && LA4_7 <= 'z')||(LA4_7 >= '\u00A0' && LA4_7 <= '\u00FF')) ) {
-				alt4=8;
+			else if ( (LA5_7=='-'||(LA5_7 >= '0' && LA5_7 <= '9')||(LA5_7 >= 'a' && LA5_7 <= 'z')||(LA5_7 >= '\u00A0' && LA5_7 <= '\u00FF')) ) {
+				alt5=8;
 			}
 
 			else {
@@ -449,7 +465,7 @@ public class tal_sqlLexer extends Lexer {
 				try {
 					input.consume();
 					NoViableAltException nvae =
-						new NoViableAltException("", 4, 7, input);
+						new NoViableAltException("", 5, 7, input);
 					throw nvae;
 				} finally {
 					input.rewind(nvaeMark);
@@ -458,14 +474,16 @@ public class tal_sqlLexer extends Lexer {
 
 			}
 			break;
-		case '\t':
-		case '\n':
-		case '\r':
-		case ' ':
-			{
-			alt4=7;
-			}
-			break;
+		case '0':
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '9':
 		case 'D':
 		case 'F':
 		case 'G':
@@ -609,15 +627,13 @@ public class tal_sqlLexer extends Lexer {
 		case '\u00FE':
 		case '\u00FF':
 			{
-			alt4=8;
+			alt5=8;
 			}
 			break;
 		default:
-			NoViableAltException nvae =
-				new NoViableAltException("", 4, 0, input);
-			throw nvae;
+			alt5=7;
 		}
-		switch (alt4) {
+		switch (alt5) {
 			case 1 :
 				// /home/maxime/Documents/LO17/Projet/Dépôt/ANTLR/tal_sql.g:1:10: SELECT
 				{
