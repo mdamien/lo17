@@ -1,6 +1,5 @@
 package main;
 
-
 import java.io.FileInputStream;
 
 import org.apache.jena.larq.IndexBuilderString;
@@ -31,30 +30,32 @@ public class tplo17main {
 	public static void main(String[] args) {
 		BasicConfigurator.configure();
 		logger.setLevel(Level.INFO);
-//		q1();
-//		q2();
-//		q3();
-//		q4();
+		// q1();
+		// q2();
+		// q3();
+		// q4();
 
 	}
-	// Réponse à la question 1
-		public static void q1() {
-			Model model = model = ModelFactory.createDefaultModel();
-			try {
-				// Crée un model
-				model.read(new FileInputStream(ontoN3Filename),null,"TURTLE");
-				// Crée une query (modifier le fichier)
-				// Remplacer les ???? dans le fichier requête
-				Query q1 = readFileQuery("queries/concept.sparql");
 
-				System.out.println("===== Concepts =====");
-				// Exécute la query
-				runQuery(q1, model);
-				// à continuer
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
+	// Réponse à la question 1
+	public static void q1() {
+		Model model = model = ModelFactory.createDefaultModel();
+		try {
+			// Crée un model
+			model.read(new FileInputStream(ontoN3Filename), null, "TURTLE");
+			// Crée une query (modifier le fichier)
+			// Remplacer les ???? dans le fichier requête
+			Query q1 = readFileQuery("queries/concept.sparql");
+
+			System.out.println("===== Concepts =====");
+			// Exécute la query
+			runQuery(q1, model);
+			// à continuer
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
+	}
+
 	// Réponse à la question 2
 	public static void q2() {
 		Model model = null;
@@ -73,47 +74,50 @@ public class tplo17main {
 			ex.printStackTrace();
 		}
 	}
+
 	// Réponse à la question 3
-		public static void q3() {
-			Model model = null;
-			model = ModelFactory.createDefaultModel();
-			try {
-				// Crée un model
-				model.read(new FileInputStream(kb), "RDF/XML");
-				
-				// Compléter la requête
-				Query q1 = readFileQuery("queries/contacts.sparql");
+	public static void q3() {
+		Model model = null;
+		model = ModelFactory.createDefaultModel();
+		try {
+			// Crée un model
+			model.read(new FileInputStream(kb), "RDF/XML");
 
-				System.out.println("===== Contacts =====");
-				// Exécute la query
-				runQuery(q1, model);
-				// à continuer
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		}
-		// Réponse à la question 4
-		public static void q4() {
-			Model model = null;
-			model = ModelFactory.createDefaultModel();
-			try {
-				// Crée un model
-				model.read(new FileInputStream(kb), "RDF/XML");
-				IndexLARQ wholeIndex = getWholeStringIndex(model); 
-				// Remplacer les ???? dans le fichier requête
-				Query q1 = readFileQuery("queries/capteurs.sparql");
+			// Compléter la requête
+			Query q1 = readFileQuery("queries/contacts.sparql");
 
-				System.out.println("===== Capteurs =====");
-				// Exécute la query sur le modèle en utilisant l'index
-				  queryIndex(q1,wholeIndex,model);
-				// à continuer
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
+			System.out.println("===== Contacts =====");
+			// Exécute la query
+			runQuery(q1, model);
+			// à continuer
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
+	}
+
+	// Réponse à la question 4
+	public static void q4() {
+		Model model = null;
+		model = ModelFactory.createDefaultModel();
+		try {
+			// Crée un model
+			model.read(new FileInputStream(kb), "RDF/XML");
+			IndexLARQ wholeIndex = getWholeStringIndex(model);
+			// Remplacer les ???? dans le fichier requête
+			Query q1 = readFileQuery("queries/capteurs.sparql");
+
+			System.out.println("===== Capteurs =====");
+			// Exécute la query sur le modèle en utilisant l'index
+			queryIndex(q1, wholeIndex, model);
+			// à continuer
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
 
 	/**
 	 * Retourne une query à partir d'un nom de fichier
+	 * 
 	 * @param filename
 	 * @return
 	 */
@@ -123,6 +127,7 @@ public class tplo17main {
 
 	/**
 	 * Retourne une query à partir de la chaîne de la query
+	 * 
 	 * @param queryString
 	 * @return
 	 */
@@ -132,6 +137,7 @@ public class tplo17main {
 
 	/**
 	 * Exécute une query sur un model. L'affichage se fait dans la console
+	 * 
 	 * @param q
 	 * @param model
 	 */
@@ -144,6 +150,7 @@ public class tplo17main {
 
 	/**
 	 * Retourne l'index des noeuds littéraux de toute la base
+	 * 
 	 * @param model
 	 * @return
 	 */
@@ -156,8 +163,9 @@ public class tplo17main {
 	}
 
 	/**
-	 * Exécute une query nécessitant un index LARQ.
-	 * La sortie se fait dans la console
+	 * Exécute une query nécessitant un index LARQ. La sortie se fait dans la
+	 * console
+	 * 
 	 * @param q
 	 * @param index
 	 * @param model
