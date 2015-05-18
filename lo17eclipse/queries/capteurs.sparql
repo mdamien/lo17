@@ -2,6 +2,7 @@ PREFIX lo17: <http://www.owl-ontologies.com/lo17#>
 PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#> 
 PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 PREFIX pf: <http://jena.hpl.hp.com/ARQ/property#>
+
 SELECT ?q
 WHERE {
   ?bulletin rdf:type lo17:Bulletin .
@@ -13,4 +14,6 @@ WHERE {
   ########################
   
   ?t pf:textMatch( "+cr?ation d\'une +chaire" 0.1) . #q4.4
+
+     #?t pf:textMatch( '+cr?ation' 0.3) . ?q pf:textMatch( '+cr?ation' 0.3) . # Q 4.3
 }
