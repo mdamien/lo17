@@ -1,9 +1,11 @@
 // $ANTLR 3.5 /home/bob/prog/lo17/ANTLR/tal_sql.g 2015-05-11 15:54:17
 
-import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
+import org.antlr.runtime.BitSet;
+import org.antlr.runtime.NoViableAltException;
+import org.antlr.runtime.Parser;
+import org.antlr.runtime.RecognizerSharedState;
+import org.antlr.runtime.Token;
+import org.antlr.runtime.TokenStream;
 
 @SuppressWarnings("all")
 public class tal_sqlParser extends Parser {

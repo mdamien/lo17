@@ -1,8 +1,11 @@
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.StringReader;
 import java.util.Scanner;
-//import org.antlr.runtime.ANTLRInputStream;
+
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonTokenStream;
+//import org.antlr.runtime.ANTLRInputStream;
 
 public class TalMain3 {
 	public static void main(String args[]) throws FileNotFoundException {
