@@ -1,27 +1,38 @@
-PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#> 
-PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
-PREFIX owl:     <http://www.w3.org/2002/07/owl#> 
-PREFIX lo17:    <http://www.owl-ontologies.com/lo17#>  
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX lo17: <http://www.owl-ontologies.com/lo17#>
+PREFIX pf: <http://jena.hpl.hp.com/ARQ/property#>
 
-SELECT distinct ?y 
+#SELECT distinct ?y 
+#WHERE {
+#?bull rdf:type lo17:Bulletin .
+  
+#?bull lo17:hasTitre ?y . #q2.1
+#?bull lo17:hasRubrique ?y . #q2.2
+  
+#q2.3
+#?bull lo17:hasTitre ?y .
+#FILTER(
+#	regex(str(?y), "CNRS","i")
+#)
+  
+#q2.4
+#?bull lo17:hasRubrique ?y .
+#?bull lo17:hasDate ?d .
+#FILTER(
+# regex(str(?d), "/2011","i")
+#)
+#}
+
+# Q2.5
+SELECT DISTINCT ?bulletin ?legende
 WHERE {
-  ?bull rdf:type lo17:Bulletin .
-  
-  #?bull lo17:hasTitre ?y . #q2.1
-  #?bull lo17:hasRubrique ?y . #q2.2
-  
-  #q2.3
-  #?bull lo17:hasTitre ?y .
-  #FILTER(
-  #	regex(str(?y), "CNRS","i")
-  #)
-  
-  #q2.4
-  #?bull lo17:hasRubrique ?y .
-  #?bull lo17:hasDate ?d .
-  #FILTER(
-  # regex(str(?d), "/2011","i")
-  #)
-  
-
+	?bulletin rdf:type lo17:Bulletin .
+	?bulletin lo17:hasImage ?image1 .
+	?bulletin lo17:hasImage ?image2 .
+	?bulletin lo17:hasImage ?image3 .
+	?image1 lo17:legendeImage ?legende .
+	FILTER (?image1 != ?image2 && ?image1 != ?image3 && ?image2 != ?image3)
 }
+order by ?bulletin

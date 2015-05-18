@@ -31,8 +31,8 @@ public class tplo17main {
 		BasicConfigurator.configure();
 		logger.setLevel(Level.INFO);
 		// q1();
-		// q2();
-		 q3();
+		q2();
+		// q3();
 		// q4();
 
 	}
