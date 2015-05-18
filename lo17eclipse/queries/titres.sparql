@@ -1,7 +1,8 @@
-PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#> 
-PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
-PREFIX owl:     <http://www.w3.org/2002/07/owl#> 
-PREFIX lo17:    <http://www.owl-ontologies.com/lo17#>  
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX lo17: <http://www.owl-ontologies.com/lo17#>
+PREFIX pf: <http://jena.hpl.hp.com/ARQ/property#>
 
 #SELECT distinct ?y 
 #WHERE {
@@ -25,10 +26,13 @@ PREFIX lo17:    <http://www.owl-ontologies.com/lo17#>
 #}
 
 # Q2.5
-SELECT ?y (COUNT(*) AS ?count)
+SELECT DISTINCT ?bulletin ?legende
 WHERE {
-?bull rdf:type lo17:Bulletin .
-?bull lo17:hasRubrique ?y .
+	?bulletin rdf:type lo17:Bulletin .
+	?bulletin lo17:hasImage ?image1 .
+	?bulletin lo17:hasImage ?image2 .
+	?bulletin lo17:hasImage ?image3 .
+	?image1 lo17:legendeImage ?legende .
+	FILTER (?image1 != ?image2 && ?image1 != ?image3 && ?image2 != ?image3)
 }
-GROUP BY ?y
-ORDER BY DESC(?count)
+order by ?bulletin
