@@ -2,12 +2,13 @@ PREFIX lo17: <http://www.owl-ontologies.com/lo17#>
 PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#> 
 PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 PREFIX pf: <http://jena.hpl.hp.com/ARQ/property#>
+
 SELECT ?q
 WHERE {
-  ?bulletin rdf:type lo17:Bulletin .
-  ?bulletin lo17:hasTexte ?t .
-  ?bulletin lo17:hasTitre ?q .
-  #?t pf:textMatch( '+capteurs' 0.3) . #q4.1
-  ?t pf:textMatch( '+capteurs +non +infrarouges -internet' 0.5) . #q4.2
-
+?bulletin rdf:type lo17:Bulletin .
+?bulletin lo17:hasTexte ?t .
+?bulletin lo17:hasTitre ?q .
+#?t pf:textMatch( '+capteurs' 0.3) . # Q 4.1
+#?t pf:textMatch( '+capteurs -infrarouge* -internet' 0.5) . # Q 4.2
+?t pf:textMatch( '+cr?ation' 0.3) . ?q pf:textMatch( '+cr?ation' 0.3) . # Q 4.3
 }
