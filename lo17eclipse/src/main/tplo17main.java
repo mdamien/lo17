@@ -30,9 +30,9 @@ public class tplo17main {
 	public static void main(String[] args) {
 		BasicConfigurator.configure();
 		logger.setLevel(Level.INFO);
-		//q1();
-		q2();
-		// q3();
+		// q1();
+		// q2();
+		 q3();
 		// q4();
 
 	}

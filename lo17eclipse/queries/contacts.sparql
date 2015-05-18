@@ -3,9 +3,18 @@ PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX owl:     <http://www.w3.org/2002/07/owl#> 
 PREFIX lo17:    <http://www.owl-ontologies.com/lo17#>  
 
-SELECT ?contact 
+SELECT ?y (COUNT(*) AS ?count)
 WHERE {
   ?bull rdf:type lo17:Bulletin .
 
-  FILTER ()
+  #q3.1
+  #?bull lo17:hasContact ?y .
+  #FILTER(
+  # regex(str(?y), "CNRS","i") || regex(str(?y), "CEA","i")
+  #)
+  
+  #q3.2
+  ?bull lo17:hasRubrique ?y .
 }
+GROUP BY ?y
+ORDER BY DESC(?count)

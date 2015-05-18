@@ -11,8 +11,17 @@ WHERE {
   #?bull lo17:hasRubrique ?y . #q2.2
   
   #q2.3
-  ?bull lo17:hasTitre ?y .
-  FILTER(
-  	regex(str(?y), "CNRS","i")
-  )
+  #?bull lo17:hasTitre ?y .
+  #FILTER(
+  #	regex(str(?y), "CNRS","i")
+  #)
+  
+  #q2.4
+  #?bull lo17:hasRubrique ?y .
+  #?bull lo17:hasDate ?d .
+  #FILTER(
+  # regex(str(?d), "/2011","i")
+  #)
+  
+
 }
