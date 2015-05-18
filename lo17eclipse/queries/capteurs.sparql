@@ -8,6 +8,9 @@ WHERE {
   ?bulletin lo17:hasTexte ?t .
   ?bulletin lo17:hasTitre ?q .
   #?t pf:textMatch( '+capteurs' 0.3) . #q4.1
-  ?t pf:textMatch( '+capteurs +non +infrarouges -internet' 0.5) . #q4.2
-
+  #?t pf:textMatch( '+capteurs -infrarouge -internet ' 0.5) . #q4.2 => 0.5, 8 resultats
+  
+  ########################
+  
+  ?t pf:textMatch( "+cr?ation d\'une +chaire" 0.1) . #q4.4
 }
