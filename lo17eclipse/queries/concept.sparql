@@ -4,5 +4,7 @@ PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT ?concept 
 WHERE {
-  ?concept rdf:type ??? .
+#	?concept rdf:type owl:Class . # Question a
+#	?concept rdf:type owl:ObjectProperty . # Question b
+	?concept rdf:type owl:DatatypeProperty . # Question c
 }
