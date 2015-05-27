@@ -150,10 +150,14 @@ public class Main {
 
 		// parse it
 		System.out.println("Missing keywords added (old sent) : " + query);
-		String sql = to_sql(query);
-		System.out.println("Output: " + sql);
 
-		return sql;
+		Requete R = new Requete(to_sql(query));
+		R.execute();
+		return "Jean-Michel SQL";
+
+		// String sql = to_sql(query);
+		// System.out.println("Output: " + sql);
+		// return sql;
 	}
 
 	public static void main(String[] args) throws Exception {
