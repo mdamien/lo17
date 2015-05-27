@@ -189,6 +189,7 @@ public class Main {
 		R.execute();
 	}
 
+	//TODO: passer en LIKE et faire des fautes
 	public static void main(String[] args) throws Exception {
 		String[] tests = {
 				"Je veux les articles qui parlent de la « biologie ».",
