@@ -5,6 +5,7 @@ parlent | CONTIENT
 parlant | CONTIENT
 concern | CONTIENT
 articles | ARTICLE
+sur | CONTIENT
 et | ET
 ou | OU
 , | OU

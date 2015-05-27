@@ -197,7 +197,12 @@ public class Main {
 				"Quels sont les articles qui concernent le nucléaire ?",
 				"Articles parlant d'université.",
 				"Quels sont les articles qui parlent de technologies a3D.",
-				"Je veux les articles impliquant le CNRS et qui parlent de chimie." };
+				"Je veux les articles impliquant le CNRS et qui parlent de chimie.",
+				"Je veux les articles sur les énergies renouvelables",
+				"Tous les articles qui concernent la nanotechnologie",
+				"Combien d’articles de focus parus dans les bulletins entre mars et juin font référence à nanotechnologie.",
+				"Je veux tous les fichiers et rubriques des articles qui parlent de nanotechnologie en titre."
+		};
 		for (String query : tests) {
 			System.out.println("___________________________________________________________________\n");
 			handle(query);
