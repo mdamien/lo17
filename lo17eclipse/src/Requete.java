@@ -17,6 +17,11 @@ public class Requete {
 	}
 
 	public void execute() {
+		if(requeque.trim().length() == 0){
+			System.out.println("Empty SQL request");
+			return;
+		}
+		
 		String username;
 		String password;
 		String url;
@@ -72,15 +77,13 @@ public class Requete {
 			stmt.close();
 			con.close();
 		}
-		// print out decent erreur messages
 		catch (SQLException ex) {
-			System.err.println("==> SQLException: ");
 			while (ex != null) {
-				System.out.println("Message:   " + ex.getMessage());
-				System.out.println("SQLState:  " + ex.getSQLState());
-				System.out.println("ErrorCode: " + ex.getErrorCode());
+				System.out.println("Erreur SQL:   " + ex.getMessage());
+				//System.out.println("SQLState:  " + ex.getSQLState());
+				//System.out.println("ErrorCode: " + ex.getErrorCode());
 				ex = ex.getNextException();
-				System.out.println("");
+				System.out.println("\n");
 			}
 		}
 	}

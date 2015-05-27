@@ -15,8 +15,8 @@ public class Main {
 			// tal_sqlParser parser = new tal_sqlParser(tokens);
 			tal_sqlParser parser = new MyParser(tokens);
 			String arbre = parser.listerequetes();
-			System.out.println("syntax errrors:"
-					+ parser.getNumberOfSyntaxErrors());
+			//System.out.println("syntax errrors:"
+			//		+ parser.getNumberOfSyntaxErrors());
 			return arbre;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,24 +104,27 @@ public class Main {
 		return ht;
 	}
 
-	private static void preparingForSql(String s) {
-		String[] ssplit = s.split("(\\s)+");
-		// if (ssplit[0] != "VOULOIR" || ssplit[0] != " VOULOIR") {
-		// }
-		for (String sub : ssplit) {
-			sub.replaceAll("[^A-Z]", "");
-			System.out.println("###" + sub + "###");
+	private static String add_missings_keywords(String s) {
+		String[] splitted = s.split("\\w");
+		if (splitted[0] != "VOULOIR"){
+			splitted[0] = "VOULOIR "+splitted[0];
 		}
+		/*
+		for (String sub : splitted) {
+			sub.replaceAll("[^A-Z]", "");
+		}
+		*/
+		return s;
 	}
 
-	public static String handle(String query) throws Exception {
+	public static void handle(String query) throws Exception {
 		System.out.println("Input: " + query);
 
 		// normalize
 		query = query.trim().toLowerCase();
 		// remove trailing dots
 		query = query.replaceAll("(\\.)$", "") + ".";
-		System.out.println("Handle: " + query);
+		//System.out.println("Handle: " + query);
 
 		// lemmatisation et correction ortho
 		query = correct(query);
@@ -137,28 +140,22 @@ public class Main {
 		query = replace(query, stopwords).trim();
 		// System.out.println("Stop words removed: " + query);
 
-		// ajouter VOULOIR, MOT,...
-
+		
+		// add missing keywords
+		query = add_missings_keywords(query);
+		//System.out.println("Missing keywords added : " + query);
+		
 		// parse it
 		if (!query.endsWith(".")) {
 			query += " .";
 		}
-		System.out.println("Transformed:" + query);
-
-		// ajouter VOULOIR, MOT,...
-		preparingForSql(query);
-
-		// parse it
-		System.out.println("Missing keywords added (old sent) : " + query);
-
-		Requete R = new Requete(to_sql(query));
-		System.out.println("---" + to_sql(query) + "---");
+		
+		System.out.println("To be parsed : " + query);
+		String sql = to_sql(query);
+		System.out.println("SQL: " + sql);
+		
+		Requete R = new Requete(sql);
 		R.execute();
-		return "Jean-Michel SQL";
-
-//		 String sql = to_sql(query);
-//		 System.out.println("Output: " + sql);
-//		 return sql;
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -170,6 +167,7 @@ public class Main {
 				"Quels sont les articles qui parlent de technologies a3D.",
 				"Je veux les articles impliquant le CNRS et qui parlent de chimie." };
 		for (String query : tests) {
+			System.out.println("___________________________________________________________________\n");
 			handle(query);
 		}
 	}
