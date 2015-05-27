@@ -133,7 +133,7 @@ public class Main {
 		
 		System.out.println(join(splitted,"-,-"));
 		if (splitted.get(0) != "VOULOIR"){
-			splitted.set(0, "VOULOIR "+splitted.get(0));
+			splitted.add(0, "VOULOIR");
 		}
 		return join(splitted, " ");
 	}
