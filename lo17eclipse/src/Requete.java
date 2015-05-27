@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -49,13 +50,23 @@ public class Requete {
 			stmt = con.createStatement();
 			// Send the query and bind to the result set
 			ResultSet rs = stmt.executeQuery(requete);
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnCount = rsmd.getColumnCount();
+			for (int i = 1; i < columnCount + 1; i++) {
+				String col = rsmd.getColumnName(i);
+				System.out.print(col);
+				System.out.print("\t| ");
+			}
+			System.out.print("\n");
+			System.out.print("------------------------------------------------\n");
 			while (rs.next()) {
-				String s = rs.getString("fichier");
-				System.out.print(s);
-				System.out.print("\t");
-				s = rs.getString("rubrique");
-				System.out.print(s);
-				System.out.println();
+				for (int i = 1; i < columnCount + 1; i++) {
+					String col = rsmd.getColumnName(i);
+					String s = rs.getString(col);
+					System.out.print(s);
+					System.out.print("\t| ");
+				}
+				System.out.print("\n");
 			}
 			// Close resources
 			stmt.close();
@@ -73,23 +84,28 @@ public class Requete {
 			}
 		}
 	}
-	// /**
-	// * Ancien code issu des fichiers du professeur (saisie.java)
-	// */
-	// public static void main(String[] args) {
-	// String requete = "";
-	// BufferedReader br = null;
-	// try {
-	// try {
-	// br = new BufferedReader(new InputStreamReader(System.in));
-	// System.out.print("saisie : ");
-	// requete = br.readLine();
-	// System.out.println("j'ai saisi " + requete);
-	// } catch (EOFException e) {
-	// br.close();
-	// }
-	// } catch (IOException e) {
-	// System.out.println("IO Exception");
-	// }
-	// }
+
+	/**
+	 * Ancien code issu des fichiers du professeur (saisie.java)
+	 */
+	public static void main(String[] args) {
+		/*
+		String requete = "";
+		BufferedReader br = null;
+		try {
+			try {
+				br = new BufferedReader(new InputStreamReader(System.in));
+				System.out.print("saisie : ");
+				requete = br.readLine();
+				System.out.println("j'ai saisi " + requete);
+			} catch (EOFException e) {
+				br.close();
+			}
+		} catch (IOException e) {
+			System.out.println("IO Exception");
+		}
+		*/
+		Requete r = new Requete("SELECT fichier, rubrique from titre where mot = 'nano';");
+		r.execute();
+	}
 }
