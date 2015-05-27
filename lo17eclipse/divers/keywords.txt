@@ -1,4 +1,4 @@
-Quels sont | VOULOIR
+Quels | VOULOIR
 veux | VOULOIR
 impliqu | CONTIENT
 parlent | CONTIENT

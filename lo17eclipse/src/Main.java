@@ -1,6 +1,11 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import org.antlr.runtime.ANTLRReaderStream;
@@ -103,18 +108,34 @@ public class Main {
 		}
 		return ht;
 	}
+	
+	public static String join(List<String> splitted, String sep){
+		StringBuilder builder = new StringBuilder();
+		for(String s : splitted) {
+		    builder.append(s);
+		    builder.append(sep);
+		}
+		return builder.toString().trim();
+	}
+	
+	public static List<String> filter_empty(String[] arr){
+		List<String> out = new ArrayList<String>();
+		for(String s : arr) {
+			if(s.trim().length() > 0){
+				out.add(s);
+			}
+		}
+		return out;
+	}
 
 	private static String add_missings_keywords(String s) {
-		String[] splitted = s.split("\\w");
-		if (splitted[0] != "VOULOIR"){
-			splitted[0] = "VOULOIR "+splitted[0];
+		List<String> splitted = filter_empty(s.split("\\b"));
+		
+		System.out.println(join(splitted,"-,-"));
+		if (splitted.get(0) != "VOULOIR"){
+			splitted.set(0, "VOULOIR "+splitted.get(0));
 		}
-		/*
-		for (String sub : splitted) {
-			sub.replaceAll("[^A-Z]", "");
-		}
-		*/
-		return s;
+		return join(splitted, " ");
 	}
 
 	public static void handle(String query) throws Exception {
