@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.StringReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.StringTokenizer;
@@ -10,7 +7,6 @@ import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonTokenStream;
 
 public class Main {
-
 	public static String to_sql(String s) throws Exception {
 		try {
 			tal_sqlLexer lexer = new tal_sqlLexer(new ANTLRReaderStream(
@@ -154,10 +150,14 @@ public class Main {
 
 		// parse it
 		System.out.println("Missing keywords added (old sent) : " + query);
-		String sql = to_sql(query);
-		System.out.println("Output: " + sql);
 
-		return sql;
+		Requete R = new Requete(to_sql(query));
+		R.execute();
+		return "Jean-Michel SQL";
+
+		// String sql = to_sql(query);
+		// System.out.println("Output: " + sql);
+		// return sql;
 	}
 
 	public static void main(String[] args) throws Exception {
