@@ -121,9 +121,17 @@ public class Main {
 	}
 	
 	public static List<String> filter_empty(String[] arr){
+		//DO NOT ADD "CONTIENT" TWO TIMES
+		boolean contient_added = false;
 		List<String> out = new ArrayList<String>();
 		for(String s : arr) {
 			if(s.trim().length() > 0){
+				if(s.equals("CONTIENT")){
+					if(contient_added){
+						continue;
+					}
+					contient_added = true;
+				}
 				out.add(s);
 			}
 		}
@@ -134,7 +142,7 @@ public class Main {
 		List<String> splitted = filter_empty(s.split("\\b"));
 		
 		System.out.println(join(splitted,"-,-"));
-		if (splitted.get(0) != "VOULOIR"){
+		if (!splitted.get(0).equals("VOULOIR")){
 			splitted.add(0, "VOULOIR");
 		}
 		return join(splitted, " ");

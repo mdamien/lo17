@@ -3,6 +3,7 @@ veux | VOULOIR
 impliqu | CONTIENT
 parlent | CONTIENT
 parlant | CONTIENT
+concern | CONTIENT
 articles | ARTICLE
 et | ET
 ou | OU
