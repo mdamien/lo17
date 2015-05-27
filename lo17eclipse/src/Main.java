@@ -2,6 +2,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -17,7 +19,11 @@ public class Main {
 			String arbre = parser.listerequetes();
 			System.out.println("syntax errrors:"
 					+ parser.getNumberOfSyntaxErrors());
-			return arbre + ";";
+			String retour = arbre + ";";
+//			Pattern pat = Pattern.compile("(\\(|\\))");
+//			Matcher mat = pat.matcher(retour);
+//			return mat.replaceAll("");
+			return retour;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
