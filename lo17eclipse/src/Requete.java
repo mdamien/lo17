@@ -50,6 +50,7 @@ public class Requete {
 			// Send the query and bind to the result set
 			ResultSet rs = stmt.executeQuery(requete);
 			while (rs.next()) {
+				// TODO Les rubriques sont écrites en dur ici, il faut récupérer les metadonnées du ResultSet
 				String s = rs.getString("fichier");
 				System.out.print(s);
 				System.out.print("\t");
