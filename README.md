@@ -15,9 +15,9 @@ Awesome project. Such wow. Many pizzas.
 - [x] fichiers inverses
 - [x] mettre sources dans package par defaut (non, provoque des problèmes d'import)
 - [x] re-implement levenstein
-- [ ] correcteur orthographique lemmatisant (distance de levenstein, nb de lettres communes)
-- [ ] interface BDD
-- [ ] pondérer les résultats : minimiser le score des inversions, prendre en compte les erreurs du clavier (AZERTY ?)
+- [x] correcteur orthographique lemmatisant (distance de levenstein, nb de lettres communes)
+- [x] interface BDD
+- [x] pondérer les résultats : minimiser le score des inversions, prendre en compte les erreurs du clavier (AZERTY ?)
 
 ## Comment qu'on fait avec ANTLR et ANTLRWORKS
 - éxecuter le jar d'antlrworks (dans un terminal)
