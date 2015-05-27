@@ -7,23 +7,6 @@ import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonTokenStream;
 
 public class Main {
-	public static void saisieSQL(String[] args) {
-		String requete = "";
-		BufferedReader br = null;
-		try {
-			try {
-				br = new BufferedReader(new InputStreamReader(System.in));
-				System.out.print("saisie : ");
-				requete = br.readLine();
-				System.out.println("j'ai saisi " + requete);
-			} catch (EOFException e) {
-				br.close();
-			}
-		} catch (IOException e) {
-			System.out.println("IO Exception");
-		}
-	}
-
 	public static String to_sql(String s) throws Exception {
 		try {
 			tal_sqlLexer lexer = new tal_sqlLexer(new ANTLRReaderStream(
