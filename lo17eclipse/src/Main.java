@@ -17,7 +17,7 @@ public class Main {
 			String arbre = parser.listerequetes();
 			System.out.println("syntax errrors:"
 					+ parser.getNumberOfSyntaxErrors());
-			return arbre;
+			return arbre + ";";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -152,13 +152,13 @@ public class Main {
 		System.out.println("Missing keywords added (old sent) : " + query);
 
 		Requete R = new Requete(to_sql(query));
-		System.out.println("---" + to_sql(query) + "---");
+		System.out.println("___" + to_sql(query) + "___");
 		R.execute();
 		return "Jean-Michel SQL";
 
-//		 String sql = to_sql(query);
-//		 System.out.println("Output: " + sql);
-//		 return sql;
+		// String sql = to_sql(query);
+		// System.out.println("Output: " + sql);
+		// return sql;
 	}
 
 	public static void main(String[] args) throws Exception {
