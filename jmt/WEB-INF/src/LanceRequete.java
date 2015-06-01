@@ -1,17 +1,18 @@
 import java.io.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 
 import java.sql.*;
-import java.io.*;
 
+@SuppressWarnings("serial")
 public class LanceRequete extends HttpServlet {
-	String username;
-	String password;
-	String url;
+	String username = "";
+	String password = "";
+	String url = "";
 	String requete = "";
-	String nom;
-	int nbre;
+	String nom = "";
+	int nbre = 0;
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
@@ -19,7 +20,7 @@ public class LanceRequete extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("<html>");
 		out.println("<head>");
-		out.println("<title>Lance requete!</title>");
+		out.println("<title>Lance requête</title>");
 		out.println("</head>");
 		out.println("<body>");
 
@@ -28,8 +29,9 @@ public class LanceRequete extends HttpServlet {
 		password = "dblo17";
 		// The URL that will connect to TECFA's MySQL server
 		// Syntax: jdbc:TYPE:machine:port/DB_NAME
-		url = "jdbc:postgresql://tuxa.sme.utc";
-		
+
+		url = "jdbc:postgresql://tuxa.sme.utc/dblo17";
+
 		// dans certaines configurations locales il faut d�finir l'url par :
 		// url = "jdbc:postgresql://tuxa.sme.utc";
 		// ---- configure END
@@ -80,6 +82,10 @@ public class LanceRequete extends HttpServlet {
 					System.out.println("");
 				}
 			}
+		} else {
+			out.println("Requête vide !");
+			out.println("</body>");
+			out.println("</html>");
 		}
 	}
 }
