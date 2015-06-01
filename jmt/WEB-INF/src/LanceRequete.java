@@ -28,9 +28,10 @@ public class LanceRequete extends HttpServlet {
 		password = "dblo17";
 		// The URL that will connect to TECFA's MySQL server
 		// Syntax: jdbc:TYPE:machine:port/DB_NAME
-		url = "jdbc:postgresql://tuxa/dblo17";
+		url = "jdbc:postgresql://tuxa.sme.utc";
+		
 		// dans certaines configurations locales il faut d�finir l'url par :
-		// url = "jdbc:postgresql://tuxa.sme.utc
+		// url = "jdbc:postgresql://tuxa.sme.utc";
 		// ---- configure END
 
 		String requete;
