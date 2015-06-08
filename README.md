@@ -24,12 +24,14 @@ Awesome project. Such wow. Many pizzas.
 - ouvrir le fichier .g qui nous intéresse dans l'immédiat (pour le projet c'est `tal_sql.g`)
 - générer le code Java (mis par défaut dans le dossier output) et le copier dans le projet Eclipse -> src
 
+## Les trucs qui restent à faire (post TD du 8 Juin)
+- affiner la grammaire (en cours)
+- faire le flyer
+- intégrer le correcteur de requête au formulaire
+
 ## Le flyer
 ### Structure
 - A4
 - synthétique
 - recto orienté "pub"
-- verso orienté "technique"
-### Contenu
-- recto :
-- verso : explication des algorithmes utilisé synthèse des points forts et faibles (suggestions)
+- verso orienté "technique" : explication des algorithmes utilisé synthèse des points forts et faibles (suggestions)
