@@ -1,21 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 	version="2.4">
+
+	<!-- Éléments de base -->
 	<display-name>jmt</display-name>
 	<description>
-      Jean-Michel Tomcat
-   </description>
+		Jean-Michel Tomcat
+	</description>
 
+	<!-- -->
+
+	<!-- Arbre -->
+	<servlet>
+		<servlet-name>Arbre</servlet-name>
+		<servlet-class>Arbre</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Arbre</servlet-name>
+		<url-pattern>/servlet/Arbre</url-pattern>
+	</servlet-mapping>
+
+	<!-- Cat -->
+	<servlet>
+		<servlet-name>Cat</servlet-name>
+		<servlet-class>Cat</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Cat</servlet-name>
+		<url-pattern>/servlet/Cat</url-pattern>
+	</servlet-mapping>
+
+	<!-- LanceRequete (ORIGINAL) -->
 	<servlet>
 		<servlet-name>LanceRequete</servlet-name>
 		<servlet-class>LanceRequete</servlet-class>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>LanceRequete</servlet-name>
 		<url-pattern>/servlet/LanceRequete</url-pattern>
+	</servlet-mapping>
+
+	<!-- Levenshtein -->
+	<servlet>
+		<servlet-name>Levenshtein</servlet-name>
+		<servlet-class>Levenshtein</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Levenshtein</servlet-name>
+		<url-pattern>/servlet/Levenshtein</url-pattern>
+	</servlet-mapping>
+
+	<!-- Lexique -->
+	<servlet>
+		<servlet-name>Lexique</servlet-name>
+		<servlet-class>Lexique</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Lexique</servlet-name>
+		<url-pattern>/servlet/Lexique</url-pattern>
+	</servlet-mapping>
+
+	<!-- Main -->
+	<servlet>
+		<servlet-name>Main</servlet-name>
+		<servlet-class>Main</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Main</servlet-name>
+		<url-pattern>/servlet/Main</url-pattern>
+	</servlet-mapping>
+
+	<!-- Match -->
+	<servlet>
+		<servlet-name>Match</servlet-name>
+		<servlet-class>Match</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Match</servlet-name>
+		<url-pattern>/servlet/Match</url-pattern>
+	</servlet-mapping>
+
+	<!-- MyParser -->
+	<servlet>
+		<servlet-name>MyParser</servlet-name>
+		<servlet-class>MyParser</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MyParser</servlet-name>
+		<url-pattern>/servlet/MyParser</url-pattern>
+	</servlet-mapping>
+
+	<!-- Requete -->
+	<servlet>
+		<servlet-name>Requete</servlet-name>
+		<servlet-class>Requete</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Requete</servlet-name>
+		<url-pattern>/servlet/Requete</url-pattern>
+	</servlet-mapping>
+
+	<!-- Saisie -->
+	<servlet>
+		<servlet-name>Saisie</servlet-name>
+		<servlet-class>Saisie</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Saisie</servlet-name>
+		<url-pattern>/servlet/Saisie</url-pattern>
+	</servlet-mapping>
+
+	<!-- TalMain3 -->
+	<servlet>
+		<servlet-name>TalMain3</servlet-name>
+		<servlet-class>TalMain3</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TalMain3</servlet-name>
+		<url-pattern>/servlet/TalMain3</url-pattern>
+	</servlet-mapping>
+
+	<!-- tal_sqlLexer -->
+	<servlet>
+		<servlet-name>tal_sqlLexer</servlet-name>
+		<servlet-class>tal_sqlLexer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>tal_sqlLexer</servlet-name>
+		<url-pattern>/servlet/tal_sqlLexer</url-pattern>
+	</servlet-mapping>
+
+	<!-- tal_sqlLexer -->
+	<servlet>
+		<servlet-name>tal_sqlParser</servlet-name>
+		<servlet-class>tal_sqlParser</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>tal_sqlParser</servlet-name>
+		<url-pattern>/servlet/tal_sqlParser</url-pattern>
 	</servlet-mapping>
 </web-app>

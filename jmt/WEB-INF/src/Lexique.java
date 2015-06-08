@@ -1,11 +1,15 @@
 import java.io.BufferedReader;
+import java.io.EOFException;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
 
-public class Lexique {
+import javax.servlet.http.HttpServlet;
+
+public class Lexique extends HttpServlet {
 	public Hashtable<String, String> words;
 
 	public Lexique() {
@@ -18,9 +22,20 @@ public class Lexique {
 
 	public Hashtable<String, String> initializeHash() throws IOException {
 		Hashtable<String, String> ht = new Hashtable<String, String>();
+		// OLD
+		// BufferedReader br = null;
+		// br = new BufferedReader(new FileReader("divers/fil.txt"));
+		// String chaine;
+		// NEW
 		BufferedReader br = null;
-		br = new BufferedReader(new FileReader("divers/fil.txt"));
 		String chaine;
+		try {
+			br = new BufferedReader(new FileReader(getServletContext()
+					.getRealPath("/divers/fil.txt")));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// END
 		while ((chaine = br.readLine()) != null) {
 			StringTokenizer st = new StringTokenizer(chaine);
 			ht.put(st.nextToken(), st.nextToken());

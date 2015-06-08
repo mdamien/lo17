@@ -23,3 +23,13 @@ Awesome project. Such wow. Many pizzas.
 - éxecuter le jar d'antlrworks (dans un terminal)
 - ouvrir le fichier .g qui nous intéresse dans l'immédiat (pour le projet c'est `tal_sql.g`)
 - générer le code Java (mis par défaut dans le dossier output) et le copier dans le projet Eclipse -> src
+
+## Le flyer
+### Structure
+- A4
+- synthétique
+- recto orienté "pub"
+- verso orienté "technique"
+### Contenu
+- recto :
+- verso : explication des algorithmes utilisé synthèse des points forts et faibles (suggestions)
