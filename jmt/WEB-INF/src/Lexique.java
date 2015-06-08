@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServlet;
 
-public class Lexique extends HttpServlet {
+public class Lexique {
 	public Hashtable<String, String> words;
 
 	public Lexique() {
@@ -23,18 +23,18 @@ public class Lexique extends HttpServlet {
 	public Hashtable<String, String> initializeHash() throws IOException {
 		Hashtable<String, String> ht = new Hashtable<String, String>();
 		// OLD
-		// BufferedReader br = null;
-		// br = new BufferedReader(new FileReader("divers/fil.txt"));
-		// String chaine;
-		// NEW
 		BufferedReader br = null;
+		br = new BufferedReader(new FileReader("divers/fil.txt"));
 		String chaine;
-		try {
-			br = new BufferedReader(new FileReader(getServletContext()
-					.getRealPath("/divers/fil.txt")));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		// NEW
+		// BufferedReader br = null;
+		// String chaine;
+		// try {
+		// br = new BufferedReader(new FileReader(getServletContext()
+		// .getRealPath("/fil.txt")));
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
 		// END
 		while ((chaine = br.readLine()) != null) {
 			StringTokenizer st = new StringTokenizer(chaine);

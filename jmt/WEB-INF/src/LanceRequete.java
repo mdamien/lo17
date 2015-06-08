@@ -8,12 +8,107 @@ import org.antlr.runtime.CommonTokenStream;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
 @SuppressWarnings("serial")
 public class LanceRequete extends HttpServlet {
+	public class Lexique {
+		public Hashtable<String, String> words;
+
+		public Lexique() {
+			try {
+				words = initializeHash();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		public Hashtable<String, String> initializeHash() throws IOException {
+			Hashtable<String, String> ht = new Hashtable<String, String>();
+			BufferedReader br = null;
+			String chaine;
+			try {
+				br = new BufferedReader(new FileReader(getServletContext()
+						.getRealPath("/divers/fil.txt")));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			while ((chaine = br.readLine()) != null) {
+				StringTokenizer st = new StringTokenizer(chaine);
+				ht.put(st.nextToken(), st.nextToken());
+			}
+			br.close();
+			return ht;
+		}
+
+		/**
+		 * Compare la distance entre deux mots en selon l'algorithme de
+		 * recherche par préfixe (cf. cours page 33)
+		 * 
+		 * @author maximool
+		 * @param a
+		 *            le premier mots
+		 * @param b
+		 *            le deuxième mot mots
+		 * @return la proximité du mot
+		 */
+		public float prox(String a, String b) {
+			float result = -1;
+			int seuilMin = 3;
+			int seuilMax = 4;
+			int aLength = a.length();
+			int bLength = b.length();
+			if ((aLength < seuilMin) || (bLength < seuilMin)) {
+				result = 0;
+			} else if (Math.abs(aLength - bLength) > seuilMax) {
+				result = 0;
+			} else {
+				int i = 0;
+				char aChars[] = new char[aLength];
+				char bChars[] = new char[bLength];
+				a.getChars(0, aLength, aChars, 0);
+				b.getChars(0, bLength, bChars, 0);
+				while ((aChars[i] == bChars[i])
+						&& (i < Math.min(aLength, bLength) - 1)) {
+					i++;
+					result = (i / Math.max(aLength, bLength)) * 100;
+				}
+			}
+			return result;
+		}
+
+		public ArrayList<String> find_lemmes(String chaine) {
+			ArrayList<String> lemmes = new ArrayList<String>();
+			chaine = chaine.toLowerCase();
+			if (words.containsKey(chaine)) {
+				lemmes.add(words.get(chaine));
+			} else {/*
+					 * // Algorithme du cours exploitant la recherche par
+					 * préfixe (cf. // cours page 33) Hashtable<String, Float>
+					 * proximityHash = new Hashtable<String, Float>();
+					 * Iterator<String> jtr = words.values().iterator(); while
+					 * (jtr.hasNext()) { String curr = jtr.next();
+					 * proximityHash.put(curr, prox(chaine, curr)); }
+					 * Enumeration<String> e = proximityHash.keys(); float seuil
+					 * = 60; while (e.hasMoreElements()) { String curr =
+					 * e.nextElement(); if (proximityHash.get(curr) > seuil) {
+					 * lemmes.add(curr); } } // Levenshtein int max_distance =
+					 * chaine.length() > 3 ? chaine.length() / 3 : 3;
+					 * ArrayList<Match> matches =
+					 * Levenshtein.best_matches(chaine, words.keySet(),
+					 * max_distance); int c = 0; for (Match match : matches) {
+					 * if (!lemmes.contains(match.word)) {
+					 * lemmes.add(words.get(match.word)); c += 1; if (c > 3) {
+					 * break; } } }
+					 */
+			}
+			return lemmes;
+		}
+	}
+
 	String username = "";
 	String password = "";
 	String url = "";
@@ -22,7 +117,7 @@ public class LanceRequete extends HttpServlet {
 	int nbre = 0;
 
 	//
-	public static String to_sql(String s) throws Exception {
+	public String to_sql(String s) throws Exception {
 		try {
 			tal_sqlLexer lexer = new tal_sqlLexer(new ANTLRReaderStream(
 					new StringReader(s)));
@@ -39,7 +134,7 @@ public class LanceRequete extends HttpServlet {
 		return "";
 	}
 
-	public static String correct(String chaine) {
+	public String correct(String chaine) {
 		Lexique lex = new Lexique();
 		String[] chaines = chaine.split("\\b");
 		int i = 0;
@@ -62,7 +157,7 @@ public class LanceRequete extends HttpServlet {
 		return sentence;
 	}
 
-	public static String replace(String chaine,
+	public String replace(String chaine,
 			LinkedHashMap<String, String> replacements) {
 		String[] chaines = chaine.split("\\b");
 		int i = 0;
@@ -84,12 +179,17 @@ public class LanceRequete extends HttpServlet {
 		return sentence;
 	}
 
-	public static LinkedHashMap<String, String> keywords() {
+	public LinkedHashMap<String, String> keywords() {
 		LinkedHashMap<String, String> ht = new LinkedHashMap<String, String>();
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader("divers/keywords.txt"));
 			String chaine;
+			try {
+				br = new BufferedReader(new FileReader(getServletContext()
+						.getRealPath("/divers/keywords.txt")));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			while ((chaine = br.readLine()) != null) {
 				StringTokenizer st = new StringTokenizer(chaine, "|");
 				ht.put(st.nextToken().trim().toLowerCase(), st.nextToken()
@@ -103,12 +203,17 @@ public class LanceRequete extends HttpServlet {
 		return ht;
 	}
 
-	public static LinkedHashMap<String, String> stopwords() {
+	public LinkedHashMap<String, String> stopwords() {
 		LinkedHashMap<String, String> ht = new LinkedHashMap<String, String>();
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader("divers/stopwords.txt"));
 			String chaine;
+			try {
+				br = new BufferedReader(new FileReader(getServletContext()
+						.getRealPath("/divers/stopwords.txt")));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			while ((chaine = br.readLine()) != null) {
 				ht.put(chaine, "");
 			}
@@ -119,7 +224,7 @@ public class LanceRequete extends HttpServlet {
 		return ht;
 	}
 
-	public static String join(List<String> splitted, String sep) {
+	public String join(List<String> splitted, String sep) {
 		StringBuilder builder = new StringBuilder();
 		for (String s : splitted) {
 			builder.append(s);
@@ -128,7 +233,7 @@ public class LanceRequete extends HttpServlet {
 		return builder.toString().trim();
 	}
 
-	public static List<String> filter_empty(String[] arr) {
+	public List<String> filter_empty(String[] arr) {
 		// DO NOT ADD "CONTIENT" TWO TIMES
 		boolean contient_added = false;
 		List<String> out = new ArrayList<String>();
@@ -146,7 +251,7 @@ public class LanceRequete extends HttpServlet {
 		return out;
 	}
 
-	private static String add_missings_keywords(String s) {
+	private String add_missings_keywords(String s) {
 		List<String> splitted = filter_empty(s.split("\\b"));
 
 		System.out.println(join(splitted, "-,-"));
@@ -156,7 +261,7 @@ public class LanceRequete extends HttpServlet {
 		return join(splitted, " ");
 	}
 
-	public static String handle(String query) throws Exception {
+	public String handle(String query) throws Exception {
 		System.out.println("Input: " + query);
 
 		// normalize
@@ -188,7 +293,9 @@ public class LanceRequete extends HttpServlet {
 			query += " .";
 		}
 
-		return query;
+		String sql = to_sql(query);
+
+		return sql;
 	}
 
 	//
@@ -222,11 +329,21 @@ public class LanceRequete extends HttpServlet {
 			// / Partie d'integration
 			try {
 				requete = handle(requete);
-			} catch (Exception e) {
+			} catch (Exception e1) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e1.printStackTrace();
 			}
+			// / ÇA MARCHE
+			// BufferedReader br = null;
+			// String chaine;
+			// try {
+			// br = new BufferedReader(new FileReader(getServletContext()
+			// .getRealPath("/divers/fil.txt")));
+			// } catch (Exception e) {
+			// e.printStackTrace();
+			// }
 			// /
+			//
 			// INSTALL/load the Driver (Vendor specific Code)
 			try {
 				Class.forName("org.postgresql.Driver");
