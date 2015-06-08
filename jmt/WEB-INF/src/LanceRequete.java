@@ -292,8 +292,10 @@ public class LanceRequete extends HttpServlet {
 		if (!query.endsWith(".")) {
 			query += " .";
 		}
-
+		
+		System.out.println("To be parsed : " + query);
 		String sql = to_sql(query);
+		System.out.println("SQL: " + sql);
 
 		return sql;
 	}
