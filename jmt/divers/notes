@@ -1,0 +1,8 @@
+Je veux tous les fichiers et rubriques des articles qui parlent de nanotechnologie en titre.
+SELECT fichier, rubrique from titre where mot = 'nano';
+
+Combien d’articles de focus parus dans les bulletins entre mars et juin font référence à nanotechnologie.
+select count(*) from texte where rubrique = 'focus' and mot = 'nano'; //ATTENTION: DO 'NOT CASE SENSITIVE' for all
+
+Tous les articles qui concernent la nanotechnologie
+select fichier from  texte where mot='nano';
