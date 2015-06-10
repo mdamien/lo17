@@ -37,9 +37,8 @@
       e.returnValue = false;
       var q = $('#query').val()
       $.get('/jmt/servlet/LanceRequete?suggest=true&requete='+q,
-      		x => {
-      			console.log(x);
-      			$('#output').html(JSON.stringify(x,null,2));
+      		data => {
+      			$('#output').html(JSON.stringify(data,null,2));
       		})
   });
   
@@ -48,8 +47,8 @@
 	  e.returnValue = false;
       var q = $('#query').val()
       $.get('/jmt/servlet/LanceRequete?suggest=only&requete='+q,
-      			x => {
-      				var results = [
+      			data => {
+      				var test = [
       				    {
       				    	word:'bananap',
       				    	alternatives:['banane','banana','banbana'],
@@ -71,6 +70,7 @@
       				    	alternatives:['jean','youpa','youp'],
       				    },
       				]
+      				results = data.suggestions;
       				SUGGESTIONS = results
       				var html = "<pre>"+JSON.stringify(results)+"</pre>";
       				$('#suggestions').html(html);

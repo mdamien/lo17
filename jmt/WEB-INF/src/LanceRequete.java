@@ -314,11 +314,18 @@ public class LanceRequete extends HttpServlet {
 
 		String rSug = request.getParameter("suggest");
 		String requete = request.getParameter("requete");
+		
+		boolean do_request = true;
+		if(rSug != null && rSug.equals("only")){
+			do_request = false;
+		}
 		resp.put("requete", requete);
+		resp.put("do_request", do_request);
 
-		System.out.println("enter or not ?");
-		if (requete != null){
-			System.out.println("enter!");
+		if(rSug != null){
+			resp.put("suggestions","lol");
+		}
+		if (requete != null && do_request){
 			try {
 				requete = handle(requete);
 				resp.put("sql", requete);
