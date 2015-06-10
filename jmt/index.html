@@ -1,10 +1,81 @@
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
-<title>Frame de lance requete</title>
+ <meta charset="utf-8">
+ <title>Grammar</title>
+ <link rel="stylesheet" href="http://bootswatch.com/lumen/bootstrap.min.css">
+ <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
-<frameset cols="30%,*">
-	<frame src="FormLeft.html" name="left">
-	<frame src="servlet/LanceRequete" name="right">
-</frameset>
+<body>
+  <div class="container">
+    <h1>Googletin</h1>
+    <h4></h4>
+    <hr/>
+    <form action="" method="get" class="form-horizontal">
+    <div class="row">
+    <div class="col-md-9">
+	    <div class="form-group">
+	        <input type="text" class="form-control" name="query" id="query" value=""/>
+	    </div>
+    </div>
+    <div class="col-md-1">
+    	<input type="submit" class="btn btn-info btn-md btn-block" id="correct" value="Corriger"/>
+    </div>
+    <div class="col-md-2">
+    	<input type="submit" class="btn btn-primary btn-lg btn-block" value="Rechercher"/>
+    </div>
+    </div>
+    <div class="row" id="suggestions">
+    	
+    </div>
+    </form>
+    <hr>
+    <pre id="output"></pre>
+    <script type="text/javascript">
+  $("form").submit(e => {
+      e.preventDefault();
+      e.returnValue = false;
+      var q = $('#query').val()
+      $.get('/jmt/servlet/LanceRequete?suggest=true&requete='+q,
+      		x => {
+      			console.log(x);
+      			$('#output').html(x);
+      		})
+  });
+  
+  $('#correct').click(e => {
+	  e.preventDefault();
+	  e.returnValue = false;
+      var q = $('#query').val()
+      $.get('/jmt/servlet/LanceRequete?suggest=only&requete='+q,
+      			x => {
+      				var results = [
+      				    {
+      				    	word:'bananap',
+      				    	pos:10,
+      				    	alternatives:['banane','banana','banbana'],
+      				    },
+      				    {
+      				    	word:'youps',
+      				    	pos:10,
+      				    	alternatives:['youpi','youpa','youp'],
+      				    },
+      				]
+      				var html = "<pre>"+JSON.stringify(results,null,2)+"<pre>";
+      				$('#suggestions').html(html);
+      				results.map( r => {
+      					html += '<label>'+r.word+'</label>';
+      					html += '<select>';
+      					r.alternatives.map(alt => {
+      						html += "<option>"+alt+"</option>";
+      					})
+      					html += '</select></br/>';
+      				})
+      				
+      				$('#suggestions').html(html);
+      			})
+  })
+    </script>
+  </div>
+</body>
 </html>
