@@ -6,6 +6,8 @@ import javax.servlet.http.*;
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonTokenStream;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -292,7 +294,7 @@ public class LanceRequete extends HttpServlet {
 		if (!query.endsWith(".")) {
 			query += " .";
 		}
-		
+
 		System.out.println("To be parsed : " + query);
 		String sql = to_sql(query);
 		System.out.println("SQL: " + sql);
@@ -324,10 +326,14 @@ public class LanceRequete extends HttpServlet {
 		// url = "jdbc:postgresql://tuxa.sme.utc";
 		// ---- configure END
 
-		String requete;
-		requete = request.getParameter("requete");
+		String requete = null, rSug, rRes;
+		rSug = request.getParameter("suggest");
+		rRes = request.getParameter("results");
 
-		if (requete != null) {
+		if (rSug != null) {
+
+		}
+		if (rRes != null) {
 			// / Partie d'integration
 			try {
 				requete = handle(requete);
@@ -356,7 +362,8 @@ public class LanceRequete extends HttpServlet {
 			try {
 				Connection con;
 				Statement stmt;
-				// Establish Connection to the database at URL with usename and
+				// Establish Connection to the database at URL with usename
+				// and
 				// password
 				con = DriverManager.getConnection(url, username, password);
 				stmt = con.createStatement();
@@ -364,6 +371,18 @@ public class LanceRequete extends HttpServlet {
 				ResultSet rs = stmt.executeQuery(requete);
 				ResultSetMetaData rsmd = rs.getMetaData();
 				nbre = rsmd.getColumnCount();
+
+				String s = new String();
+				ObjectMapper mapper = new ObjectMapper();
+				StringWriter sw = new StringWriter();
+				try {
+					mapper.writeValue(sw, rs);
+					s = sw.toString();
+					out.println(s);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
 				while (rs.next()) {
 					for (int i = 1; i <= nbre; i++) {
 						nom = rsmd.getColumnName(i);
@@ -389,7 +408,8 @@ public class LanceRequete extends HttpServlet {
 					System.out.println("");
 				}
 			}
-		} else {
+		}
+		if ((rSug != null) && (rRes != null)) {
 			out.println("Requête vide !");
 			out.println("</body>");
 			out.println("</html>");
