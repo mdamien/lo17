@@ -5,6 +5,8 @@ import javax.servlet.http.*;
 
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonTokenStream;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -300,53 +302,24 @@ public class LanceRequete extends HttpServlet {
 		return sql;
 	}
 
-	//
-
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		response.setContentType("text/html");
+		response.setContentType("text/json");
 		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<head>");
-		out.println("<title>Lance requête</title>");
-		out.println("</head>");
-		out.println("<body>");
 
-		// ---- configure START
 		username = "lo17xxx";
 		password = "dblo17";
-		// The URL that will connect to TECFA's MySQL server
-		// Syntax: jdbc:TYPE:machine:port/DB_NAME
-
 		url = "jdbc:postgresql://tuxa.sme.utc/dblo17";
-
-		// dans certaines configurations locales il faut d�finir l'url par :
-		// url = "jdbc:postgresql://tuxa.sme.utc";
-		// ---- configure END
 
 		String requete;
 		requete = request.getParameter("requete");
 
 		if (requete != null) {
-			// / Partie d'integration
 			try {
 				requete = handle(requete);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			// / ÇA MARCHE
-			// BufferedReader br = null;
-			// String chaine;
-			// try {
-			// br = new BufferedReader(new FileReader(getServletContext()
-			// .getRealPath("/divers/fil.txt")));
-			// } catch (Exception e) {
-			// e.printStackTrace();
-			// }
-			// /
-			//
-			// INSTALL/load the Driver (Vendor specific Code)
 			try {
 				Class.forName("org.postgresql.Driver");
 			} catch (java.lang.ClassNotFoundException e) {
@@ -356,29 +329,28 @@ public class LanceRequete extends HttpServlet {
 			try {
 				Connection con;
 				Statement stmt;
-				// Establish Connection to the database at URL with usename and
-				// password
+				
 				con = DriverManager.getConnection(url, username, password);
 				stmt = con.createStatement();
-				// Send the query and bind to the result set
+				
 				ResultSet rs = stmt.executeQuery(requete);
 				ResultSetMetaData rsmd = rs.getMetaData();
 				nbre = rsmd.getColumnCount();
+				
+				JSONArray arr = new JSONArray();
+				
 				while (rs.next()) {
+					JSONObject obj = new JSONObject();
 					for (int i = 1; i <= nbre; i++) {
-						nom = rsmd.getColumnName(i);
-						String s = rs.getString(nom);
-						out.print(s);
+						String name = rsmd.getColumnName(i);
+						obj.put(name, rs.getString(nom));
 					}
-					out.print("<p>");
+					arr.add(obj);
 				}
-				out.println("</body>");
-				out.println("</html>");
-				// Close resources
+				out.append(arr.toString());
 				stmt.close();
 				con.close();
 			}
-			// print out decent erreur messages
 			catch (SQLException ex) {
 				System.err.println("==> SQLException: ");
 				while (ex != null) {

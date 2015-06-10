@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="WEB-INF/lib/postgresql-9.0-801.jdbc4.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/antlr-3.1.1.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/antlrworks-1.5.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/json_simple.jar"/>
 	<classpathentry kind="output" path="WEB-INF/classes"/>
 </classpath>
