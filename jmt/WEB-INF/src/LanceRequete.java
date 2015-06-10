@@ -322,18 +322,16 @@ public class LanceRequete extends HttpServlet {
 
 		url = "jdbc:postgresql://tuxa.sme.utc/dblo17";
 
-		// dans certaines configurations locales il faut d�finir l'url par :
+		// dans certaines configurations locales il faut définir l'url par :
 		// url = "jdbc:postgresql://tuxa.sme.utc";
 		// ---- configure END
 
-		String requete = null, rSug, rRes;
-		rSug = request.getParameter("suggest");
-		rRes = request.getParameter("results");
+		String rSug = request.getParameter("suggest");
+		String requete = request.getParameter("requete");
 
-		if (rSug != null) {
+		if (rSug.equals("true")) {
 
-		}
-		if (rRes != null) {
+		} else if (rSug.equals("only")) {
 			// / Partie d'integration
 			try {
 				requete = handle(requete);
@@ -368,28 +366,18 @@ public class LanceRequete extends HttpServlet {
 				con = DriverManager.getConnection(url, username, password);
 				stmt = con.createStatement();
 				// Send the query and bind to the result set
+				// ResultSet rs = stmt.executeQuery(requete);
 				ResultSet rs = stmt.executeQuery(requete);
 				ResultSetMetaData rsmd = rs.getMetaData();
 				nbre = rsmd.getColumnCount();
-
-				String s = new String();
-				ObjectMapper mapper = new ObjectMapper();
-				StringWriter sw = new StringWriter();
-				try {
-					mapper.writeValue(sw, rs);
-					s = sw.toString();
-					out.println(s);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
 				while (rs.next()) {
+					out.print("<p>\n");
 					for (int i = 1; i <= nbre; i++) {
 						nom = rsmd.getColumnName(i);
 						String s = rs.getString(nom);
 						out.print(s);
 					}
-					out.print("<p>");
+					out.print("</p>\n");
 				}
 				out.println("</body>");
 				out.println("</html>");
@@ -409,7 +397,7 @@ public class LanceRequete extends HttpServlet {
 				}
 			}
 		}
-		if ((rSug != null) && (rRes != null)) {
+		if (rSug == null && requete == null) {
 			out.println("Requête vide !");
 			out.println("</body>");
 			out.println("</html>");
