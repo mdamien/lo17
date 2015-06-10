@@ -39,7 +39,7 @@
       $.get('/jmt/servlet/LanceRequete?suggest=true&requete='+q,
       		x => {
       			console.log(x);
-      			$('#output').text(x);
+      			$('#output').html(JSON.stringify(x,null,2));
       		})
   });
   
