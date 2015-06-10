@@ -39,7 +39,7 @@
       $.get('/jmt/servlet/LanceRequete?suggest=true&requete='+q,
       		x => {
       			console.log(x);
-      			$('#output').html(x);
+      			$('#output').text(x);
       		})
   });
   
@@ -52,29 +52,53 @@
       				var results = [
       				    {
       				    	word:'bananap',
-      				    	pos:10,
       				    	alternatives:['banane','banana','banbana'],
       				    },
       				    {
+      				    	word:'mangent',
+      				    	alternatives:[],
+      				    },
+      				    {
       				    	word:'youps',
-      				    	pos:10,
       				    	alternatives:['youpi','youpa','youp'],
       				    },
+      				    {
+      				    	word:'jean',
+      				    	alternatives:['michel'],
+      				    },
+      				    {
+      				    	word:'michel',
+      				    	alternatives:['jean','youpa','youp'],
+      				    },
       				]
-      				var html = "<pre>"+JSON.stringify(results,null,2)+"<pre>";
+      				SUGGESTIONS = results
+      				var html = "<pre>"+JSON.stringify(results)+"</pre>";
       				$('#suggestions').html(html);
-      				results.map( r => {
-      					html += '<label>'+r.word+'</label>';
-      					html += '<select>';
-      					r.alternatives.map(alt => {
-      						html += "<option>"+alt+"</option>";
-      					})
-      					html += '</select></br/>';
+      				results.map( (r,i) => {
+      					r.curr = r.word;
+      					if(r.alternatives.length > 0){
+	      					html += '<select>';
+	      					var fonction = "SUGGESTIONS["+i+"].curr = '"+r.word+"';update()";
+      						html += "<option onclick=\""+fonction+"\">"+r.word+"</option>";
+	      					r.alternatives.map(alt => {
+	      						fonction = "SUGGESTIONS["+i+"].curr = '"+alt+"';update()";
+	      						console.log(fonction)
+	      						html += "<option onclick=\""+fonction+"\">"+alt+"</option>";
+	      					})
+	      					html += '</select>';
+      					}else{
+      						html += r.word;
+      					}
+      					html += "&nbsp"
       				})
       				
       				$('#suggestions').html(html);
       			})
   })
+  
+  function update(){
+	  $('#query').val(SUGGESTIONS.map(x => x.curr).join(' '))
+  }
     </script>
   </div>
 </body>
