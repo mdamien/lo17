@@ -323,7 +323,7 @@ public class LanceRequete extends HttpServlet {
 		resp.put("do_request", do_request);
 
 		if(rSug != null){
-			resp.put("suggestions","lol");
+			resp.put("suggestions","[bientot les sugggestions ici!]");
 		}
 		if (requete != null && do_request){
 			try {
