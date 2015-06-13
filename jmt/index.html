@@ -42,7 +42,7 @@
             details += "<details>"
             details += "<summary>Réponse du serveur</summary>"
             details += "<p><pre>"+JSON.stringify(data,null,2)+"</pre></p>"
-            details += "</details>" 
+            details += "</details>"
             $('#output').html(details)
             if(data.results.length == 0){
               resp += "<div class='alert alert-warning'>"
@@ -74,7 +74,8 @@
               resp += table;
             }
             sql_details = ""
-            $('#output').html(resp+details)
+            var sql = "<strong>SQL:</strong><samp>"+data.sql+"</samp><hr/>";
+            $('#output').html(sql+resp+details)
       		})
   });
   
@@ -106,10 +107,11 @@
       				    	alternatives:['jean','youpa','youp'],
       				    },
       				]
-      				results = data.suggestions;
+      				results = test;//data.suggestions;
       				SUGGESTIONS = results
-      				var html = "<pre>"+JSON.stringify(results)+"</pre>";
+      				var html = "";//"<pre>"+JSON.stringify(results)+"</pre>";
       				$('#suggestions').html(html);
+              html += "<strong>Suggestions: </strong>"
       				results.map( (r,i) => {
       					r.curr = r.word;
       					if(r.alternatives.length > 0){
@@ -118,7 +120,6 @@
       						html += "<option onclick=\""+fonction+"\">"+r.word+"</option>";
 	      					r.alternatives.map(alt => {
 	      						fonction = "SUGGESTIONS["+i+"].curr = '"+alt+"';update()";
-	      						console.log(fonction)
 	      						html += "<option onclick=\""+fonction+"\">"+alt+"</option>";
 	      					})
 	      					html += '</select>';
