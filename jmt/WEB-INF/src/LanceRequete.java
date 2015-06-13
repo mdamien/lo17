@@ -323,7 +323,12 @@ public class LanceRequete extends HttpServlet {
 		resp.put("do_request", do_request);
 
 		if(rSug != null){
-			resp.put("suggestions","lol");
+			//TODO
+//			resp.put("suggestions","lol");
+			String[] requeteWords = requete.split(" ");
+			for (String s : requeteWords){
+				System.out.println(correct(s));
+			}
 		}
 		if (requete != null && do_request){
 			try {
