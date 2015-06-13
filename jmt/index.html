@@ -83,8 +83,10 @@
 	  e.preventDefault();
 	  e.returnValue = false;
       var q = $('#query').val()
+      $('#suggestions').html("Suggestions en cours d'acheminement")
       $.get('/jmt/servlet/LanceRequete?suggest=only&requete='+q,
       			data => {
+      		      $('#suggestions').html("Suggestions recues")
       				var test = [
       				    {
       				    	word:'bananap',
@@ -107,11 +109,11 @@
       				    	alternatives:['jean','youpa','youp'],
       				    },
       				]
-      				results = test;//data.suggestions;
+      				results = data.suggestions;
       				SUGGESTIONS = results
-      				var html = "";//"<pre>"+JSON.stringify(results)+"</pre>";
+      				var html = "<pre>"+JSON.stringify(results)+"</pre>";
       				$('#suggestions').html(html);
-              html += "<strong>Suggestions: </strong>"
+              		html += "<strong>Suggestions: </strong>"
       				results.map( (r,i) => {
       					r.curr = r.word;
       					if(r.alternatives.length > 0){

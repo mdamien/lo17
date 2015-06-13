@@ -1,19 +1,34 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.StringTokenizer;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.StringTokenizer;
 
 @SuppressWarnings("serial")
 public class LanceRequete extends HttpServlet {
@@ -35,14 +50,14 @@ public class LanceRequete extends HttpServlet {
 			try {
 				br = new BufferedReader(new FileReader(getServletContext()
 						.getRealPath("/divers/fil.txt")));
+				while ((chaine = br.readLine()) != null) {
+					StringTokenizer st = new StringTokenizer(chaine);
+					ht.put(st.nextToken(), st.nextToken());
+				}
+				br.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			while ((chaine = br.readLine()) != null) {
-				StringTokenizer st = new StringTokenizer(chaine);
-				ht.put(st.nextToken(), st.nextToken());
-			}
-			br.close();
 			return ht;
 		}
 
@@ -87,25 +102,47 @@ public class LanceRequete extends HttpServlet {
 			chaine = chaine.toLowerCase();
 			if (words.containsKey(chaine)) {
 				lemmes.add(words.get(chaine));
-			} else {/*
-					 * // Algorithme du cours exploitant la recherche par
-					 * préfixe (cf. // cours page 33) Hashtable<String, Float>
-					 * proximityHash = new Hashtable<String, Float>();
-					 * Iterator<String> jtr = words.values().iterator(); while
-					 * (jtr.hasNext()) { String curr = jtr.next();
-					 * proximityHash.put(curr, prox(chaine, curr)); }
-					 * Enumeration<String> e = proximityHash.keys(); float seuil
-					 * = 60; while (e.hasMoreElements()) { String curr =
-					 * e.nextElement(); if (proximityHash.get(curr) > seuil) {
-					 * lemmes.add(curr); } } // Levenshtein int max_distance =
-					 * chaine.length() > 3 ? chaine.length() / 3 : 3;
-					 * ArrayList<Match> matches =
-					 * Levenshtein.best_matches(chaine, words.keySet(),
-					 * max_distance); int c = 0; for (Match match : matches) {
-					 * if (!lemmes.contains(match.word)) {
-					 * lemmes.add(words.get(match.word)); c += 1; if (c > 3) {
-					 * break; } } }
-					 */
+			} else {
+				/*
+				// Algorithme du cours exploitant la recherche par
+				// préfixe (cf. // cours page 33)
+
+				Hashtable<String, Float> proximityHash = new Hashtable<String, Float>();
+
+				Iterator<String> jtr = words.values().iterator();
+
+				while(jtr.hasNext()) {
+					String curr = jtr.next();
+					proximityHash.put(curr, prox(chaine, curr));
+				}
+
+				Enumeration<String> e = proximityHash.keys();
+				float seuil = 60;
+				while (e.hasMoreElements()) {
+					String curr = e.nextElement();
+					if (proximityHash.get(curr) > seuil) {
+						//lemmes.add(curr);
+					}
+				}
+				*/
+
+				// Levenshtein
+				int l = chaine.length();
+				int max_distance = l > 3 ? (l > 5 ? (l > 9 ? 3 : 2) : 1) : 0;
+
+				ArrayList<Match> matches = Levenshtein.best_matches(
+						chaine, words.keySet(), max_distance);
+				int c = 0;
+				for (Match match : matches) {
+					if (!lemmes.contains(match.word)) {
+						lemmes.add(words.get(match.word));
+						c += 1;
+						if (c > 3) {
+							break;
+						}
+					}
+				}
+
 			}
 			return lemmes;
 		}
@@ -117,6 +154,8 @@ public class LanceRequete extends HttpServlet {
 	String requete = "";
 	String nom = "";
 	int nbre = 0;
+	Lexique lex = null;
+
 
 	//
 	public String to_sql(String s) throws Exception {
@@ -136,8 +175,11 @@ public class LanceRequete extends HttpServlet {
 		return "";
 	}
 
+	public List<String> tokenize(String chaine){
+		return filter_empty(chaine.split("\\b"));
+	}
+
 	public String correct(String chaine) {
-		Lexique lex = new Lexique();
 		String[] chaines = chaine.split("\\b");
 		int i = 0;
 		ArrayList<String> all_lemmes = new ArrayList<String>();
@@ -266,11 +308,7 @@ public class LanceRequete extends HttpServlet {
 	public String handle(String query) throws Exception {
 		System.out.println("Input: " + query);
 
-		// normalize
-		query = query.trim().toLowerCase();
-		// remove trailing dots
-		query = query.replaceAll("(\\.)$", "") + ".";
-		// System.out.println("Handle: " + query);
+		query = clean(query);
 
 		// lemmatisation et correction ortho
 		query = correct(query);
@@ -302,8 +340,18 @@ public class LanceRequete extends HttpServlet {
 		return sql;
 	}
 
+	private String clean(String query) {
+		// normalize
+		query = query.trim().toLowerCase();
+		// remove trailing dots
+		query = query.replaceAll("(\\.)$", "") + ".";
+		// System.out.println("Handle: " + query);
+		return query;
+	}
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+		lex = new Lexique();
 		response.setContentType("text/json");
 		PrintWriter out = response.getWriter();
 		JSONObject resp = new JSONObject();
@@ -321,15 +369,43 @@ public class LanceRequete extends HttpServlet {
 		}
 		resp.put("requete", requete);
 		resp.put("do_request", do_request);
+		resp.put("results", new JSONArray());
 
 		if(rSug != null){
+			/*
 			//TODO
 //			resp.put("suggestions","lol");
+
 			String[] requeteWords = requete.split(" ");
 			for (String s : requeteWords){
 				System.out.println(correct(s));
 			}
 			resp.put("suggestions","[bientot les sugggestions ici!]");
+			*/
+			String cleaned = clean(requete);
+			List<String> words = tokenize(cleaned);
+			JSONArray suggestions = new JSONArray();
+			for (String word : words) {
+				if(word.equals(".")){continue;}
+				JSONObject suggestion = new JSONObject();
+				JSONArray alternatives_json = new JSONArray();
+				// Levenshtein
+				if(!lex.words.containsKey(word)){
+					int l = word.length();
+					int max_distance = l > 3 ? (l > 5 ? (l > 9 ? 3 : 2) : 1) : 0;
+					ArrayList<Match> matches = Levenshtein.best_matches(
+							word, lex.words.keySet(), max_distance);
+					System.out.println("found matches for "+word+"  : "+matches.size()+"   §§§ "+lex.words.size());
+					int c = 0;
+					for (Match match : matches) {
+						alternatives_json.add(match.word);
+					}
+				}
+				suggestion.put("word", word);
+				suggestion.put("alternatives", alternatives_json);
+				suggestions.add(suggestion);
+			}
+			resp.put("suggestions",suggestions);
 		}
 		if (requete != null && do_request){
 			try {
@@ -380,5 +456,72 @@ public class LanceRequete extends HttpServlet {
 		}
 		out.println(resp.toString());
 		out.close();
+	}
+//<<<<<<< HEAD
+//}
+//=======
+
+
+
+	static public class Levenshtein {
+		public static char NULL = '\u0000';
+
+		public static int cout(char x, int i, char y, int j) {
+			if (x == NULL) { // insertion
+				return 1;
+			}
+			if (y == NULL) { // suppression
+				return 1;
+			}
+			if (x != y) { // substitution
+				return 1;
+			}
+			return 0;
+		}
+
+		public static int distance(String a, String b) {
+			int[][] dist = new int[a.length() + 1][b.length() + 1];
+			char X, Y;
+			int d1, d2, d3;
+
+			for (int i = 1; i <= a.length(); i++) {
+				X = a.charAt(i - 1);
+				dist[i][0] = dist[i - 1][0] + cout(X, i, NULL, 0);
+			}
+			for (int j = 1; j <= b.length(); j++) {
+				Y = b.charAt(j - 1);
+				dist[0][j] = dist[0][j - 1] + cout(NULL, 0, Y, j);
+			}
+			for (int i = 1; i <= a.length(); i++) {
+				X = a.charAt(i - 1);
+				for (int j = 1; j <= b.length(); j++) {
+					Y = b.charAt(j - 1);
+					d1 = dist[i - 1][j - 1] + cout(X, i, Y, j);
+					d2 = dist[i - 1][j] + cout(X, i, NULL, j);
+					d3 = dist[i][j - 1] + cout(NULL, i, Y, j);
+					dist[i][j] = Math.min(d1, Math.min(d2, d3));
+				}
+			}
+			return dist[a.length()][b.length()];
+		}
+
+		public static ArrayList<Match> best_matches(String word,
+				Collection<String> dict, int max_distance) {
+			ArrayList<Match> matches = new ArrayList<Match>();
+			for (String other_word : dict) {
+				if (!word.equals(other_word)) {
+					int d = (int) distance(word, other_word);
+					if (d <= max_distance) {
+						matches.add(new Match(other_word, d));
+					}
+				}
+			}
+			Collections.sort(matches, new Comparator<Match>() {
+				public int compare(Match m, Match m2) {
+					return m.distance - m2.distance;
+				}
+			});
+			return matches;
+		}
 	}
 }
