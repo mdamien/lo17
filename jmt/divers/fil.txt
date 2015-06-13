@@ -9719,6 +9719,7 @@ parkinsoniens	parkinson
 parle	parle
 parlé	parlé
 parlent	parlent
+parlant	parlant
 parler	parler
 parlera	parlera
 parmi	parmi
