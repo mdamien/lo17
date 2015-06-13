@@ -104,34 +104,29 @@ public class LanceRequete extends HttpServlet {
 				lemmes.add(words.get(chaine));
 			} else {
 				/*
-				// Algorithme du cours exploitant la recherche par
-				// préfixe (cf. // cours page 33)
-
-				Hashtable<String, Float> proximityHash = new Hashtable<String, Float>();
-
-				Iterator<String> jtr = words.values().iterator();
-
-				while(jtr.hasNext()) {
-					String curr = jtr.next();
-					proximityHash.put(curr, prox(chaine, curr));
-				}
-
-				Enumeration<String> e = proximityHash.keys();
-				float seuil = 60;
-				while (e.hasMoreElements()) {
-					String curr = e.nextElement();
-					if (proximityHash.get(curr) > seuil) {
-						//lemmes.add(curr);
-					}
-				}
-				*/
+				 * // Algorithme du cours exploitant la recherche par // préfixe
+				 * (cf. // cours page 33)
+				 * 
+				 * Hashtable<String, Float> proximityHash = new
+				 * Hashtable<String, Float>();
+				 * 
+				 * Iterator<String> jtr = words.values().iterator();
+				 * 
+				 * while(jtr.hasNext()) { String curr = jtr.next();
+				 * proximityHash.put(curr, prox(chaine, curr)); }
+				 * 
+				 * Enumeration<String> e = proximityHash.keys(); float seuil =
+				 * 60; while (e.hasMoreElements()) { String curr =
+				 * e.nextElement(); if (proximityHash.get(curr) > seuil) {
+				 * //lemmes.add(curr); } }
+				 */
 
 				// Levenshtein
 				int l = chaine.length();
 				int max_distance = l > 3 ? (l > 5 ? (l > 9 ? 3 : 2) : 1) : 0;
 
-				ArrayList<Match> matches = Levenshtein.best_matches(
-						chaine, words.keySet(), max_distance);
+				ArrayList<Match> matches = Levenshtein.best_matches(chaine,
+						words.keySet(), max_distance);
 				int c = 0;
 				for (Match match : matches) {
 					if (!lemmes.contains(match.word)) {
@@ -156,7 +151,6 @@ public class LanceRequete extends HttpServlet {
 	int nbre = 0;
 	Lexique lex = null;
 
-
 	//
 	public String to_sql(String s) throws Exception {
 		try {
@@ -175,7 +169,7 @@ public class LanceRequete extends HttpServlet {
 		return "";
 	}
 
-	public List<String> tokenize(String chaine){
+	public List<String> tokenize(String chaine) {
 		return filter_empty(chaine.split("\\b"));
 	}
 
@@ -364,38 +358,39 @@ public class LanceRequete extends HttpServlet {
 		String requete = request.getParameter("requete");
 
 		boolean do_request = true;
-		if(rSug != null && rSug.equals("only")){
+		if (rSug != null && rSug.equals("only")) {
 			do_request = false;
 		}
 		resp.put("requete", requete);
 		resp.put("do_request", do_request);
 		resp.put("results", new JSONArray());
 
-		if(rSug != null){
+		if (rSug != null) {
 			/*
-			//TODO
-//			resp.put("suggestions","lol");
-
-			String[] requeteWords = requete.split(" ");
-			for (String s : requeteWords){
-				System.out.println(correct(s));
-			}
-			resp.put("suggestions","[bientot les sugggestions ici!]");
-			*/
+			 * //TODO // resp.put("suggestions","lol");
+			 * 
+			 * String[] requeteWords = requete.split(" "); for (String s :
+			 * requeteWords){ System.out.println(correct(s)); }
+			 * resp.put("suggestions","[bientot les sugggestions ici!]");
+			 */
 			String cleaned = clean(requete);
 			List<String> words = tokenize(cleaned);
 			JSONArray suggestions = new JSONArray();
 			for (String word : words) {
-				if(word.equals(".")){continue;}
+				if (word.equals(".")) {
+					continue;
+				}
 				JSONObject suggestion = new JSONObject();
 				JSONArray alternatives_json = new JSONArray();
 				// Levenshtein
-				if(!lex.words.containsKey(word)){
+				if (!lex.words.containsKey(word)) {
 					int l = word.length();
-					int max_distance = l > 3 ? (l > 5 ? (l > 9 ? 3 : 2) : 1) : 0;
-					ArrayList<Match> matches = Levenshtein.best_matches(
-							word, lex.words.keySet(), max_distance);
-					System.out.println("found matches for "+word+"  : "+matches.size()+"   §§§ "+lex.words.size());
+					int max_distance = l > 3 ? (l > 5 ? (l > 9 ? 3 : 2) : 1)
+							: 0;
+					ArrayList<Match> matches = Levenshtein.best_matches(word,
+							lex.words.keySet(), max_distance);
+					System.out.println("found matches for " + word + "  : "
+							+ matches.size() + "   §§§ " + lex.words.size());
 					int c = 0;
 					for (Match match : matches) {
 						alternatives_json.add(match.word);
@@ -405,9 +400,9 @@ public class LanceRequete extends HttpServlet {
 				suggestion.put("alternatives", alternatives_json);
 				suggestions.add(suggestion);
 			}
-			resp.put("suggestions",suggestions);
+			resp.put("suggestions", suggestions);
 		}
-		if (requete != null && do_request){
+		if (requete != null && do_request) {
 			try {
 				requete = handle(requete);
 				resp.put("sql", requete);
@@ -444,11 +439,10 @@ public class LanceRequete extends HttpServlet {
 				resp.put("results", arr);
 				stmt.close();
 				con.close();
-			}
-			catch (SQLException ex) {
+			} catch (SQLException ex) {
 				System.err.println("==> SQLException: ");
 				while (ex != null) {
-					resp.put("error",ex.getMessage());
+					resp.put("error", ex.getMessage());
 					System.out.println("Message:   " + ex.getMessage());
 					ex = ex.getNextException();
 				}
@@ -457,11 +451,10 @@ public class LanceRequete extends HttpServlet {
 		out.println(resp.toString());
 		out.close();
 	}
-//<<<<<<< HEAD
-//}
-//=======
 
-
+	// <<<<<<< HEAD
+	// }
+	// =======
 
 	static public class Levenshtein {
 		public static char NULL = '\u0000';
