@@ -49,7 +49,7 @@ public class LanceRequete extends HttpServlet {
 		/**
 		 * Compare la distance entre deux mots en selon l'algorithme de
 		 * recherche par préfixe (cf. cours page 33)
-		 * 
+		 *
 		 * @author maximool
 		 * @param a
 		 *            le premier mots
@@ -314,7 +314,7 @@ public class LanceRequete extends HttpServlet {
 
 		String rSug = request.getParameter("suggest");
 		String requete = request.getParameter("requete");
-		
+
 		boolean do_request = true;
 		if(rSug != null && rSug.equals("only")){
 			do_request = false;
@@ -329,6 +329,7 @@ public class LanceRequete extends HttpServlet {
 			for (String s : requeteWords){
 				System.out.println(correct(s));
 			}
+			resp.put("suggestions","[bientot les sugggestions ici!]");
 		}
 		if (requete != null && do_request){
 			try {
@@ -348,13 +349,13 @@ public class LanceRequete extends HttpServlet {
 				Statement stmt;
 				con = DriverManager.getConnection(url, username, password);
 				stmt = con.createStatement();
-				
+
 				ResultSet rs = stmt.executeQuery(requete);
 				ResultSetMetaData rsmd = rs.getMetaData();
 				nbre = rsmd.getColumnCount();
-				
+
 				JSONArray arr = new JSONArray();
-				
+
 				while (rs.next()) {
 					JSONObject obj = new JSONObject();
 					for (int i = 1; i <= nbre; i++) {

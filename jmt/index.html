@@ -15,11 +15,11 @@
     <div class="row">
     <div class="col-md-9">
 	    <div class="form-group">
-	        <input type="text" class="form-control" name="query" id="query" value=""/>
+	        <input type="text" class="form-control" name="query" id="query" value="je veux les articles parlant de jean"/>
 	    </div>
     </div>
     <div class="col-md-1">
-    	<input type="submit" class="btn btn-info btn-md btn-block" id="correct" value="Corriger"/>
+    	<button class="btn btn-info btn-md btn-block" id="correct">Corriger</button>
     </div>
     <div class="col-md-2">
     	<input type="submit" class="btn btn-primary btn-lg btn-block" value="Rechercher"/>
@@ -30,7 +30,7 @@
     </div>
     </form>
     <hr>
-    <pre id="output"></pre>
+    <div id="output"></div>
     <script type="text/javascript">
   $("form").submit(e => {
       e.preventDefault();
@@ -38,7 +38,44 @@
       var q = $('#query').val()
       $.get('/jmt/servlet/LanceRequete?suggest=true&requete='+q,
       		data => {
-      			$('#output').html(JSON.stringify(data,null,2));
+            var resp = "", details = "";
+            details += "<details>"
+            details += "<summary>Réponse du serveur</summary>"
+            details += "<p><pre>"+JSON.stringify(data,null,2)+"</pre></p>"
+            details += "</details>"
+            $('#output').html(details)
+            if(data.results.length == 0){
+              resp += "<div class='alert alert-warning'>"
+              resp += "<strong>"
+              resp += "Aucun résultat pour cette requéte"
+              resp += "</strong>"
+              resp += "</div>";
+            }else{
+              var results = data.results;
+              resp += "<strong>"
+              resp += results.length+" résultats pour cette requéte"
+              resp += "</strong><br/></br/>"
+              var table = "";
+              table += "<div>"
+              table += results.map(r => {
+                var el = "";
+                el += "<div class='well well-sm'>"
+                el += "<dl class='dl-horizontal'>"
+                el += Object.keys(r).map(k => {
+                   var row = "<dt>"+k+"</dt>";
+                   row += "<dd>"+r[k]+"</dd>"
+                   return row;
+                }).join('')
+                el += "</dl>"
+                el += "</div>"
+                return el
+              }).join('')
+              table += "</div>"
+              resp += table;
+            }
+            sql_details = ""
+            var sql = "<strong>SQL:</strong><samp>"+data.sql+"</samp><hr/>";
+            $('#output').html(sql+resp+details)
       		})
   });
   
@@ -70,10 +107,11 @@
       				    	alternatives:['jean','youpa','youp'],
       				    },
       				]
-      				results = data.suggestions;
+      				results = test;//data.suggestions;
       				SUGGESTIONS = results
-      				var html = "<pre>"+JSON.stringify(results)+"</pre>";
+      				var html = "";//"<pre>"+JSON.stringify(results)+"</pre>";
       				$('#suggestions').html(html);
+              html += "<strong>Suggestions: </strong>"
       				results.map( (r,i) => {
       					r.curr = r.word;
       					if(r.alternatives.length > 0){
@@ -82,7 +120,6 @@
       						html += "<option onclick=\""+fonction+"\">"+r.word+"</option>";
 	      					r.alternatives.map(alt => {
 	      						fonction = "SUGGESTIONS["+i+"].curr = '"+alt+"';update()";
-	      						console.log(fonction)
 	      						html += "<option onclick=\""+fonction+"\">"+alt+"</option>";
 	      					})
 	      					html += '</select>';
@@ -99,6 +136,9 @@
   function update(){
 	  $('#query').val(SUGGESTIONS.map(x => x.curr).join(' '))
   }
+  
+  $("form").submit()
+  $('#correct').click()
     </script>
   </div>
 </body>
