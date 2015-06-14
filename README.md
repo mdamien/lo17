@@ -5,7 +5,6 @@ Awesome project. Such wow. Many pizzas.
 ![yeah](http://i.giphy.com/wWdA3Z9n3qWMU.gif)
 
 ## TODO list
-
 - [ ] flyer
 - [ ] jolie interface web
 - [ ] suggestions de corrections
@@ -13,12 +12,12 @@ Awesome project. Such wow. Many pizzas.
 
 ## Les trucs qui restent à faire (post TD du 8 Juin)
 - affiner la grammaire (en cours)
-- faire le flyer
+- faire le flyer (en cours)
 - intégrer le correcteur de requête au formulaire
 
 ## Le flyer
-### Structure
 - A4
+- version mail et papier
 - synthétique
 - recto orienté "pub"
-- verso orienté "technique" : explication des algorithmes utilisé synthèse des points forts et faibles (suggestions)
+- verso orienté "technique" : explication des algorithmes utilisé synthèse des points forts et faibles (suggestions d'amélioration)

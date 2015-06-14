@@ -137,7 +137,6 @@ public class LanceRequete extends HttpServlet {
 						}
 					}
 				}
-
 			}
 			return lemmes;
 		}
@@ -151,7 +150,6 @@ public class LanceRequete extends HttpServlet {
 	int nbre = 0;
 	Lexique lex = null;
 
-	//
 	public String to_sql(String s) throws Exception {
 		try {
 			tal_sqlLexer lexer = new tal_sqlLexer(new ANTLRReaderStream(
@@ -451,10 +449,6 @@ public class LanceRequete extends HttpServlet {
 		out.println(resp.toString());
 		out.close();
 	}
-
-	// <<<<<<< HEAD
-	// }
-	// =======
 
 	static public class Levenshtein {
 		public static char NULL = '\u0000';
