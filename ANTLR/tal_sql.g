@@ -80,7 +80,7 @@ param returns [Arbre lepar_arbre = new Arbre("")] :
         { lepar_arbre.ajouteFils(new Arbre("mot LIKE", "'\%"+a.getText()+"\%'"));}
 ;
 params returns [Arbre les_pars_arbre = new Arbre("")]
-    @init   {Arbre par1_arbre, par2_arbre;} : 
+    @init   {Arbre par1_arbre, par2_arbre;String last="OR";} : 
         par1 = param 
             {
                 par1_arbre = $par1.lepar_arbre;
@@ -88,18 +88,18 @@ params returns [Arbre les_pars_arbre = new Arbre("")]
             }
 
         (( ET{
-            par2_arbre = $par2.lepar_arbre;
-            les_pars_arbre.ajouteFils(new Arbre("", "AND"));
+            last = "OR";
          }
          |OU{
-            par2_arbre = $par2.lepar_arbre;
-               les_pars_arbre.ajouteFils(new Arbre("", "OR"));
+             last = "OR";
          }
         )?
          par2 = param
             {
                 par2_arbre = $par2.lepar_arbre;
+                les_pars_arbre.ajouteFils(new Arbre("", last));
                 les_pars_arbre.ajouteFils(par2_arbre);
+                last = "OR";
             }
         )*
 ;

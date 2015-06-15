@@ -1,4 +1,4 @@
-// $ANTLR 3.5 /home/bob/prog/lo17/ANTLR/tal_sql.g 2015-06-08 16:02:58
+// $ANTLR 3.5 /home/bob/prog/lo17/ANTLR/tal_sql.g 2015-06-15 08:41:10
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -44,7 +44,7 @@ public class tal_sqlParser extends Parser {
 
 	// $ANTLR start "listerequetes"
 	// /home/bob/prog/lo17/ANTLR/tal_sql.g:32:1: listerequetes returns [String sql = \"\"] : r= requete POINT ;
-	public final String listerequetes() throws  Exception {
+	public final String listerequetes() throws Exception {
 		String sql =  "";
 
 
@@ -81,7 +81,7 @@ public class tal_sqlParser extends Parser {
 
 	// $ANTLR start "requete"
 	// /home/bob/prog/lo17/ANTLR/tal_sql.g:42:1: requete returns [Arbre req_arbre = new Arbre(\"\")] : ( SELECT ( ARTICLE | COUNT ) MOT | SELECT ) ps= params ;
-	public final Arbre requete() throws  Exception {
+	public final Arbre requete() throws Exception {
 		Arbre req_arbre =  new Arbre("");
 
 
@@ -217,7 +217,7 @@ public class tal_sqlParser extends Parser {
 
 	// $ANTLR start "param"
 	// /home/bob/prog/lo17/ANTLR/tal_sql.g:78:1: param returns [Arbre lepar_arbre = new Arbre(\"\")] : a= VAR ;
-	public final Arbre param() throws  Exception {
+	public final Arbre param() throws Exception {
 		Arbre lepar_arbre =  new Arbre("");
 
 
@@ -246,16 +246,16 @@ public class tal_sqlParser extends Parser {
 
 	// $ANTLR start "params"
 	// /home/bob/prog/lo17/ANTLR/tal_sql.g:82:1: params returns [Arbre les_pars_arbre = new Arbre(\"\")] : par1= param ( ( ET | OU )? par2= param )* ;
-	public final Arbre params() throws  Exception {
+	public final Arbre params() throws Exception {
 		Arbre les_pars_arbre =  new Arbre("");
 
 
 		Arbre par1 =null;
 		Arbre par2 =null;
 
-		Arbre par1_arbre, par2_arbre;
+		Arbre par1_arbre, par2_arbre;String last="OR";
 		try {
-			// /home/bob/prog/lo17/ANTLR/tal_sql.g:83:45: (par1= param ( ( ET | OU )? par2= param )* )
+			// /home/bob/prog/lo17/ANTLR/tal_sql.g:83:62: (par1= param ( ( ET | OU )? par2= param )* )
 			// /home/bob/prog/lo17/ANTLR/tal_sql.g:84:9: par1= param ( ( ET | OU )? par2= param )*
 			{
 			pushFollow(FOLLOW_param_in_params499);
@@ -294,18 +294,16 @@ public class tal_sqlParser extends Parser {
 							{
 							match(input,ET,FOLLOW_ET_in_params528); 
 
-							            par2_arbre = par2;
-							            les_pars_arbre.ajouteFils(new Arbre("", "AND"));
+							            last = "OR";
 							         
 							}
 							break;
 						case 2 :
-							// /home/bob/prog/lo17/ANTLR/tal_sql.g:94:11: OU
+							// /home/bob/prog/lo17/ANTLR/tal_sql.g:93:11: OU
 							{
 							match(input,OU,FOLLOW_OU_in_params541); 
 
-							            par2_arbre = par2;
-							               les_pars_arbre.ajouteFils(new Arbre("", "OR"));
+							             last = "OR";
 							         
 							}
 							break;
@@ -318,7 +316,9 @@ public class tal_sqlParser extends Parser {
 
 
 					                par2_arbre = par2;
+					                les_pars_arbre.ajouteFils(new Arbre("", last));
 					                les_pars_arbre.ajouteFils(par2_arbre);
+					                last = "OR";
 					            
 					}
 					break;

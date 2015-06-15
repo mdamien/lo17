@@ -511,4 +511,35 @@ public class LanceRequete extends HttpServlet {
 			return matches;
 		}
 	}
+	
+	public static void main(String[] args) throws Exception {
+		String[] tests = {
+				"Je veux les articles qui parlent de la « biologie ».",
+				"Je veux les articles parlant de l'Argentine ou du Brésil.",
+				"Quels sont les articles qui concernent le nucléaire ?",
+				"Articles parlant d'université.",
+				"Quels sont les articles qui parlent de technologies a3D.",
+				"Je veux les articles impliquant le CNRS et qui parlent de chimie.",
+				"Je veux les articles sur les énergies renouvelables",
+				"Tous les articles qui concernent la nanotechnologie",
+				"Je veux les articles sur \"environnement\" ou \"innovation\" sans \"gouvernement\".",
+				"Je voudrais les articles qui parlent du tennis. ",
+				"Quels sont les articles parlant de la Russie ou du Japon ?",
+				"Je cherche les évènements traitant de chimie",
+				"Quels sont les articles parlant de vin ? ",
+				"Nous voulons des articles parlant de smartphones. ",
+				"Je veux les articles parlant de Neurobiologie",
+				"Quels sont les articles possédant le mot « France » ?",
+				"Quels sont les articles contenant les mots \" voitures \" et \" électrique\" ?",
+				"Articles possédants le mot « Université ».",
+				"Partenariat entre Airbus et l’Université de Tsinghua",
+				"Je cherche des articles sur les avions ",
+				"Je voudrais les articles qui parlent d'innovation",
+				//"Quels sont les articles dont le titre contient le terme \"marché\" et le mot \"projet\" ?"
+		};
+		for (String query : tests) {
+			System.out.println("___________________________________________________________________\n");
+			//handle(query);
+		}
+	}
 }
