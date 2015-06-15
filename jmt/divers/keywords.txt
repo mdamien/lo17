@@ -1,6 +1,7 @@
 Quels | VOULOIR
 veux | VOULOIR
 voudrais | VOULOIR
+voulais | VOULOIR
 voulons | VOULOIR
 cherch | VOULOIR
 impliqu | CONTIENT
