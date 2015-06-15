@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="utf-8">
- <title>Grammar</title>
- <link rel="stylesheet" href="http://bootswatch.com/lumen/bootstrap.min.css">
- <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<meta charset="utf-8" />
+<title>Grammar</title>
+<link rel="stylesheet"
+	href="http://bootswatch.com/lumen/bootstrap.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>Googletin</h1>
-    <h4></h4>
-    <hr/>
-    <form action="" method="get" class="form-horizontal">
-    <div class="row">
-    <div class="col-md-9">
-	    <div class="form-group">
-	        <input type="text" class="form-control" name="query" id="query" value="je veux les articles parlant de jean"/>
-	    </div>
-    </div>
-    <div class="col-md-1">
-    	<button class="btn btn-info btn-md btn-block" id="correct">Corriger</button>
-    </div>
-    <div class="col-md-2">
-    	<input type="submit" class="btn btn-primary btn-lg btn-block" value="Rechercher"/>
-    </div>
-    </div>
-    <div class="row" id="suggestions">
-    	
-    </div>
-    </form>
-    <hr>
-    <div id="output"></div>
-    <script type="text/javascript">
+	<div class="container">
+		<h1>Googletin</h1>
+		<h4></h4>
+		<hr />
+		<form action="" method="get" class="form-horizontal">
+			<div class="row">
+				<div class="col-md-9">
+					<div class="form-group">
+						<input type="text" class="form-control" name="query" id="query"
+							value="je veux les articles parlant de jean" />
+					</div>
+				</div>
+				<div class="col-md-1">
+					<button class="btn btn-info btn-md btn-block" id="correct">Corriger</button>
+				</div>
+				<div class="col-md-2">
+					<input type="submit" class="btn btn-primary btn-lg btn-block"
+						value="Rechercher" />
+				</div>
+			</div>
+			<div class="row" id="suggestions"></div>
+		</form>
+		<hr />
+		<div id="output"></div>
+		<script type="text/javascript">
   $("form").submit(e => {
       e.preventDefault();
       e.returnValue = false;
@@ -78,7 +79,7 @@
             $('#output').html(sql+resp+details)
       		})
   });
-  
+
   $('#correct').click(e => {
 	  e.preventDefault();
 	  e.returnValue = false;
@@ -130,18 +131,18 @@
       					}
       					html += "&nbsp"
       				})
-      				
+
       				$('#suggestions').html(html);
       			})
   })
-  
+
   function update(){
 	  $('#query').val(SUGGESTIONS.map(x => x.curr).join(' '))
   }
-  
+
   $("form").submit()
   $('#correct').click()
     </script>
-  </div>
+	</div>
 </body>
 </html>
