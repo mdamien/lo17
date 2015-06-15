@@ -37,6 +37,7 @@
       e.preventDefault();
       e.returnValue = false;
       var q = $('#query').val()
+       $('#correct').click()
       $.get('/jmt/servlet/LanceRequete?suggest=true&requete='+q,
       		data => {
             var resp = "", details = "";
@@ -76,7 +77,7 @@
             }
             sql_details = ""
             var sql = "<strong>SQL:</strong><samp>"+data.sql+"</samp><hr/>";
-            $('#output').html(sql+resp+details)
+            $('#output').html(sql+resp)
       		})
   });
 
@@ -114,7 +115,7 @@
       				SUGGESTIONS = results
       				var html = "<pre>"+JSON.stringify(results)+"</pre>";
       				$('#suggestions').html(html);
-              		html += "<strong>Suggestions: </strong>"
+              		html = "<strong>Suggestions: </strong>"
       				results.map( (r,i) => {
       					r.curr = r.word;
       					if(r.alternatives.length > 0){
@@ -141,7 +142,6 @@
   }
 
   $("form").submit()
-  $('#correct').click()
     </script>
 	</div>
 </body>
